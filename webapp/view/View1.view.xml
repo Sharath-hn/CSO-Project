@@ -1,0 +1,1595 @@
+<mvc:View controllerName="com.brsr.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" displayBlock="true" xmlns:core="sap.ui.core" 
+    xmlns:f="sap.f"
+	xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+    
+    <content>
+
+
+
+
+ <VBox>
+    
+    <Select id="yearDropdown" items="{yearModel>/years}">
+      <core:Item key="{yearModel>key}" text="{yearModel>text}" />
+    </Select>
+
+     <Button text="Submit" press="onSubmitFilter" />
+    
+
+  </VBox>
+  
+      <!-- Toolbar for Save as Draft and Submit buttons -->
+      <Toolbar>
+      
+        
+        <Button id="Submit" text="Save" press="onSubmitPress" />
+      </Toolbar>
+    
+ 
+    
+    
+  <VBox  id="myVBox" class="sapUiContentPadding">
+    <IconTabBar class="sapUiResponsiveContentPadding sapUiSizeCompact">
+      <items>
+        <IconTabFilter text="SECTION A" class="sapUiSizeCompact">
+
+          <content>      
+
+
+        
+
+  <VBox class="sapUiContentPadding">
+
+   <Title text="I. Details of the listed entity" level="H2" class="margin-bottom"/>
+
+ <l:Grid defaultSpan="L6 M6 S12" class="customGrid">
+   <Label text="1. Corporate Identity Number (CIN)" />
+  <TextArea id="textArea1" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+  
+  <Label text="2. Name of the Listed Entity" />
+   <TextArea id="textArea2" maxLength="1500" wrapping="Hard"  rows="2" cols="140" />
+
+  <Label text="3. Year of Incorporation" />
+   <TextArea id="textArea3" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="4. Registered Office Address" />
+   <TextArea id="textArea4" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="5. Corporate Address" />
+   <TextArea id="textArea5" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="6. E-mail" />
+   <TextArea id="textArea6" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="7. Telephone" />
+   <TextArea id="textArea7" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="8. Website" />
+   <TextArea id="textArea8" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="9. Financial year for which reporting is being done" />
+   <TextArea id="textArea9" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="10. Name of the Stock Exchange(s) where shares are listed" />
+   <TextArea id="textArea10" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="11. Paid-up Capital" />
+ <TextArea id="textArea11" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+  <Label text="12. Name and contact details (telephone, email address) of the person who may be 
+contacted in case of any queries on the BRSR report"  wrapping="true" />
+   <TextArea id="textArea12" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+   <Label text="13. Reporting boundary - Are the disclosures under this report made on a standalone basis 
+(i.e. only for the entity) or on a consolidated basis (i.e. for the entity and all the entities 
+which form a part of its consolidated financial statements, taken together)."  wrapping="true" />
+   <TextArea id="textArea13" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+
+   <Label text="Name of assurance provider "  wrapping="true" />
+   <TextArea id="textArea14" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+   <Label text="Type of assurance obtained "  wrapping="true" />
+   <TextArea id="textArea15" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+</l:Grid>
+    
+<VBox class="sapUiContentPadding"> 
+<Title text="II. Products/services" level="H2" class="margin-bottom"/>
+</VBox>
+
+    <Table id="Table1" items="{Catalog>/qualitative_data_sectionABC_Table1}" mode="SingleSelect"   visible="false">
+    <headerToolbar>
+        <OverflowToolbar>
+           <Title text="16. Details of business activities (accounting for 90% of the turnover):" level="H2" />
+
+            <ToolbarSpacer />
+            <Button icon="sap-icon://add" press=" onCreateRow1" class="sapUiSizeCompact"  />
+        </OverflowToolbar>
+    </headerToolbar>
+      <columns>
+        <Column hAlign="Center">
+          <Label text="S. No." />
+        </Column>
+        <Column hAlign="Center">
+          <Label text="Description of Main Activity" />
+        </Column>
+         <Column hAlign="Center">
+          <Label text="Description of Business Activity" />
+        </Column>
+         <Column hAlign="Center">
+          <Label text="% of Turnover of the entity" />
+        </Column>
+         <Column hAlign="Center">
+      <Text text="Actions" />
+    </Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Input value="{Catalog>sr_no}" />
+            <Input value="{Catalog>descriptionOfMainActivity}" />
+            <Input value="{Catalog>descriptionOfBusinessActivity}" />
+            <Input value="{Catalog>percentageOfTurnoverOfTheEntity}" />
+          
+     <Button icon="sap-icon://decline" press="onDeleteRow1" />
+          </cells>
+          
+        </ColumnListItem>
+      </items>
+    </Table>
+</VBox>
+
+
+
+  <VBox class="sapUiContentPadding">
+  
+   <Table id="Table2" items="{Catalog>/qualitative_data_sectionABC_Table2}" mode="None" visible="false">
+    <headerToolbar>
+        <OverflowToolbar>
+        <Title text="17. Products/Services sold by the entity (accounting for 90% of the entity's Turnover):" level="H2" />
+
+            <ToolbarSpacer />
+            
+            <Button icon="sap-icon://add" press=" onCreateRow2" class="sapUiSizeCompact"  />
+            <Button text="Clear Input Fields" press="clearTable2InputFields" class="sapUiSizeCompact" />
+        </OverflowToolbar>
+    </headerToolbar>
+    <columns>
+        <Column hAlign="Center">
+            <Label text="S. No." />
+        </Column>
+        <Column hAlign="Center">
+            <Label text="Product/Service" />
+        </Column>
+        <Column hAlign="Center">
+            <Label text="NIC Code" />
+        </Column>
+        <Column hAlign="Center">
+            <Label text="% of total Turnover contributed" />
+             </Column>
+             <Column>
+                <Text text="Actions" />
+            </Column>
+
+    </columns>
+    <items>
+        <ColumnListItem >
+            <cells>
+                <Input value="{Catalog>sr_no}" />
+                <Input value="{Catalog>nameOfProductOrService}" />
+                <Input value="{Catalog>nicCode}" />
+                <Input value="{Catalog>totalTurnoverContributed}" />
+
+                <Button icon="sap-icon://decline" press="onDeleteRow2" />
+               </cells>   
+        </ColumnListItem>
+    </items>
+</Table>
+</VBox>
+
+<VBox class="sapUiContentPadding">
+<Title text="III. Operations" level="H2" class="margin-bottom" />
+</VBox>
+ <VBox class="sapUiContentPadding">
+  <Table id="Table3" items="{Catalog>/qualitative_data_sectionABC_Table3}" visible="false" >
+    <headerToolbar>
+      <Toolbar>
+        <Title text="18. Number of locations where plants and/or operations/offices of the entity are situated:" level="H2" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="location" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="numberOfPlants" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="numberOfOffices" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="total" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Catalog>location}" />
+          <Input value="{Catalog>numberOfPlants}" />
+          <Input value="{Catalog>numberOfOffices}" />
+          <Input value="{Catalog>total}" />
+          <Button icon="sap-icon://decline" press="onCloseRowPress" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+ 
+
+
+  <VBox class="sapUiContentPadding">
+  <Title text="19. Markets served by the entity:" level="H2"  />
+
+  <Table id="Table4" items="{Catalog>/qualitative_data_sectionABC_Table4}"  visible="false" >
+  <headerToolbar>
+      <Toolbar>
+        <Title text="a. Number of locations" level="H2" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+        <Column hAlign="Center">
+            <Text text="Locations" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="Number" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{Catalog>locations}" />
+                <Input value="{Catalog>number}" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+</VBox>
+
+<VBox class="sapUiContentPadding">
+   <Title text="b. What is the contribution of exports as a percentage of the total turnover of the entity?" level="H2" />
+   <TextArea id="textArea16" maxLength="1500" wrapping="Hard" rows="2" cols="180" />
+</VBox>
+<VBox class="sapUiContentPadding">
+      <Title text="c. A brief on types of customers" level="H2" />
+   <TextArea id="textArea17" maxLength="1500" wrapping="Hard" rows="2" cols="180" />
+   </VBox>
+<VBox class="sapUiContentPadding">
+<Title text="IV.Employees" level="H2" />
+</VBox>
+<VBox class="sapUiContentPadding">
+  <Title text="20. Details as at the end of Financial Year:" level="H2" />
+  
+</VBox>
+
+
+<VBox class="sapUiContentPadding">
+  <Table id="Table5" items="{Catalog>/qualitative_data_sectionABC_Table5}" visible="false">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="a. Employees and workers (including differently abled):" level="H2" />
+      </Toolbar>
+    </headerToolbar>
+    
+ 
+  <columns>
+  
+      <Column hAlign="Center" >
+        <Text text="S.NO"   />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Type" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Particulars" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Total(A)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Male NO.(B)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Male %(B/A)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Female No.(C)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Female %(C/A)" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Catalog>sr_no}" />
+           <Text text="{Catalog>type}"/>
+          <Text text="{Catalog>particulars}" />
+          <Input value="{Catalog>total}" change="handleTotalChange" />
+          <Input value="{Catalog>numberOfMale}" />
+          <Text text="{=(${Catalog>percentageOfMale} / ${total} * 100).toFixed(2) + '%'}" />
+          <Input value="{Catalog>numberOfFemale}" change="handleFemaleNoChange" />
+          <Text text="{=(${Catalog>percentageOfFemale} / ${total} * 100).toFixed(2) + '%'}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+  </VBox>
+
+  <VBox class="sapUiContentPadding">
+  <Table id="Table6" items="{Catalog>/qualitative_data_sectionABC_Table6}" visible="false">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="b. Differently abled Employees and workers:" level="H2" />
+         
+      </Toolbar>
+    </headerToolbar>
+    
+ 
+  <columns>
+      <Column hAlign="Center">
+        <Text text="Type" />
+      </Column>
+      <Column hAlign="Center" >
+        <Text text="S.No" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Particulars" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Total(A)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Male NO.(B)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Male %(B/A)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Female No.(C)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Female %(C/A)" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Catalog>type}" />
+           <Text text="{Catalog>sr_no}"/>
+          <Text text="{Catalog>particulars}" />
+          <Input value="{Catalog>total}" change="handleTotalChange" />
+          <Input value="{Catalog>numberOfMale}" />
+          <Text text="{Catalog>percentageOfMale}" />
+          <Input value="{Catalog>numberOfFemale}" change="handleFemaleChange" />
+          <Text text="{Catalog>percentageOfFemale}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+  </VBox>
+
+  <VBox class="sapUiContentPadding">
+  <Table id="Table7" items="{Catalog>/qualitative_data_sectionABC_Table7}" visible="false">
+   <headerToolbar>
+      <Toolbar>
+        <Title text="21. Participation/Inclusion/Representation of womens:" level="H2" />
+
+      </Toolbar>
+    </headerToolbar>
+    
+ 
+    <columns>
+    <Column hAlign="Center">
+            <Text text="Name"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="Total" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="No.and percentage of Females No.(B)" />
+        </Column>
+         <Column>
+            <Text text="No.and percentage of Females %(B/A)" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+               <Text text="{Catalog>name}" />
+                <Input value="{Catalog>total}" change="handleTotalChange" />
+                <Input value="{Catalog>numberOfFemale}" />
+                <Text text="{=(${Catalog>percentageOfFemale} / ${Total(A)} * 100).toFixed(2) + '%'}" />
+            </cells>
+                 
+            
+        </ColumnListItem>
+    </items>
+</Table>
+</VBox>
+
+   
+<VBox class="sapUiContentPadding">
+  <Table id="Table8" items="{Catalog>/qualitative_data_sectionABC_Table8}" visible="false">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="22. Turnover rate for permanent employees and workers" level="H2" />
+
+   <Title text="(Disclose trends for the past 3 years)" level="H2" />
+
+
+      </Toolbar>
+    </headerToolbar>
+    
+    <columns>
+    <Column hAlign="Center">
+            <Text text="Type"/>
+        </Column>
+    
+    <Column hAlign="Center">
+            <Text text="FY _____(Turnover rate in current FY) Male"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY _____(Turnover rate in current FY) Female" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY _____(Turnover rate in current FY) Total" />
+        </Column>
+         <Column hAlign="Center">
+            <Text text="FY _____(Turnover rate in previous FY) Male" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY _____(Turnover rate in previous FY) Female" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY _____(Turnover rate in previous FY) Total" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY _____(Turnover rate in the year prior to the previous FY) Male" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY _____(urnover rate in the year prior to the previous FY) Female" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY _____(urnover rate in the year prior to the previous FY) Total" />
+        </Column>
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{Catalog>type}" />
+                <Input value="{Catalog>maleTurnoverRateInCurrentFY}"/>
+                <Input value="{Catalog>femaleTurnoverRateInCurrentFY}"/>
+                 <Input value="{Catalog>totalTurnoverRateInCurrentFY}"/>
+                <Input value="{Catalog>maleTurnoverRateInPreviousFY}" />
+                <Input value="{Catalog>femaleTurnoverRateInPreviousFY}"/>
+                <Input value="{Catalog>totalTurnoverRateInPreviousFY}" />
+                <Input value="{Catalog>maleTurnoverRateInYearPriorToPreviousFY}" />
+                <Input value="{Catalog>femaleTurnoverRateInYearPriorToPreviousFY}" />
+               <Input value="{Catalog>totalTurnoverRateInYearPriorToPreviousFY}" />
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+</VBox>
+  <VBox class="sapUiContentPadding">
+  <Title text="V.Holding, Subsidiary and Associate Companies (including joint ventures" level="H2" />
+  </VBox>
+    <VBox class="sapUiContentPadding">
+  <Table id="Table9" items="{Catalog>/qualitative_data_sectionABC_Table9}" visible="false">
+   <headerToolbar>
+      <Toolbar>
+       <Title text="23. (a) Names of holding / subsidiary / associate companies / joint ventures" level="H2" />
+       <ToolbarSpacer />
+            
+            <Button icon="sap-icon://add" press="onCreateRow9" class="sapUiSizeCompact" />
+      </Toolbar>
+    </headerToolbar>
+    
+    <columns>
+    <Column hAlign="Center">
+            <Text text="S.No"/>
+        </Column>
+    
+    <Column hAlign="Center">
+            <Text text="Name of the holding / subsidiary / associate companies / joint ventures(A)"/>
+        </Column>
+        
+        <Column hAlign="Center">
+            <Text text="Indicate whether holding/ Subsidiary/ Associate/ Joint Ventures" />
+        </Column>
+         <Column hAlign="Center">
+            <Text text="% of shares held by listed entity" />
+        </Column>
+        <Column hAlign="Center">
+            <Text text="Does the entity indicated at column A, participate in the Business Responsibility initiatives of the listed entity? (Yes/No)" />
+        </Column>
+        
+        
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+               <Input value="{Catalog>sr_no}"/>
+                <Input value="{Catalog>name}"/>
+                 <Input value="{Catalog>type}"/>
+                <Input value="{Catalog>percentageOfShares}" />
+                <Input value="{Catalog>participationStatus}"/>
+    
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+ </VBox>
+<VBox class="sapUiContentPadding">
+  <Title text="VI. CSR Details" level="H2" />
+</VBox>
+
+<VBox class="sapUiContentPadding">
+  <Title text="24. (i) Whether CSR is applicable as per section 135 of Companies Act, 2013: (Yes/No)" level="H2" />
+  <TextArea id="textArea19" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+</VBox>
+
+<VBox class="sapUiContentPadding">
+  <Title text="(ii) Turnover (in Rs.)" level="H2" />
+  <TextArea id="textArea20" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+</VBox>
+
+<VBox class="sapUiContentPadding">
+  <Title text="(iii) Net worth (in Rs.)" level="H2" />
+  <TextArea id="textArea21" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+</VBox>
+
+
+
+
+ <Title text="VII.Transparency and Disclosures Compliances" level="H2" />
+  <VBox class="sapUiContentPadding">
+ <Table id="Table10" items="{Catalog>/qualitative_data_sectionABC_Table10}" visible="false">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="25. Complaints/Grievances on any of the principles (Principles 1 to 9) under the National Guidelines on Responsible Business Conduct:" level="H2" />
+      </Toolbar>
+    </headerToolbar>
+    
+    <columns>
+    <Column hAlign="Center">
+            <Text text="Stakeholder group from whom complaint is received"/>
+        </Column>
+    
+    <Column hAlign="Center">
+            <Text text="Grievance Redressal Mechanism in Place (Yes/No) (If Yes, then provide web-link for grievance redress policy)"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY Current Financial Year Number of complaints filed during the year"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY Current Financial YearNumber of complaints pending resolution at close of the year"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY Current Financial Year Remarks"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY Current previous Year Number of complaints filed during the year"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY Current previous Year Number of complaints pending resolution at close of the year"/>
+        </Column>
+        <Column hAlign="Center">
+            <Text text="FY Current previous Year Remarks"/>
+        </Column>
+       
+    </columns>
+    <items>
+        <ColumnListItem>
+            <cells>
+                <Text text="{Catalog>name}" />
+                <Input value="{Catalog>status}"/>
+                <Input value="{Catalog>currentFYComplaintsFiled}"/>
+                <Input value="{Catalog>currentFYComplaintsPending}"/>
+                <Input value="{Catalog>currentFYComplaintsRemarks}"/>
+                <Input value="{Catalog>previousFYComplaintsFiled}"/>
+                <Input value="{Catalog>previousFYComplaintsPending}"/>
+                <Input value="{Catalog>previousFYComplaintsRemarks}"/>
+                
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+</VBox>
+<VBox class="sapUiContentPadding">
+<Title text="26. Overview of the entity's material responsible business conduct issues" level="H2" />
+    
+</VBox>
+<VBox class="sapUiContentPadding">
+<Title text="Please indicate material responsible business conduct and sustainability issues pertaining to environmental and social matters that present a risk or an opportunity to your business, rationale for identifying the same, approach to adapt or mitigate the risk along-with its financial implications, as per the following format" level="H2"  wrapping="true"/>
+  </VBox>
+<VBox class="sapUiContentPadding">
+<Table id="Table11" items="{Catalog>/qualitative_data_sectionABC_Table11}" visible="false">
+  <headerToolbar>
+      <Toolbar>
+       
+       <ToolbarSpacer />
+            
+            <Button icon="sap-icon://add" press="onCreateRow11" class="sapUiSizeCompact" />
+      </Toolbar>
+    </headerToolbar>
+
+    <columns>
+    <Column hAlign="Center">
+            <Text text="S.No"/>
+        </Column>
+ <Column hAlign="Center">
+            <Text text="Material issue identified"/>
+        </Column>
+ <Column hAlign="Center">
+            <Text text="Indicate whether risk or opportunity(R/O)"/>
+        </Column>
+ <Column hAlign="Center">
+            <Text text="Rationale for identifying the risk / opportunity"/>
+        </Column>
+ <Column hAlign="Center">
+            <Text text="In case of risk,approach to adapt or mitigate"/>
+        </Column>
+ <Column hAlign="Center">
+            <Text text="Financial implications of the risk or opportunity(Indicate positive or negative implications)"/>
+        </Column>
+</columns>
+
+ <items>
+        <ColumnListItem>
+            <cells>
+                <Input value="{Catalog>sr_no}" />
+                <Input value="{Catalog>issue}"/>
+                <Input value="{Catalog>type}"/>
+                <Input value="{Catalog>rationale}"/>
+                <Input value="{Catalog>approach}"/>
+              <Input value="{Catalog>financialImplications}"/>
+            </cells>
+        </ColumnListItem>
+    </items>
+</Table>
+</VBox> 
+
+  
+          </content>
+        </IconTabFilter>
+        <IconTabFilter text="SECTION B" class="sapUiSizeCompact">
+          <content>
+          <VBox class="sapUiContentPadding">
+          <Title text="This section is aimed at helping businesses demonstrate the structures, policies and processes 
+put in place towards adopting the NGRBC Principles and Core Elements" level="H2" wrapping="true" />
+</VBox>
+<VBox class="sapUiContentPadding">
+  <Table id="Table12" items="{Catalog>/qualitative_data_sectionABC_Table12}" visible="false">
+    <columns>
+      
+      <Column hAlign="Center">
+        <Text text="Disclosure Questions" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="P 1" />
+      </Column>
+     <Column hAlign="Center">
+        <Text text="P 2" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="P 3" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="P 4" />
+      </Column>
+     
+    <Column hAlign="Center">
+        <Text text="P 5" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 6" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 7" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 8" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 9" />
+      </Column>
+     
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+        
+          <Text text="{questions}" />
+          <Input value="{p1}" />
+          <Input value="{P2}" />
+          <Input value="{P3}" />
+          <Input value="{p4}" />
+          <Input value="{p5}" />
+          <Input value="{p6}" />
+          <Input value="{P7}" />
+          <Input value="{P8}" />
+          <Input value="{P9}" />
+          
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+  </VBox>
+  <VBox class="sapUiContentPadding">
+          <Title text="7. Governance, leadership and oversight" level="H2" />
+</VBox>
+<VBox class="sapUiContentPadding">
+<Title text="8. Details of the highest authority responsible 
+for implementation and oversight of the 
+Business Responsibility policy (ies)." level="H2" wrapping="true"/>
+    <TextArea value="{}" rows="3" cols="180" />
+    </VBox>
+  <VBox class="sapUiContentPadding">
+<Title text="9. Does the entity have a specified 
+Committee of the Board/ Director 
+responsible for decision making on 
+sustainability related issues? (Yes / No). If 
+yes, provide details." level="H2" wrapping="true" />
+    <TextArea value="{}" rows="3" cols="180" />
+  </VBox>
+  <VBox class="sapUiContentPadding">
+  
+    <Table id="Table13" items="{/qualitative_data_sectionABC_Table13}" visible="false">
+      <headerToolbar>
+        <Toolbar>
+          <Title text="10. Details of Review of NGRBCs by the Company:" level="H2" />
+        </Toolbar>
+      </headerToolbar>
+      <columns>
+        <Column hAlign="Center">
+          <Text text="Subject for Review" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 1" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 2" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 3" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 4" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 5" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 6" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 7" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 8" />
+        </Column>
+        <Column hAlign="Center">
+          <Text text="Indicate whether review was undertaken by Director / Committee of the Board / Any other Committee. P 9" />
+        </Column>
+         <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 1" />
+      </Column>
+     <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 2" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 3" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 4" />
+      </Column>
+     
+    <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 5" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 6" />
+      </Column >
+       <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 7" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 8" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="Frequency (Annually/ Half yearly/ Quarterly/ Any other - please specify).P 9" />
+      </Column>
+     
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <Text text="{subjectFoReview}" />
+            <Input value="{p1review}" />
+            <Input value="{p2review}" />
+            <Input value="{p3review}" />
+            <Input value="{p4review}" />
+            <Input value="{p5review}" />
+            <Input value="{p6review}" />
+            <Input value="{p7review}" />
+            <Input value="{p8review}" />
+            <Input value="{p9review}" />
+             <Input value="{p1frequency}" />
+        <Input value="{p2frequency}" />
+        <Input value="{p3frequency}" />
+          <Input value="{p4frequency}" />
+        <Input value="{p5frequency}" />
+        <Input value="{p6frequency}" />
+        <Input value="{p7frequency}" />
+        <Input value="{p8frequency}" />
+        <Input value="{p9frequency}" />
+      
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>  
+</VBox>
+
+  <VBox class="sapUiContentPadding">
+  <Table id="Table14" items="{/qualitative_data_sectionABC_Table14}" visible="false">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="11. Has the entity carried out independent 
+assessment/ evaluation of the working of its policies by an external agency? (Yes/No). If yes, provide name of the agency." level="H2"  wrapping="true"/>
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+     
+      <Column hAlign="Center">
+        <Text text="P 1" />
+      </Column>
+     <Column hAlign="Center">
+        <Text text="P 2" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="P 3" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="P 4" />
+      </Column>
+     
+    <Column hAlign="Center">
+        <Text text="P 5" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 6" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 7" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 8" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 9" />
+      </Column>
+     
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+         <Input value="{p1}" />
+          <Input value="{p2}" />
+          <Input value="{p3}" />
+          <Input value="{p4}" />
+          <Input value="{p5}" />
+          <Input value="{p6}" />
+          <Input value="{p7}" />
+          <Input value="{p8}" />
+          <Input value="{p9}" />
+          
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+  </VBox>
+   <VBox class="sapUiContentPadding">
+  <Table id="Table15" items="{/qualitative_data_sectionABC_Table15}" visible="false">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="12. If answer to question (1) above is “No” i.e. not all Principles are covered by a policy, 
+reasons to be stated:" level="H2"  wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+    <Column hAlign="Center">
+        <Text text="Questions" />
+      </Column>
+     
+      <Column hAlign="Center">
+        <Text text="P 1" />
+      </Column>
+     <Column hAlign="Center">
+        <Text text="P 2" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="P 3" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="P 4" />
+      </Column>
+     
+    <Column hAlign="Center">
+        <Text text="P 5" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 6" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 7" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 8" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="P 9" />
+      </Column>
+     
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+        <Text text="{questions}" />
+         <Input value="{p1}" />
+          <Input value="{p2}" />
+          <Input value="{p3}" />
+          <Input value="{p4}" />
+          <Input value="{p5}" />
+          <Input value="{p6}" />
+          <Input value="{p7}" />
+          <Input value="{p8}" />
+          <Input value="{p9}" />
+          
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+  </VBox>
+
+
+          </content>
+        </IconTabFilter>
+        <IconTabFilter text="SECTION C" class="sapUiSizeCompact">
+          <content>
+          <VBox class="sapUiContentPadding">
+  <Title text="This section is aimed at helping entities demonstrate their performance in integrating the 
+Principles and Core Elements with key processes and decisions. The information sought is 
+categorized as “Essential” and “Leadership”. While the essential indicators are expected to be 
+disclosed by every entity that is mandated to file this report, the leadership indicators may be 
+voluntarily disclosed by entities which aspire to progress to a higher level in their quest to be 
+socially, environmentally and ethically responsible." level="H2"  wrapping="true" />
+ </VBox>
+ <VBox class="sapUiContentPadding">
+<Title text="PRINCIPLE 1 Businesses should conduct and govern themselves with 
+integrity, and in a manner that is Ethical, Transparent and 
+Accountable." level="H1"  wrapping="true" />
+  </VBox>
+
+   <VBox class="sapUiContentPadding">
+   <Title text="Essential Indicators"  hAlign="Center" level="H1"  wrapping="true" />
+    </VBox>
+     <VBox class="sapUiContentPadding">
+  <Table id="EssentialIndicators" items="{/EssentialIndicators}">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="1. Percentage coverage by training and awareness programmes on any of the Principles 
+during the financial year:" level="H2"  wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+    <Column hAlign="Center">
+        <Text text="Segment" />
+      </Column>
+     
+      
+     <Column hAlign="Center">
+        <Text text="Total number of training and awareness programmes held" />
+      </Column>
+     
+     <Column hAlign="Center">
+        
+        <Text text="Topics / principles covered under the training and its impact" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="%age of persons in respective category covered by the awareness programmes" />
+      </Column>
+     
+    </columns>
+      
+    <items>
+      <ColumnListItem>
+        <cells>
+        <Text text="{Segment}" />
+         <Input value="{Total number of training and awareness programmes held}" />
+          <Input value="{Topics / principles covered under the training and its impact}" />
+          <Input value="{%age of persons in respective category covered by the awareness programmes}" />
+           
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+  </VBox>
+
+  <VBox class="sapUiContentPadding">
+<Title text="Details of fines / penalties /punishment/ award/ compounding fees/ settlement amount 
+paid in proceedings (by the entity or by directors / KMPs) with regulators/ law 
+enforcement agencies/ judicial institutions, in the financial year, in the following format 
+(Note: the entity shall make disclosures on the basis of materiality as specified in Regulation 30 
+of SEBI (Listing Obligations and Disclosure Obligations) Regulations, 2015 and as disclosed on 
+the entity's website):" level="H2" wrapping="true"/>
+ </VBox>
+
+     <VBox class="sapUiContentPadding">
+  <Table id="Monetary" items="{/Monetary}">
+  
+    <columns>
+    <Column hAlign="Center">
+        <Text text="Type" />
+      </Column>
+    <Column hAlign="Center">
+        <Text text="Parameters" />
+      </Column>
+     
+    <Column hAlign="Center">
+        <Text text="NGRBC Principle" />
+      </Column>
+     
+      
+     <Column hAlign="Center">
+        <Text text="Name of the regulatory/enforcement agencies/ judicial institutions" />
+      </Column>
+     
+     <Column hAlign="Center">
+        
+        <Text text="Amount (In INR)" />
+      </Column>
+     
+     <Column hAlign="Center">
+        <Text text="Brief of the Case" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Has an appeal been preferred? (Yes/No)" />
+      </Column>
+     
+    </columns>
+      
+    <items>
+      <ColumnListItem>
+        <cells>
+        <Text text="{Type}"/>
+        <Text text="{Parameters}"/>
+        <Input value="{NGRBC Principle}" />
+         <Input value="{Name of the regulatory/enforcement agencies/ judicial institutions}" />
+          <Input value="{Amount (In INR)}" />
+          <Input value="{Brief of the Case}" />
+          <Input value="{Has an appeal been preferred? (Yes/No)}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+   </VBox>
+
+ <VBox class="sapUiContentPadding">
+  <Table id="NonMonetary" items="{/NonMonetary}">
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Type" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Parameters" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="NGRBC Principle" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Name of the regulatory/enforcement agencies/judicial institutions" />
+      </Column>
+     
+      <Column hAlign="Center">
+        <Text text="Brief of the Case" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Has an appeal been preferred? (Yes/No)" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Type}" />
+          <Text text="{Parameters}" />
+          <Input value="{NGRBCPrinciple}" />
+          <Input value="{Name of the regulatory/enforcement agencies/judicial institutions}" />
+         
+          <Input value="{BriefOfTheCase}" />
+          <Input value="{AppealPreferred}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+<VBox class="sapUiContentPadding">
+<Title text="Of the instances disclosed in Question 2 above, details of the Appeal/ Revision 
+preferred in cases where monetary or non-monetary action has been appealed." level="H2" wrapping="true"/>
+</VBox>
+<VBox class="sapUiContentPadding">
+  <Table id="CaseDetails" items="{/CaseDetails}">
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Case Details" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Name of the regulatory/ enforcement agencies/ judicial institutions" />
+      </Column>
+      
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Input value="{Case Details}" />
+          <Input value="{Name of the regulatory/ enforcement agencies/ judicial institutions}" />
+         
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+<VBox class="sapUiContentPadding">
+<Title text="4. Does the entity have an anti-corruption or anti-bribery policy? If yes, provide details in 
+brief and if available, provide a web-link to the policy."  level="H2" wrapping="true"/>
+</VBox>
+
+      <VBox class="sapUiContentPadding">
+  <Table id="Directors" items="{/Directors}">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="5. Number of Directors/KMPs/employees/workers against whom disciplinary action was 
+taken by any law enforcement agency for the charges of bribery/ corruption:" level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Type" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Current Financial Year)" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="FY(Previous Financial Year)" />
+      </Column>
+      
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Type}" />
+          <Input value="{FY(Current Financial Year)}" />
+          <Input value="{FY(Previous Financial Year)}" />
+         
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+     
+     <VBox class="sapUiContentPadding">
+  <Table id="complaints" items="{/complaints}">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="5. Details of complaints with regard to conflict of interest:" level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Type" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Current Financial Year). Number" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Current Financial Year). Remarks" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Previous Financial Year). Number" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Previous Financial Year). Remarks" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Type}" />
+          <Input value="{FY(Current Financial Year).Number}" />
+          <Input value="{FY(Current Financial Year).Remarks}" />
+          <Input value="{FY(Previous Financial Year).Number}" />
+          <Input value="{FY(Previous Financial Year).Remarks}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+<VBox class="sapUiContentPadding">
+<Title text="Provide details of any corrective action taken or underway on issues related to fines / 
+penalties / action taken by regulators/ law enforcement agencies/ judicial institutions,
+on cases of corruption and conflicts of interest."  level="H2" wrapping="true"/>
+</VBox>
+
+<VBox class="sapUiContentPadding">
+<Table id="Numberofdays" items="{/Numberofdays}">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="Number of days of accounts payables ((Accounts payable *365) / Cost of 
+goods/services procured) in the following format:" level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Type" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Current Financial Year)" />
+     
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Previous Financial Year)" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Type}" />
+          <Input value="{FY(Current Financial Year)}" />
+          
+          <Input value="{FY(Previous Financial Year)}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+<VBox class="sapUiContentPadding">
+<Table id="openness" items="{/openness}">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="Provide details of concentration of purchases and sales with trading houses, dealers, and related parties along-with loans and advances and investments, with related parties, in the following format:" level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Parameter" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Metrics" />
+     
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY(Current Financial Year)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY((Previous Financial Year)" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Parameter}" />
+          <Text text="{Metrics}" />
+          <Input value="{FY(Current Financial Year)}" />
+          <Input value="{FY(Previous Financial Year)}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+<VBox class="sapUiContentPadding">
+   <Title text="Leadership Indicators"  hAlign="Center" level="H1"  wrapping="true" />
+    </VBox>
+    <VBox class="sapUiContentPadding">
+    
+  <Table id="awarenessprogrammes" items="{/awarenessprogrammes}">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="1. Awareness programmes conducted for value chain partners on any of the Principles during the financial year:" level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Total number of awareness programmes held" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Topics / principles covered under the training" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="%age of value chain partners covered (by value of business done with such partners) under the awareness programmes" />
+      </Column>
+      
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Input value="{Total number of awareness programmes held}" />
+          <Input value="{Topics / principles covered under the training}" />
+          <Input value="{%age of value chain partners covered (by value of business done with such partners) under the awareness programmes}" />
+         
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+<VBox class="sapUiContentPadding">
+    <Title text="2. Does the entity have processes in place to avoid/ manage conflict of interests involving 
+members of the Board? (Yes/No) If Yes, provide details of the same." level="H2" wrapping="true" />
+    <TextArea value="{}" rows="2" cols="180" />
+    </VBox>
+    <VBox class="sapUiContentPadding">
+    <Title text="PRINCIPLE 2 Businesses should provide goods and services in a 
+manner that is sustainable and safe" level="H1" wrapping="true" />
+    </VBox>
+    <VBox class="sapUiContentPadding">
+    <Title text="Essential Indicators" hAlign="centre" level="H2" wrapping="true" /> 
+    </VBox>
+
+    <VBox class="sapUiContentPadding">
+  <Table id="expenditure" items="{/expenditure}">
+    <headerToolbar>
+      <Toolbar>
+        <Title text="1. Percentage of R and D and capital expenditure (capex) investments in specific technologies to improve the environmental and social impacts of product and processes to total R and D and capex investments made by the entity, respectively." level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Parameter" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Current Financial Year" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Previous Financial Year" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Details of improvements in environmental and social impacts" />
+      </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Parameter}" />
+          <Input value="{Current Financial Year}" />
+          <Input value="{Previous Financial Year}" />
+          <Input value="{Details of improvements in environmental and social impacts}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+<VBox class="sapUiContentPadding">
+    <Title text="2. a. Does the entity have procedures in place for sustainable sourcing? (Yes/No)" level="H2" wrapping="true" />
+    <TextArea value="{}" rows="1" cols="180" />
+    </VBox>
+    <VBox class="sapUiContentPadding">
+    <Title text="b. If yes, what percentage of inputs were sourced sustainably?" level="H2" wrapping="true" />
+    <TextArea value="{}" rows="1" cols="180" />
+    </VBox>
+    <VBox class="sapUiContentPadding">
+    <Title text="3. Describe the processes in place to safely reclaim your products for reusing, recycling and 
+disposing at the end of life, for (a) Plastics (including packaging) (b) E-waste (c) 
+Hazardous waste and (d) other waste" level="H2" wrapping="true" />
+    <TextArea value="{}" rows="2" cols="180" />
+    </VBox>
+    <VBox class="sapUiContentPadding">
+    <Title text="4. Whether Extended Producer Responsibility (EPR) is applicable to the entity's activities 
+(Yes / No). If yes, whether the waste collection plan is in line with the Extended Producer 
+Responsibility (EPR) plan submitted to Pollution Control Boards? If not, provide steps 
+taken to address the same." level="H2" wrapping="true" />
+    <TextArea value="{}" rows="2" cols="180" />
+    </VBox>
+
+<VBox class="sapUiContentPadding">
+    <Title text="Leadership Indicators" level="H2" wrapping="true" />
+</VBox>
+
+<VBox class="sapUiContentPadding">
+    
+  <Table id="Assessments" items="{/Assessments}">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="1. Has the entity conducted Life Cycle Perspective / Assessments (LCA) for any of its 
+products (for manufacturing industry) or for its services (for service industry)? If yes, 
+provide details in the following format?" level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="NIC Code" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Name of Product /Service" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="% of total Turnover contributed" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Boundary for which the Life Cycle Perspective / Assessment was conducted" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Whether conducted by independent externl agency(Yes/No)" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Results communicated in public domain(Yes/No). If yes, provide the web-link." />
+      </Column>
+      
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Input value="{NIC Code}" />
+          <Input value="{Name of Product /Service}" />
+          <Input value="{% of total Turnover contributed}" />
+          <Input value="{Boundary for which the Life Cycle Perspective / Assessment was conducted}" />
+          <Input value="{Whether conducted by independent externl agency(Yes/No)}" />
+          <Input value="{Results communicated in public domain(Yes/No). If yes, provide the web-link.}" />
+         
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+<VBox class="sapUiContentPadding"> 
+  <Table id="environmental" items="{/environmental}">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="2. If there are any significant social or environmental concerns and/or risks arising from 
+production or disposal of your products / services, as identified in the Life Cycle 
+Perspective / Assessments (LCA) or through any other means, briefly describe the same 
+along-with action taken to mitigate the same." level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Name of Product / Service" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Description of the risk / concern" />
+      </Column>
+       <Column hAlign="Center">
+        <Text text="Action Taken" />
+      
+        </Column>
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Input value="{Name of Product / Service}" />
+           <Input value="{Description of the risk / concern}" />
+            <Input value="{Action Taken}" />
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+
+<VBox class="sapUiContentPadding">
+    
+  <Table id="reused" items="{/reused}">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="4. Of the products and packaging reclaimed at end of life of products, amount (in metric 
+tonnes) reused, recycled, and safely disposed, as per the following format:" level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Parameter" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY Current Financial Year. Re-Used" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY Current Financial Year. Recycled" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY Current Financial Year. Safely Disposed" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY Previous Financial Year.Re-Used" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY Previous Financial Year. Recycled" />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="FY Previous Financial Year. Safely Disposed" />
+      </Column>
+      
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Text text="{Parameter}" />
+          <Input value="{FY Current Financial Year. Re-Used}" />
+          <Input value="{FY Current Financial Year. Recycled}" />
+          <Input value="{FY Previous Financial Year. Safely Disposed}" />
+          <Input value="{FY Previous Financial Year.Re-Used}" />
+          <Input value="{FY Previous Financial Year. Recycled}" />
+          <Input value="{FY Previous Financial Year. Safely Disposed}" />
+          
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+<VBox class="sapUiContentPadding"> 
+  <Table id="Reclaimed" items="{/Reclaimed}">
+  <headerToolbar>
+      <Toolbar>
+        <Title text="5. Reclaimed products and their packaging materials (as percentage of products sold) for 
+each product category." level="H2" wrapping="true" />
+      </Toolbar>
+    </headerToolbar>
+    <columns>
+      <Column hAlign="Center">
+        <Text text="Indicate product category " />
+      </Column>
+      <Column hAlign="Center">
+        <Text text="Reclaimed products and their packaging materials as % of total products sold in respective category" />
+      </Column>
+       
+    </columns>
+    <items>
+      <ColumnListItem>
+        <cells>
+          <Input value="{Indicate product category }" />
+           <Input value="{Reclaimed products and their packaging materials as % of total products sold in respective category}" />
+           
+        </cells>
+      </ColumnListItem>
+    </items>
+  </Table>
+</VBox>
+
+          
+          </content>
+        </IconTabFilter>
+      </items>
+    </IconTabBar>
+  </VBox>
+
+ 
+         
+
+
+        </content>
+    </Page>
+</mvc:View>

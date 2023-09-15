@@ -1,0 +1,80 @@
+
+.sapUiContentPadding {
+    padding: 1rem;
+  }
+  
+  .sapUiSizeCompact {
+    font-size: 0.875rem;
+  }
+  .sapUiTitlePadding {
+    padding: 1rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    color: #333;
+  }
+  /* General styles */
+.sapUiBody {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+
+.sapUiContentPadding {
+  padding: 1rem;
+}
+
+/* Form styles */
+.customForm {
+  margin-top: 1rem;
+}
+
+.customForm .sapUiLabel {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.customForm .sapUiInput,
+.customForm .sapMTextArea,
+.customForm .sapMDatePicker,
+.customForm .sapMRb {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.customForm .sapMTextArea {
+  resize: vertical;
+}
+  .custom-container {
+    padding: 16px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-select {
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  .custom-button {
+    margin-top: 16px;
+    width: 5%;
+  }
+  
+  .fullHeight {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .customFooter {
+    background-color: #f3f3f3;
+    padding: 8px;
+    border-top: 1px solid #ccc;
+    width: 100%;
+  }
+  

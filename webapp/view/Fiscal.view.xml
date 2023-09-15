@@ -1,0 +1,18 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  controllerName="com.brsr.controller.Fiscal">
+  
+  <VBox>
+    <Label text="Select Fiscal Year:" />
+    <Select id="fiscalYearSelect" width="200px">
+      <items>
+        <core:Item key="2023" text="2023" />
+        <core:Item key="2024" text="2024" />
+        <!-- Add more fiscal years here -->
+      </items>
+    </Select>
+    <Button text="Submit" press="onSubmit" />
+  </VBox>
+  
+</mvc:View>
