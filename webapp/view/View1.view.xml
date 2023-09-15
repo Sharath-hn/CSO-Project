@@ -2,7 +2,8 @@
     xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" displayBlock="true" xmlns:core="sap.ui.core" 
     xmlns:f="sap.f"
 	xmlns:form="sap.ui.layout.form"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap">
     <Page id="page" title="{i18n>title}">
     
     <content>
