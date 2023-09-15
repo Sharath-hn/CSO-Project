@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.brsr.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" displayBlock="true" xmlns:core="sap.ui.core" 
     xmlns:f="sap.f"
-	xmlns:form="sap.ui.layout.form"
+	  xmlns:form="sap.ui.layout.form"
     xmlns="sap.m"
     xmlns:uxap="sap.uxap">
     <Page id="page" title="{i18n>title}">
@@ -1582,6 +1582,118 @@ each product category." level="H2" wrapping="true" />
 
           
           </content>
+        </IconTabFilter>
+         <IconTabFilter text="Data Security" class="sapUiSizeCompact">
+          <content>
+                            <Label required="true" text="1. Does the entity have a framework/ policy on cyber security and risks related to data privacy? (Yes/No) If available, provide a web-link of the policy."
+                             id="id_q1" design="Bold" wrapping="true" />
+                            <!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
+                            <TextArea id="id_answ1" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true"  />
+                            
+                            <Label required="true" text="2. Provide details of any corrective actions taken or underway on issues relating to advertising, and delivery of essential services; cyber security and data privacy of customers; re-occurrence of instances of product recalls; penalty / action taken by regulatory authorities on safety of products / services."
+                             id="id_q2" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ2" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" />
+
+                            <Label text="Provide the following information relating to data breaches:&#x0A; &#x0A; 3. Number of instances of data breaches along-with impact"
+                             id="id_q3" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ3" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+
+                            <Label text="Provide the following information relating to data breaches:&#x0A; &#x0A; 4. Percentage of data breaches involving personally identifiable information of customers"
+                             id="id_q4" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ4" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+           </content>
+        </IconTabFilter>
+ <IconTabFilter text="Quality Assurance" class="sapUiSizeCompact">
+          <content>
+        <Label required="true" text="1. Describe the processes in place to safely reclaim your products for reusing, recycling and disposing at the end of life, for (a) Plastics (including packaging) (b) E-waste (c) Hazardous waste and (d) other waste."
+
+                             design="Bold" wrapping="true" />
+                            <!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
+                            <TextArea id="id_answ1q" rows="3" editable = "false" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+                            
+                            <Label required="true" text="2. Whether Extended Producer Responsibility (EPR) is applicable to the entity’s activities (Yes / No). If yes, whether the waste collection plan is in line with the Extended Producer Responsibility (EPR) plan submitted to Pollution Control Boards? If not, provide steps taken to address the same."
+                            design="Bold" wrapping="true" />
+                            <TextArea id="id_answ2q" rows="3" editable = "false" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+
+                            <Label text="3. Has the entity conducted Life Cycle Perspective / Assessments (LCA) for any of its
+                                products (for manufacturing industry) or for its services (for service industry)? If yes,
+                                provide details"
+                            design="Bold" wrapping="true" />
+                            <!-- <TextArea id="id_answ3" rows="3" placeholder="Your Answer..." cols="200" maxLength="5000" showExceededText="true" liveChange="handleLiveChang3" /> -->
+                            <Table id="_IDGenTable1" class="sapUiMediumMarginTop">
+                            <columns>
+
+                            <Column id="_IDGenColumn1" width="">
+                            <Label id="_IDGenLabel1" text="NIC Code" />
+                            </Column>
+                            
+                            <Column id="_IDGenColumn2" width="" >
+                            <Text id="_IDGenLabel2" text="Name of product/ Service" />
+                            </Column>
+
+                            
+                            <Column id="_IDGenColumn3" width="" >
+                            <Text wrapping="true" id="_IDGenLabel3" text="% of the total turnover contributed" />
+                            </Column>
+
+                            <Column id="_IDGenColumn4" width="" >
+                            <Text wrapping="true" id="_IDGenLabel4" text="Boundary for the which the life cycle perspective/ Assessment was conducted" />
+                            </Column>
+
+                            <Column id="_IDGenColumn5" width="" >
+                            <Text wrapping="true" id="_IDGenLabel5" text="Whelter conducted by independent external agency (Yes/No)" />
+                            </Column>
+
+                            <Column id="_IDGenColumn6"  width="" >
+                            <Text wrapping="true" id="_IDGenLabel6" text="Results communicated in public domain(Yes/No) If yes, Provide the web-link" />
+                            </Column>
+                            
+                            </columns>
+                        
+                            </Table>
+
+                            <Label  text="4. If there are any significant social or environmental concerns and/or risks arising from production or disposal of your products / services, as identified in the Life Cycle
+                                Perspective / Assessments (LCA) or through any other means, briefly describe the samealong-with action taken to mitigate the same."
+                             id="id_q4q" design="Bold" wrapping="true" class="sapUiMediumMarginTop"/>
+                            
+                            <Table id="_IDGenTable2" class="sapUiMediumMarginTop" >
+                            <columns>
+
+                            <Column id="_IDGenColumn7" width="">
+                            <Text wrapping="true"  id="_IDGenLabel7" text="Name of Product/ Service" />
+                            </Column>
+
+                            <Column id="_IDGenColumn8" width="" >
+                            <Text wrapping="true"  id="_IDGenLabel8" text="Description of the risk/ concern" />
+                            </Column>
+
+                            <Column id="_IDGenColumn9" width="" >
+                            <Text wrapping="true"  id="_IDGenLabel9" text="Action Taken" />
+                            </Column>
+
+                            </columns>
+                            </Table>
+                            <Label required="true" text="5. Describe the mechanisms in place to receive and respond to consumer complaints and
+                                    feedback."
+                             id="id_q5" design="Bold" wrapping="true" class="sapUiMediumMarginTop"/>
+                            <TextArea id="id_answ5" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+                            
+                            <Label text="6. Steps taken to inform and educate consumers about safe and responsible usage of products and/or services."
+                             id="id_q6" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ6" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+                           
+                            <Label text="7. Steps taken to inform and educate consumers about safe and responsible usage of products and/or services."
+                             id="id_q7" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ7" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+
+                            <Label text="8. Mechanisms in place to inform consumers of any risk of disruption/discontinuation of essential services."
+                             id="id_q8" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ8" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+                            
+                             <Label text="9. Does the entity display product information on the product over and above what is mandated as per local laws? (Yes/No/Not Applicable) If yes, provide details in brief. Did your entity carry out any survey with regard to consumer satisfaction relating to the major products / services of the entity, significant locations of operation of the entity or the entity as a whole? (Yes/No)"
+                             id="id_q9" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ9" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+        </content>
         </IconTabFilter>
       </items>
     </IconTabBar>

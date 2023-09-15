@@ -12,12 +12,11 @@ sap.ui.define([
 
 ], function (Controller, Filter, MessageBox, Table, MessageToast, Text, Input, OverflowToolbar, JSONModel, OverflowToolbarButton,) {
   "use strict";
-
+var that;
   return Controller.extend("com.brsr.controller.View1", {
     onInit: function () {
-
+      that = this;
       this.toggleVBoxVisibility(false);
-
 
 
       var oYearModel = new JSONModel({
@@ -447,7 +446,7 @@ sap.ui.define([
                   if (oData.results && oData.results.length > 0) {
                     oTextArea.setValue(oData.results[0].answer);
                   } else {
-                    oTextArea.setValue("No data available");
+                    // oTextArea.setValue("No data available");
                   }
                 }
               }.bind(this),
@@ -462,6 +461,117 @@ sap.ui.define([
         // Year is not selected, show a message or handle it as needed
         sap.m.MessageToast.show("Please select a year before submitting.");
       }
+
+      that.ehsdata(selectedYear);
+      that._status(selectedYear);
+      that._getQ3Table(selectedYear);
+      that._getQ4Table(selectedYear);
+
+    },
+             _status : function(fiscalyear){
+                var oODataModel = this.getView().getModel("Catalog");
+                var Filter1 = new sap.ui.model.Filter("fiscalYear", sap.ui.model.FilterOperator.EQ, fiscalyear);
+                var Filter2 = new sap.ui.model.Filter("businessFunction", sap.ui.model.FilterOperator.EQ, 'Quality_Assurance');
+                var pathBf = "/qualitative_data";
+                    oODataModel.read(pathBf,{
+                        urlParameters: {
+                            "$expand": "quality_assurance",
+                        },
+                        filters : [Filter1,Filter2],
+                        success : function(data){
+                          that.getView().byId("id_answ1q").setValue(data.results[0].quality_assurance.results[0].answer);                        
+                          that.getView().byId("id_answ2q").setValue(data.results[0].quality_assurance.results[1].answer);                    
+                          that.getView().byId("id_answ5").setValue(data.results[0].quality_assurance.results[4].answer);                        
+                          that.getView().byId("id_answ6").setValue(data.results[0].quality_assurance.results[5].answer);                      
+                          that.getView().byId("id_answ7").setValue(data.results[0].quality_assurance.results[6].answer);                        
+                          that.getView().byId("id_answ8").setValue(data.results[0].quality_assurance.results[7].answer);                       
+                          that.getView().byId("id_answ9").setValue(data.results[0].quality_assurance.results[8].answer);
+                        
+                        },
+                        error : function(error){
+                         console.log(error);
+                        }
+                     });
+                    
+             },
+             _getQ3Table : function(fiscalyear){
+              var oODataModel = this.getView().getModel("Catalog");
+              var oTable3 = this.getView().byId("_IDGenTable1");
+                var pathBf = "/qualitative_data_quality_assurance(up__fiscalYear='" + fiscalyear + "',up__businessFunction='Quality_Assurance',principle='2',indicator='Leadership',questionID='1L')/principle2_leadership_1";
+                oODataModel.read(pathBf,{
+                        success : function(data){
+                          for(let i=0;i<data.results.length;i++){
+                            let oItem = new sap.m.ColumnListItem({
+                                  cells: [new sap.m.TextArea({maxLength: 1500 , value:data.results[i].nic_code,editable : false, wrapping: "Hard"}), 
+                                  new sap.m.TextArea({maxLength: 1500 , value:data.results[i].name_of_product_or_service,editable : false, wrapping: "Hard"}),
+                                  new sap.m.TextArea({maxLength: 1500 , value:data.results[i].total_turnover_contributed,editable : false, wrapping: "Hard"}),
+                                  new sap.m.TextArea({maxLength: 1500 , value:data.results[i].boundry_of_life_cycle_assessment,editable : false, wrapping: "Hard"}),
+                                  new sap.m.TextArea({maxLength: 1500 , value:data.results[i].conducted_by_independent_external_agency,editable : false, wrapping: "Hard"}),
+                                  new sap.m.TextArea({maxLength: 1500 , value:data.results[i].results_communicated_in_public_domain,editable : false, wrapping: "Hard"})
+                                      ]
+                                  
+                              })
+                              oTable3.addItem(oItem);
+
+                    }
+
+                        },
+                        error : function(error){
+                            console.log(error);
+
+                        }
+                    });
+                    
+             },
+             _getQ4Table : function(fiscalyear){
+              var oODataModel = this.getView().getModel("Catalog");
+              var oTable4 = this.getView().byId("_IDGenTable2");
+                var pathBf = "/qualitative_data_quality_assurance(up__fiscalYear='" + fiscalyear + "',up__businessFunction='Quality_Assurance',principle='2',indicator='Leadership',questionID='2L')/principle2_leadership_2";
+                    oODataModel.read(pathBf,{
+                        success : function(data){
+                          for(let i=0;i<data.results.length;i++){
+                                  let oItem = new sap.m.ColumnListItem({
+                                        cells: [new sap.m.TextArea({ maxLength: 1500 , value:data.results[i].name_of_product_or_service,editable : false,wrapping: "Hard", width:"100%"}), 
+                                                new sap.m.TextArea({  maxLength: 1500 , value:data.results[i].description_of_risk_or_concern,editable : false, wrapping: "Hard", width:"100%"}), 
+                                                new sap.m.TextArea({ maxLength: 1500 , value:data.results[i].action_taken,editable : false,  wrapping: "Hard" , width:"100%"})
+                                            ]
+                                        
+                                    })
+                                    oTable4.addItem(oItem);
+
+                          }
+
+                        },
+                        error : function(error){
+                            console.log(error);
+
+                        }
+                    });
+                    
+             },
+    /////EHS Data Fetch//////////////
+    
+    ehsdata: function(fyear){
+        var oODataModel = this.getView().getModel("Catalog");
+        var Filter1 = new sap.ui.model.Filter("fiscalYear", sap.ui.model.FilterOperator.EQ, fyear);
+        var Filter2 = new sap.ui.model.Filter("businessFunction", sap.ui.model.FilterOperator.EQ, 'IT');
+        oODataModel.read("/qualitative_data", {
+            urlParameters: {
+                "$expand": "IT",
+            },
+            filters: [Filter1,Filter2],
+            success: function (Data, response) {
+
+                that.getView().byId("id_answ1").setValue(Data.results[0].IT.results[0].answer);
+                that.getView().byId("id_answ2").setValue(Data.results[0].IT.results[1].answer);
+                that.getView().byId("id_answ3").setValue(Data.results[0].IT.results[2].answer);
+                that.getView().byId("id_answ4").setValue(Data.results[0].IT.results[3].answer);               
+            },
+            error: function (Error) {
+                that.getView().setBusy(false);
+                MessageBox.warning("Error while reading Data.");
+            }
+        });
     },
 
     toggleVBoxVisibility: function (visible) {
