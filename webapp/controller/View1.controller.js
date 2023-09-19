@@ -16,13 +16,7 @@ sap.ui.define([
   var that;
   return Controller.extend("com.brsr.controller.View1", {
     onInit: function () {
-<<<<<<< HEAD
-    
-     
-
-=======
       that = this;
->>>>>>> 70365465a20729c6bf919647fcd991bef361b1d3
       this.toggleVBoxVisibility(false);
 
 

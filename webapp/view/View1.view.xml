@@ -1,17 +1,9 @@
 <mvc:View controllerName="com.brsr.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" displayBlock="true" xmlns:core="sap.ui.core" 
-<<<<<<< HEAD
-	xmlns:form="sap.ui.layout.form"
-xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    xmlns="sap.m"
-
-  > 
-=======
     xmlns:f="sap.f"
 	  xmlns:form="sap.ui.layout.form"
     xmlns="sap.m"
     xmlns:uxap="sap.uxap">
->>>>>>> 70365465a20729c6bf919647fcd991bef361b1d3
     <Page id="page" title="{i18n>title}">
     
     <content>
