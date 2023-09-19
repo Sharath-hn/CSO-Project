@@ -1,37 +1,59 @@
 <mvc:View controllerName="com.brsr.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" displayBlock="true" xmlns:core="sap.ui.core" 
-    xmlns:f="sap.f"
 	xmlns:form="sap.ui.layout.form"
-    xmlns="sap.m">
+xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns="sap.m"
+
+  > 
     <Page id="page" title="{i18n>title}">
     
     <content>
 
+<l:Grid defaultSpan="L6 M6 S12" class="backgroundGrid marginTop">
+    <FlexBox
+        alignItems="Center"
+        justifyContent="Center"
+        height="50%">
+        <items>
+            <Label text="Fiscal Year: " required="true" design="Bold" wrapping="true" />
+            <Select
+                id="yearDropdown"
+                items="{yearModel>/years}">
+                <core:Item key="{yearModel>key}" text="{yearModel>text}" />
+            </Select>
+            <Button
+                text="Submit"
+                press="onSubmitFilter"
+                class="customButton"
+                type="Emphasized"
+                width="100px"
+                enabled="true"
+                visible="true"
+                iconDensityAware="false" />
+        </items>
+    </FlexBox>
+</l:Grid>
 
 
 
- <VBox>
-    
-    <Select id="yearDropdown" items="{yearModel>/years}">
-      <core:Item key="{yearModel>key}" text="{yearModel>text}" />
-    </Select>
 
-     <Button text="Submit" press="onSubmitFilter" />
-    
-
-  </VBox>
   
-      <!-- Toolbar for Save as Draft and Submit buttons -->
-      <Toolbar>
+   
+
+
+  
+    
+     
+    
+
+     
       
-        
-        <Button id="Submit" text="Save" press="onSubmitPress" />
-      </Toolbar>
-    
- 
+
+      
     
     
-  <VBox  id="myVBox" class="sapUiContentPadding">
+  <VBox  id="myVBox" class="sapUiContentPadding"  >
+  <VBox class="pageLayout">
     <IconTabBar class="sapUiResponsiveContentPadding sapUiSizeCompact">
       <items>
         <IconTabFilter text="SECTION A" class="sapUiSizeCompact">
@@ -39,7 +61,7 @@
           <content>      
 
 
-        
+         
 
   <VBox class="sapUiContentPadding">
 
@@ -98,13 +120,13 @@ which form a part of its consolidated financial statements, taken together)."  w
 <Title text="II. Products/services" level="H2" class="margin-bottom"/>
 </VBox>
 
-    <Table id="Table1" items="{Catalog>/qualitative_data_sectionABC_Table1}" mode="SingleSelect"   visible="false">
+    <Table id="Table1" items="{Catalog>/qualitative_data_sectionABC_Table1}"  mode="Delete" delete="deleteRow1"  visible="false">
     <headerToolbar>
         <OverflowToolbar>
            <Title text="16. Details of business activities (accounting for 90% of the turnover):" level="H2" />
 
             <ToolbarSpacer />
-            <Button icon="sap-icon://add" press=" onCreateRow1" class="sapUiSizeCompact"  />
+            <Button icon="sap-icon://add" press="onAdd1" class="sapUiSizeCompact"  />
         </OverflowToolbar>
     </headerToolbar>
       <columns>
@@ -120,9 +142,7 @@ which form a part of its consolidated financial statements, taken together)."  w
          <Column hAlign="Center">
           <Label text="% of Turnover of the entity" />
         </Column>
-         <Column hAlign="Center">
-      <Text text="Actions" />
-    </Column>
+        
       </columns>
       <items>
         <ColumnListItem>
@@ -132,7 +152,7 @@ which form a part of its consolidated financial statements, taken together)."  w
             <Input value="{Catalog>descriptionOfBusinessActivity}" />
             <Input value="{Catalog>percentageOfTurnoverOfTheEntity}" />
           
-     <Button icon="sap-icon://decline" press="onDeleteRow1" />
+  
           </cells>
           
         </ColumnListItem>
@@ -144,15 +164,15 @@ which form a part of its consolidated financial statements, taken together)."  w
 
   <VBox class="sapUiContentPadding">
   
-   <Table id="Table2" items="{Catalog>/qualitative_data_sectionABC_Table2}" mode="None" visible="false">
+   <Table id="Table2" items="{Catalog>/qualitative_data_sectionABC_Table2}" visible="false"   mode="Delete" delete="deleteRow2"> 
     <headerToolbar>
         <OverflowToolbar>
         <Title text="17. Products/Services sold by the entity (accounting for 90% of the entity's Turnover):" level="H2" />
 
             <ToolbarSpacer />
             
-            <Button icon="sap-icon://add" press=" onCreateRow2" class="sapUiSizeCompact"  />
-            <Button text="Clear Input Fields" press="clearTable2InputFields" class="sapUiSizeCompact" />
+            <Button icon="sap-icon://add" press="onAdd2" class="sapUiSizeCompact"  />
+            
         </OverflowToolbar>
     </headerToolbar>
     <columns>
@@ -168,20 +188,18 @@ which form a part of its consolidated financial statements, taken together)."  w
         <Column hAlign="Center">
             <Label text="% of total Turnover contributed" />
              </Column>
-             <Column>
-                <Text text="Actions" />
-            </Column>
+            
 
     </columns>
     <items>
-        <ColumnListItem >
+        <ColumnListItem press="onRowSelection" >
             <cells>
                 <Input value="{Catalog>sr_no}" />
                 <Input value="{Catalog>nameOfProductOrService}" />
                 <Input value="{Catalog>nicCode}" />
                 <Input value="{Catalog>totalTurnoverContributed}" />
-
-                <Button icon="sap-icon://decline" press="onDeleteRow2" />
+ 
+  
                </cells>   
         </ColumnListItem>
     </items>
@@ -316,11 +334,14 @@ which form a part of its consolidated financial statements, taken together)."  w
           <Text text="{Catalog>sr_no}" />
            <Text text="{Catalog>type}"/>
           <Text text="{Catalog>particulars}" />
-          <Input value="{Catalog>total}" change="handleTotalChange" />
-          <Input value="{Catalog>numberOfMale}" />
-          <Text text="{=(${Catalog>percentageOfMale} / ${total} * 100).toFixed(2) + '%'}" />
-          <Input value="{Catalog>numberOfFemale}" change="handleFemaleNoChange" />
-          <Text text="{=(${Catalog>percentageOfFemale} / ${total} * 100).toFixed(2) + '%'}" />
+        
+<Input value="{Catalog>total}" change="handleTotalChange" />
+<Input value="{Catalog>numberOfMale}" change="handleTotalChange" />
+<Input value="{=(${Catalog>numberOfMale} / ${Catalog>total} * 100).toFixed(2) + '%'}" />
+
+
+  <Input value="{Catalog>numberOfFemale}" change="handleTotalChange" />
+<Input value="{=(${Catalog>numberOfFemale} / ${Catalog>total} * 100).toFixed(2) + '%'}" />
         </cells>
       </ColumnListItem>
     </items>
@@ -370,10 +391,11 @@ which form a part of its consolidated financial statements, taken together)."  w
            <Text text="{Catalog>sr_no}"/>
           <Text text="{Catalog>particulars}" />
           <Input value="{Catalog>total}" change="handleTotalChange" />
-          <Input value="{Catalog>numberOfMale}" />
-          <Text text="{Catalog>percentageOfMale}" />
-          <Input value="{Catalog>numberOfFemale}" change="handleFemaleChange" />
-          <Text text="{Catalog>percentageOfFemale}" />
+          <Input value="{Catalog>numberOfMale}" change="handleTotalChange" />
+          <Input value="{=(${Catalog>numberOfMale} / ${Catalog>total} * 100).toFixed(2) + '%'}" />
+      
+          <Input value="{Catalog>numberOfFemale}"  change="handleTotalChange" />
+           <Input value="{=(${Catalog>numberOfFemale} / ${Catalog>total} * 100).toFixed(2) + '%'}" />
         </cells>
       </ColumnListItem>
     </items>
@@ -409,8 +431,9 @@ which form a part of its consolidated financial statements, taken together)."  w
             <cells>
                <Text text="{Catalog>name}" />
                 <Input value="{Catalog>total}" change="handleTotalChange" />
-                <Input value="{Catalog>numberOfFemale}" />
-                <Text text="{=(${Catalog>percentageOfFemale} / ${Total(A)} * 100).toFixed(2) + '%'}" />
+                <Input value="{Catalog>numberOfFemale}"  change="handleTotalChange" />
+                 <Input value="{=(${Catalog>numberOfFemale} / ${Catalog>total} * 100).toFixed(2) + '%'}" />
+                
             </cells>
                  
             
@@ -487,13 +510,13 @@ which form a part of its consolidated financial statements, taken together)."  w
   <Title text="V.Holding, Subsidiary and Associate Companies (including joint ventures" level="H2" />
   </VBox>
     <VBox class="sapUiContentPadding">
-  <Table id="Table9" items="{Catalog>/qualitative_data_sectionABC_Table9}" visible="false">
+  <Table id="Table9" items="{Catalog>/qualitative_data_sectionABC_Table9}" visible="false"   mode="Delete" delete="deleteRow3">
    <headerToolbar>
       <Toolbar>
        <Title text="23. (a) Names of holding / subsidiary / associate companies / joint ventures" level="H2" />
        <ToolbarSpacer />
             
-            <Button icon="sap-icon://add" press="onCreateRow9" class="sapUiSizeCompact" />
+            <Button icon="sap-icon://add" press="onAdd3" class="sapUiSizeCompact" />
       </Toolbar>
     </headerToolbar>
     
@@ -517,6 +540,7 @@ which form a part of its consolidated financial statements, taken together)."  w
         </Column>
         
         
+
     </columns>
     <items>
         <ColumnListItem>
@@ -526,7 +550,7 @@ which form a part of its consolidated financial statements, taken together)."  w
                  <Input value="{Catalog>type}"/>
                 <Input value="{Catalog>percentageOfShares}" />
                 <Input value="{Catalog>participationStatus}"/>
-    
+             
             </cells>
         </ColumnListItem>
     </items>
@@ -616,13 +640,13 @@ which form a part of its consolidated financial statements, taken together)."  w
 <Title text="Please indicate material responsible business conduct and sustainability issues pertaining to environmental and social matters that present a risk or an opportunity to your business, rationale for identifying the same, approach to adapt or mitigate the risk along-with its financial implications, as per the following format" level="H2"  wrapping="true"/>
   </VBox>
 <VBox class="sapUiContentPadding">
-<Table id="Table11" items="{Catalog>/qualitative_data_sectionABC_Table11}" visible="false">
+<Table id="Table11" items="{Catalog>/qualitative_data_sectionABC_Table11}" visible="false"   mode="Delete" delete="deleteRow4">
   <headerToolbar>
       <Toolbar>
        
        <ToolbarSpacer />
             
-            <Button icon="sap-icon://add" press="onCreateRow11" class="sapUiSizeCompact" />
+            <Button icon="sap-icon://add" press="onAdd4" class="sapUiSizeCompact" />
       </Toolbar>
     </headerToolbar>
 
@@ -645,7 +669,11 @@ which form a part of its consolidated financial statements, taken together)."  w
  <Column hAlign="Center">
             <Text text="Financial implications of the risk or opportunity(Indicate positive or negative implications)"/>
         </Column>
+
+
+        
 </columns>
+
 
  <items>
         <ColumnListItem>
@@ -656,6 +684,7 @@ which form a part of its consolidated financial statements, taken together)."  w
                 <Input value="{Catalog>rationale}"/>
                 <Input value="{Catalog>approach}"/>
               <Input value="{Catalog>financialImplications}"/>
+              
             </cells>
         </ColumnListItem>
     </items>
@@ -714,16 +743,16 @@ put in place towards adopting the NGRBC Principles and Core Elements" level="H2"
       <ColumnListItem>
         <cells>
         
-          <Text text="{questions}" />
-          <Input value="{p1}" />
-          <Input value="{P2}" />
-          <Input value="{P3}" />
-          <Input value="{p4}" />
-          <Input value="{p5}" />
-          <Input value="{p6}" />
-          <Input value="{P7}" />
-          <Input value="{P8}" />
-          <Input value="{P9}" />
+          <Text text="{Catalog>questions}" />
+          <Input value="{Catalog>p1}" />
+          <Input value="{Catalog>P2}" />
+          <Input value="{Catalog>P3}" />
+          <Input value="{Catalog>p4}" />
+          <Input value="{Catalog>p5}" />
+          <Input value="{Catalog>p6}" />
+          <Input value="{Catalog>P7}" />
+          <Input value="{Catalog>P8}" />
+          <Input value="{Catalog>P9}" />
           
         </cells>
       </ColumnListItem>
@@ -737,7 +766,7 @@ put in place towards adopting the NGRBC Principles and Core Elements" level="H2"
 <Title text="8. Details of the highest authority responsible 
 for implementation and oversight of the 
 Business Responsibility policy (ies)." level="H2" wrapping="true"/>
-    <TextArea value="{}" rows="3" cols="180" />
+     <TextArea id="textArea22" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
     </VBox>
   <VBox class="sapUiContentPadding">
 <Title text="9. Does the entity have a specified 
@@ -745,11 +774,11 @@ Committee of the Board/ Director
 responsible for decision making on 
 sustainability related issues? (Yes / No). If 
 yes, provide details." level="H2" wrapping="true" />
-    <TextArea value="{}" rows="3" cols="180" />
+     <TextArea id="textArea23" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
   </VBox>
   <VBox class="sapUiContentPadding">
   
-    <Table id="Table13" items="{/qualitative_data_sectionABC_Table13}" visible="false">
+    <Table id="Table13" items="{Catalog>/qualitative_data_sectionABC_Table13}" visible="false">
       <headerToolbar>
         <Toolbar>
           <Title text="10. Details of Review of NGRBCs by the Company:" level="H2" />
@@ -821,25 +850,25 @@ yes, provide details." level="H2" wrapping="true" />
       <items>
         <ColumnListItem>
           <cells>
-            <Text text="{subjectFoReview}" />
-            <Input value="{p1review}" />
-            <Input value="{p2review}" />
-            <Input value="{p3review}" />
-            <Input value="{p4review}" />
-            <Input value="{p5review}" />
-            <Input value="{p6review}" />
-            <Input value="{p7review}" />
-            <Input value="{p8review}" />
-            <Input value="{p9review}" />
-             <Input value="{p1frequency}" />
-        <Input value="{p2frequency}" />
-        <Input value="{p3frequency}" />
-          <Input value="{p4frequency}" />
-        <Input value="{p5frequency}" />
-        <Input value="{p6frequency}" />
-        <Input value="{p7frequency}" />
-        <Input value="{p8frequency}" />
-        <Input value="{p9frequency}" />
+            <Text text="{Catalog>subjectFoReview}" />
+            <Input value="{Catalog>p1review}" />
+            <Input value="{Catalog>p2review}" />
+            <Input value="{Catalog>p3review}" />
+            <Input value="{Catalog>p4review}" />
+            <Input value="{Catalog>p5review}" />
+            <Input value="{Catalog>p6review}" />
+            <Input value="{Catalog>p7review}" />
+            <Input value="{Catalog>p8review}" />
+            <Input value="{Catalog>p9review}" />
+             <Input value="{Catalog>p1frequency}" />
+        <Input value="{Catalog>p2frequency}" />
+        <Input value="{Catalog>p3frequency}" />
+          <Input value="{Catalog>p4frequency}" />
+        <Input value="{Catalog>p5frequency}" />
+        <Input value="{Catalog>p6frequency}" />
+        <Input value="{Catalog>p7frequency}" />
+        <Input value="{Catalog>p8frequency}" />
+        <Input value="{Catalog>p9frequency}" />
       
           </cells>
         </ColumnListItem>
@@ -848,7 +877,7 @@ yes, provide details." level="H2" wrapping="true" />
 </VBox>
 
   <VBox class="sapUiContentPadding">
-  <Table id="Table14" items="{/qualitative_data_sectionABC_Table14}" visible="false">
+  <Table id="Table14" items="{Catalog>/qualitative_data_sectionABC_Table14}" visible="false">
   <headerToolbar>
       <Toolbar>
         <Title text="11. Has the entity carried out independent 
@@ -892,15 +921,15 @@ assessment/ evaluation of the working of its policies by an external agency? (Ye
     <items>
       <ColumnListItem>
         <cells>
-         <Input value="{p1}" />
-          <Input value="{p2}" />
-          <Input value="{p3}" />
-          <Input value="{p4}" />
-          <Input value="{p5}" />
-          <Input value="{p6}" />
-          <Input value="{p7}" />
-          <Input value="{p8}" />
-          <Input value="{p9}" />
+         <Input value="{Catalog>p1}" />
+          <Input value="{Catalog>p2}" />
+          <Input value="{Catalog>p3}" />
+          <Input value="{Catalog>p4}" />
+          <Input value="{Catalog>p5}" />
+          <Input value="{Catalog>p6}" />
+          <Input value="{Catalog>p7}" />
+          <Input value="{Catalog>p8}" />
+          <Input value="{Catalog>p9}" />
           
         </cells>
       </ColumnListItem>
@@ -908,7 +937,7 @@ assessment/ evaluation of the working of its policies by an external agency? (Ye
   </Table>
   </VBox>
    <VBox class="sapUiContentPadding">
-  <Table id="Table15" items="{/qualitative_data_sectionABC_Table15}" visible="false">
+  <Table id="Table15" items="{Catalog>/qualitative_data_sectionABC_Table15}" visible="false">
   <headerToolbar>
       <Toolbar>
         <Title text="12. If answer to question (1) above is “No” i.e. not all Principles are covered by a policy, 
@@ -955,16 +984,16 @@ reasons to be stated:" level="H2"  wrapping="true" />
     <items>
       <ColumnListItem>
         <cells>
-        <Text text="{questions}" />
-         <Input value="{p1}" />
-          <Input value="{p2}" />
-          <Input value="{p3}" />
-          <Input value="{p4}" />
-          <Input value="{p5}" />
-          <Input value="{p6}" />
-          <Input value="{p7}" />
-          <Input value="{p8}" />
-          <Input value="{p9}" />
+        <Text text="{Catalog>questions}" />
+         <Input value="{Catalog>p1}" />
+          <Input value="{Catalog>p2}" />
+          <Input value="{Catalog>p3}" />
+          <Input value="{Catalog>p4}" />
+          <Input value="{Catalog>p5}" />
+          <Input value="{Catalog>p6}" />
+          <Input value="{Catalog>p7}" />
+          <Input value="{Catalog>p8}" />
+          <Input value="{Catalog>p9}" />
           
         </cells>
       </ColumnListItem>
@@ -1585,11 +1614,18 @@ each product category." level="H2" wrapping="true" />
       </items>
     </IconTabBar>
   </VBox>
+ </VBox>
 
- 
-         
-
+<Toolbar id="yourToolbarId" class="toolbar"  width="100%" height="46px" design="Auto" enabled="true" visible="true">
+    <content>
+        <ToolbarSpacer/> <!-- Pushes buttons to the right -->
+        <Button id="SaveDraft" text="Save as Draft" press="onSaveDraftPress" icon="sap-icon://notes" iconFirst="false" type="Transparent" width="auto" enabled="true" visible="true" flexGrow="1" />
+        <Button id="Submit" text="Submit" press="onSubmitPress" icon="sap-icon://open-command-field" iconFirst="false" type="Transparent" width="auto" enabled="true" visible="true" design="Bold" flexGrow="2" />
+    </content>
+</Toolbar>
 
         </content>
+
+        
     </Page>
 </mvc:View>
