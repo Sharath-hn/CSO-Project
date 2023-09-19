@@ -16,13 +16,9 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
-
           - path: /v2
             url: https://bristlecone--inc--sap-process-automation-q40kapza-brsr-31455bb5.cfapps.eu10-004.hana.ondemand.com
-          - path: /v2
-            url: https://bristlecone--inc--sap-process-automation-q40kapza-brsr-31455bb5.cfapps.eu10-004.hana.ondemand.com
-          - path: /v2/catalog/
-            url: https://bristlecone--inc--sap-process-automation-q40kapza-brsr-31455bb5.cfapps.eu10-004.hana.ondemand.com
+            destination: CAPM_BRSR_1
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

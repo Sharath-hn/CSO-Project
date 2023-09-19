@@ -1,10 +1,17 @@
 <mvc:View controllerName="com.brsr.controller.View1"
     xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" displayBlock="true" xmlns:core="sap.ui.core" 
+<<<<<<< HEAD
 	xmlns:form="sap.ui.layout.form"
 xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns="sap.m"
 
   > 
+=======
+    xmlns:f="sap.f"
+	  xmlns:form="sap.ui.layout.form"
+    xmlns="sap.m"
+    xmlns:uxap="sap.uxap">
+>>>>>>> 70365465a20729c6bf919647fcd991bef361b1d3
     <Page id="page" title="{i18n>title}">
     
     <content>
@@ -1611,11 +1618,2803 @@ each product category." level="H2" wrapping="true" />
           
           </content>
         </IconTabFilter>
+         <IconTabFilter text="Data Security" class="sapUiSizeCompact">
+          <content>
+                            <Label required="true" text="1. Does the entity have a framework/ policy on cyber security and risks related to data privacy? (Yes/No) If available, provide a web-link of the policy."
+                             id="id_q1" design="Bold" wrapping="true" />
+                            <!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
+                            <TextArea id="id_answ1" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true"  />
+                            
+                            <Label required="true" text="2. Provide details of any corrective actions taken or underway on issues relating to advertising, and delivery of essential services; cyber security and data privacy of customers; re-occurrence of instances of product recalls; penalty / action taken by regulatory authorities on safety of products / services."
+                             id="id_q2" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ2" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" />
+
+                            <Label text="Provide the following information relating to data breaches:&#x0A; &#x0A; 3. Number of instances of data breaches along-with impact"
+                             id="id_q3" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ3" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+
+                            <Label text="Provide the following information relating to data breaches:&#x0A; &#x0A; 4. Percentage of data breaches involving personally identifiable information of customers"
+                             id="id_q4" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ4" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+           </content>
+        </IconTabFilter>
+ <IconTabFilter text="Quality Assurance" class="sapUiSizeCompact">
+          <content>
+        <Label required="true" text="1. Describe the processes in place to safely reclaim your products for reusing, recycling and disposing at the end of life, for (a) Plastics (including packaging) (b) E-waste (c) Hazardous waste and (d) other waste."
+
+                             design="Bold" wrapping="true" />
+                            <!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
+                            <TextArea id="id_answ1q" rows="3" editable = "false" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+                            
+                            <Label required="true" text="2. Whether Extended Producer Responsibility (EPR) is applicable to the entity’s activities (Yes / No). If yes, whether the waste collection plan is in line with the Extended Producer Responsibility (EPR) plan submitted to Pollution Control Boards? If not, provide steps taken to address the same."
+                            design="Bold" wrapping="true" />
+                            <TextArea id="id_answ2q" rows="3" editable = "false" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+
+                            <Label text="3. Has the entity conducted Life Cycle Perspective / Assessments (LCA) for any of its
+                                products (for manufacturing industry) or for its services (for service industry)? If yes,
+                                provide details"
+                            design="Bold" wrapping="true" />
+                            <!-- <TextArea id="id_answ3" rows="3" placeholder="Your Answer..." cols="200" maxLength="5000" showExceededText="true" liveChange="handleLiveChang3" /> -->
+                            <Table id="_IDGenTable1" class="sapUiMediumMarginTop">
+                            <columns>
+
+                            <Column id="_IDGenColumn1" width="">
+                            <Label id="_IDGenLabel1" text="NIC Code" />
+                            </Column>
+                            
+                            <Column id="_IDGenColumn2" width="" >
+                            <Text id="_IDGenLabel2" text="Name of product/ Service" />
+                            </Column>
+
+                            
+                            <Column id="_IDGenColumn3" width="" >
+                            <Text wrapping="true" id="_IDGenLabel3" text="% of the total turnover contributed" />
+                            </Column>
+
+                            <Column id="_IDGenColumn4" width="" >
+                            <Text wrapping="true" id="_IDGenLabel4" text="Boundary for the which the life cycle perspective/ Assessment was conducted" />
+                            </Column>
+
+                            <Column id="_IDGenColumn5" width="" >
+                            <Text wrapping="true" id="_IDGenLabel5" text="Whelter conducted by independent external agency (Yes/No)" />
+                            </Column>
+
+                            <Column id="_IDGenColumn6"  width="" >
+                            <Text wrapping="true" id="_IDGenLabel6" text="Results communicated in public domain(Yes/No) If yes, Provide the web-link" />
+                            </Column>
+                            
+                            </columns>
+                        
+                            </Table>
+
+                            <Label  text="4. If there are any significant social or environmental concerns and/or risks arising from production or disposal of your products / services, as identified in the Life Cycle
+                                Perspective / Assessments (LCA) or through any other means, briefly describe the samealong-with action taken to mitigate the same."
+                             id="id_q4q" design="Bold" wrapping="true" class="sapUiMediumMarginTop"/>
+                            
+                            <Table id="_IDGenTable2" class="sapUiMediumMarginTop" >
+                            <columns>
+
+                            <Column id="_IDGenColumn7" width="">
+                            <Text wrapping="true"  id="_IDGenLabel7" text="Name of Product/ Service" />
+                            </Column>
+
+                            <Column id="_IDGenColumn8" width="" >
+                            <Text wrapping="true"  id="_IDGenLabel8" text="Description of the risk/ concern" />
+                            </Column>
+
+                            <Column id="_IDGenColumn9" width="" >
+                            <Text wrapping="true"  id="_IDGenLabel9" text="Action Taken" />
+                            </Column>
+
+                            </columns>
+                            </Table>
+                            <Label required="true" text="5. Describe the mechanisms in place to receive and respond to consumer complaints and
+                                    feedback."
+                             id="id_q5" design="Bold" wrapping="true" class="sapUiMediumMarginTop"/>
+                            <TextArea id="id_answ5" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+                            
+                            <Label text="6. Steps taken to inform and educate consumers about safe and responsible usage of products and/or services."
+                             id="id_q6" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ6" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+                           
+                            <Label text="7. Steps taken to inform and educate consumers about safe and responsible usage of products and/or services."
+                             id="id_q7" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ7" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
+
+                            <Label text="8. Mechanisms in place to inform consumers of any risk of disruption/discontinuation of essential services."
+                             id="id_q8" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ8" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+                            
+                             <Label text="9. Does the entity display product information on the product over and above what is mandated as per local laws? (Yes/No/Not Applicable) If yes, provide details in brief. Did your entity carry out any survey with regard to consumer satisfaction relating to the major products / services of the entity, significant locations of operation of the entity or the entity as a whole? (Yes/No)"
+                             id="id_q9" design="Bold" wrapping="true" />
+                            <TextArea id="id_answ9" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
+        </content>
+        </IconTabFilter>
+         <IconTabFilter text="HR" class="sapUiSizeCompact">
+          <content>
+            <Label  required="true" text="1. Are the premises / offices of the entity accessible to differently abled employees and workers, as per the requirements of the Rights of Persons with Disabilities Act, 2016? If not, whether any steps are being taken by the entity in this regard."
+                     design="Bold" wrapping="true" />
+                    
+                    <TextArea id="id_answ1hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange1" />
+                    
+                    <Label required="true" text="2. Does the entity have an equal opportunity policy as per the Rights of Persons with Disabilities Act, 2016? If so, provide a web-link to the policy."
+                         design="Bold" wrapping="true" />
+                    <TextArea id="id_answ2hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange2" />
+
+                    <Label required="true" text="3. Is there a mechanism available to receive and redress grievances for the following categories of employees and worker? If yes, give details of the mechanism in brief."
+                        design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ3" rows="3" placeholder="Your Answer..." cols="200" maxLength="5000" showExceededText="true" liveChange="handleLiveChang3" /> -->
+                    <Table id="_IDGenTable1hr">
+                    <columns>
+
+                    <Column  width="" >
+                    <Text wrapping="true" text="" />
+                    </Column>
+                    
+                    <Column width="" >
+                    <Text wrapping="true" text="Yes/No (If yes, then give details of the mechnaism in breif)" /> 
+                    </Column>
+
+                    </columns>
+
+                    <items>
+                    <ColumnListItem >
+                    <cells>
+                    <Text   text="Permanent Workers"/>
+                    <TextArea id="_IDGenTextArea1"  editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange1" />
+                    </cells>
+                    </ColumnListItem>
+                    <ColumnListItem id="_IDGenColumnListItem2" >
+                    <cells>
+                    <Text   text="Other than Permanent Workers"/>
+                    <TextArea id="_IDGenTextArea2"  editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange1" />
+                    </cells>
+                    </ColumnListItem>
+                    <ColumnListItem id="_IDGenColumnListItem3" >
+                    <cells>
+                    <Text  text="Permanent Employees"/>
+                    <TextArea id="_IDGenTextArea3" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange1" />
+                    </cells>
+                    </ColumnListItem>
+                    <ColumnListItem id="_IDGenColumnListItem4" >
+                    <cells>
+                    <Text   text="Other than Permanent Employees"/>
+                    <TextArea id="_IDGenTextArea4" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange1" />
+                    </cells>
+                    </ColumnListItem>
+                    </items>
+                    
+                    </Table>
+                    <Label  text="4.Does the entity extend any life insurance or any compensatory package in the event of death of (A) Employees (Y/N) (B) Workers (Y/N)."
+                         design="Bold" wrapping="true" />
+                    <TextArea id="id_answ4hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChang3" />
+                    
+                    <Label  text="5.Does the entity provide transition assistance programs to facilitate continued
+                    employability and the management of career endings resulting from retirement or 
+                    termination of employment? (Yes/ No)"
+                         design="Bold" wrapping="true" />
+                    <TextArea id="id_answ5hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange5" />
+                    
+                    <Label required="true" text="6.Do you have a focal point (Individual/ Committee) responsible for addressing human rights impacts or issues caused or contributed to by the business? (Yes/No)"
+                        design="Bold" wrapping="true" />
+                    <TextArea id="id_answ6hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+                    
+                    <Label required="true"  text="7.Describe the internal mechanisms in place to redress grievances related to human rights issues."
+                        design="Bold" wrapping="true" />
+                    <TextArea id="id_answ7hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+
+                    <Label required="true" text="8.Mechanisms to prevent adverse consequences to the complainant in discrimination and harassment cases."
+                        design="Bold" wrapping="true" />
+                    <TextArea id="id_answ8hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+
+                    <Label required="true" text="9.Do human rights requirements form part of your business agreements and contracts? (Yes/No)"
+                         design="Bold" wrapping="true" />
+                    <TextArea id="id_answ9hr" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+                    
+                    <Label required="true" text="10.Provide details of any corrective actions taken or underway to address significant risks / concerns arising from the assessments at Question 9 above."
+                        id="id_q10" design="Bold" wrapping="true" />
+                    <TextArea id="id_answ10" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+                    
+                    <Label text="11.Details of a business process being modified / introduced as a result of addressing human rights grievances/complaints."
+                        id="id_q11" design="Bold" wrapping="true" />
+                    <TextArea id="id_answ11" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+
+                    <Label text="12.Details of the scope and coverage of any Human rights due-diligence conducted."
+                        id="id_q12" design="Bold" wrapping="true" />
+                    <TextArea id="id_answ12" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+
+                    <Label text="13.Is the premise/office of the entity accessible to differently abled visitors, as per the requirements of the Rights of Persons with Disabilities Act, 2016?"
+                        id="id_q13" design="Bold" wrapping="true" />
+                    <TextArea id="id_answ13" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" />
+                    
+                    <Label required="true" text="14.Details of Social Impact Assessments (SIA) of projects undertaken by the entity based on applicable laws, in the current financial year"
+                        id="id_q14" design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ14" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" /> -->
+                    <Table id="_IDGenTable2hr">
+                    <columns>
+
+                    <Column  width="" >
+                    <Text  wrapping="true"  text="Name and brief details of project" />
+                    </Column>
+                    
+                    <Column   width="" >
+                    <Text wrapping="true"  text="SIA Notification No." />
+                    </Column>
+                    
+                    <Column  width="" >
+                    <Text  wrapping="true"  text="Date of notification" />
+                    </Column>
+                    
+                    <Column  width="" >
+                    <Text wrapping="true"  text="Whelther conducted by independent external agency (Yes/No)" />
+                    </Column>
+
+                    <Column   width="" >
+                    <Text  wrapping="true"  text="Results communicated in public domain(Yes/ No)" />
+                    </Column>
+
+                    <Column   width="" >
+                    <Text wrapping="true"  text="Relevant Web link" />
+                    </Column>
+                
+                    </columns>
+                    
+                    
+                  
+                    </Table>
+                    <Label  required="true" text="{i18n>q15}"
+                        id="id_q15" design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ15" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" /> -->
+                    <Table id="_IDGenTable3" >
+                    <columns>
+
+                    <Column width="" >
+                    <Text  wrapping="true"  text="S.No" />
+                    </Column>
+                    
+                    <Column   width="" >
+                    <Text  wrapping="true"  text="{i18n>q15TableCol2}" />
+                    </Column>
+                    
+                    <Column  width="" >
+                    <Text wrapping="true"  text="State" />
+                    </Column>
+                    
+                    <Column   width="" >
+                    <Text  wrapping="true"  text="District " />
+                    </Column>
+
+                    <Column   width="" >
+                    <Text  wrapping="true"  text="No of Project Affected Families(PAFs)" />
+                    </Column>
+
+                    <Column   width="" >
+                    <Text  wrapping="true"  text="{i18n>q14TableCol6}" />
+                    </Column>
+
+                    <Column   width="" >
+                    <Text wrapping="true"  text="Amount paid to PAF in the FY (In INR)" />
+                    </Column>
+                
+                    </columns>
+                 
+                    </Table>
+                    <Label required="true"  text="16.Describe the mechanisms to receive and redress grievances of the community."
+                        id="id_q16" design="Bold" wrapping="true" />
+                    <TextArea id="id_answ16" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange6" />
+
+                    <Label text="17.Provide details of actions taken to mitigate any negative social impacts identified in the Social Impact Assessments (Reference: Question 1 of Essential Indicators above)"
+                        id="id_q17" design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ17" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" /> -->
+                    <Table id="_IDGenTable4">
+                    <columns>
+
+                    <Column id="_IDGenColumn111"  width="" >
+                    <Text id="_IDGenText111"  wrapping="true"  text="Details of negative social impact identified" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn122" width="" >
+                    <Text id="_IDGenText122" wrapping="true"  text="Corrective action taken" />
+                    </Column>
+                    
+                    
+                
+                    </columns>
+                    
+                    
+                  
+                    </Table>
+                    
+                    <Label text="18.Provide the following information on CSR projects undertaken by your entity in designated aspirational districts as identified by government bodies"
+                        id="id_q18" design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ18" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" /> -->
+                    <Table id="_IDGenTable5">
+                    <columns>
+
+                    <Column id="_IDGenColumn011"  width="" >
+                    <Text id="_IDGenText011" wrapping="true"  text="S.No" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn012"  width="" >
+                    <Text id="_IDGenText012" wrapping="true"  text="State" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn013"  width="" >
+                    <Text id="_IDGenText013" wrapping="true"  text="Aspirational District " />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn014"  width="" >
+                    <Text id="_IDGenText14" wrapping="true"  text="Amount spent (IN INR)  " />
+                    </Column>
+
+                    </columns>
+                
+                    </Table>
+                    <Label text="19.Details of the benefits derived and shared from the intellectual properties owned or acquired by your entity (in the current financial year), based on traditional knowledge:"
+                        id="id_q19" design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ19" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" /> -->
+                    <Table id="_IDGenTable6">
+                    <columns>
+
+                    <Column id="_IDGenColumn1111"  width="" >
+                    <Text id="_IDGenText1111" wrapping="true"  text="S.No" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn112"  width="" >
+                    <Text id="_IDGenText112" wrapping="true"  text="Intellectual property based on traditional knowledge" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn113"  width="" >
+                    <Text id="_IDGenText113" wrapping="true"  text="Owner/Acquired (Yes/No)" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn114"  width="" >
+                    <Text id="_IDGenText114" wrapping="true"  text="Benefit Shared (Yes/NO)" />
+                    </Column>
+
+                    <Column id="_IDGenColumn115"  width="" >
+                    <Text id="_IDGenText115" wrapping="true"  text="Basis of calculating benefit share" />
+                    </Column>
+                    </columns> 
+                  
+                    </Table>
+
+                    <Label text="20.Details of corrective actions taken or underway, based on any adverse order in intellectual property related disputes wherein usage of traditional knowledge is involved"
+                        id="id_q20" design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ20" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" /> -->
+                    <Table id="_IDGenTable7">
+                    <columns>
+
+                    <Column id="_IDGenColumn1122"  width="" >
+                    <Text id="_IDGenText1122" wrapping="true"  text="Name of authority" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn1222"  width="" >
+                    <Text id="_IDGenText1222" wrapping="true"  text="Brief of the case" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn1333"  width="" >
+                    <Text id="_IDGenText1333" wrapping="true"  text="Corrective action taken" />
+                    </Column>
+                
+                    </columns>
+                    </Table>
+                    <Label text="21.Details of beneficiaries of CSR Projects"
+                        id="id_q21" design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ21" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" /> -->
+                    <Table id="_IDGenTable8">
+                    <columns>
+
+                    <Column id="_IDGenColumn1123"  width="" >
+                    <Text id="_IDGenText1123" wrapping="true"  text="S.No" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn123"  width="" >
+                    <Text id="_IDGenText123" wrapping="true"  text="CSR Project" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn134"  width="" >
+                    <Text id="_IDGenText134" wrapping="true"  text="No. of persons benifitted from CSR Projects" />
+                    </Column>
+                    
+                    <Column id="_IDGenColumn145"  width="" >
+                    <Text id="_IDGenText145" wrapping="true"  text="% of beneficiaries from vulnerable and marginalized groups" />
+                    </Column>
+                    </columns>
+                    </Table>
+
+
+<Label text="22. Percentage Coverage by training and awareness programmes on any of the principles during the financial year" level="H2" design="Bold" wrapping="true"/>
+                      <Table id="idTableSegment"
+                       >
+		<columns>
+			<Column>
+				<Text wrapping="true" text="Segment" />
+			</Column>
+			<Column>
+				<Text wrapping="true" text="Total Number Of Training And Awareness Programs held" />
+			</Column>
+			<Column>
+				<Text wrapping="true" text="Topics/Principles covered under the training and its impact" />
+			</Column>
+			<Column>
+				<Text wrapping="true" text="Percentage Of Persons In Respective Category Covered by the awareness Programmes" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="23. Details of measures for the well-being of employees" level="H2" design="Bold" wrapping="true"/>
+	                    <Table id="idPEmpTable"
+                           
+		inset="false">
+		
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (Number B)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Accident Insurance (Number C)" />
+			</Column>
+			<Column>
+				<Text text="Accident Insurance (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (Number D)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (% D / A)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (Number E)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (% E / A)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (Number F)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (% F / A)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				<Text text="Permanent Employess" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+<Label text="24. Details of measures for the well-being of other than permanent employees" level="H2" design="Bold" wrapping="true"/>
+	
+	                    <Table id="idNPEmpTable"
+                            
+		inset="false">
+		<headerToolbar>
+			<Toolbar>	
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (Number B)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Accident Insurance (Number C)" />
+			</Column>
+				<Column>
+				<Text text="Accident Insurance (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (Number D)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (% D / A)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (Number E)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (% E / A)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (Number F)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (% F / A)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				<Text text="Other Than Permanent Employess" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+					<Label text="25. Details of measures for the well-being of workers" level="H2" design="Bold" wrapping="true"/>	
+	<Table id="idWorkerTable"
+                            
+		inset="false">
+		
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (Number B)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Accident Insurance (Number C)" />
+			</Column>
+				<Column>
+				<Text text="Accident Insurance (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (Number D)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (% D / A)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (Number E)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (% E / A)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (Number F)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (% F / A)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				<Text text="Permanent Workers" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+					<Label text="26. Details of measures for the well-being of workers" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idNonWorkerTable"
+                            
+		inset="false">
+		
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (Number B)" />
+			</Column>
+			<Column>
+				<Text text="Health Insurance (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Accident Insurance (Number C)" />
+			</Column>
+				<Column>
+				<Text text="Accident Insurance (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (Number D)" />
+			</Column>
+			<Column>
+				<Text text="Maternity Benefits (% D / A)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (Number E)" />
+			</Column>
+			<Column>
+				<Text text="Paternity Benefits (% E / A)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (Number F)" />
+			</Column>
+			<Column>
+				<Text text="Day Care Facilities (% F / A)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				<Text text="Other Than Permanent Workers" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+<Label text="27. Details of retirement benefits, for Current FY and Previous Financial Year" level="H2" design="Bold" wrapping="true"/>	
+	<Table id="idRetireBenfTable"
+                            
+		inset="false">
+		<headerToolbar>
+			<Toolbar>			
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Benefits" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (No. of employees covered as a % of total employees)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (No. of workers covered as a % of total workers)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (Deducted and deposited with the authority (Y/N/N.A))" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (No. of employees covered as a % of total employees)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (No. of workers covered as a % of total workers)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (Deducted and deposited with the authority (Y/N/N.A))" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="28. Return to work and Retention rates of permanent employees and workers that took parental leave." level="H2" design="Bold"/>	
+	<Table id="idRateofWorkAndLeaveTable"
+                           
+		inset="false">
+		
+		<columns>
+			<Column>
+				<Text text="Gender" />
+			</Column>
+			<Column>
+				<Text text="Permanent Employees Return To Work Rate" />
+			</Column>
+			<Column>
+				<Text text="Permanent Employees Retention Rate" />
+			</Column>
+			<Column>
+				<Text text="Permanent Workers Return To Work Rate" />
+			</Column>
+			<Column>
+				<Text text="Permanent Workers Retention Rate" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+		
+		<Label text="29. Membership of employees in association(s) or Unions recognised by the listed entity" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idMembershipEmpTable"
+                            
+		inset="false">
+		
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total Employees/Workers in respective category (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial - Total Employees/Workers in respective category, who are part of associations or unions (B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total Employees/Workers in respective category (C)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total Employees/Workers in respective category, who are part of associations or unions (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (% D / C)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="30. Membership of worker in association(s) or Unions recognised by the listed entity" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idMembershipWorTable"
+                            
+		inset="false">
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total Employees/Workers in respective category (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial - Total Employees/Workers in respective category, who are part of associations or unions (B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total Employees/Workers in respective category (C)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total Employees/Workers in respective category, who are part of associations or unions (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (% D / C)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+				
+					<Label text="31. Details of training given to employees" level="H2" design="Bold" wrapping="true"/>
+	                   <Table id="idPEmpTrainingTable"
+                           
+		inset="false">
+		
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - On Health And Safety Measures (No. B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - On Health And Safety Measures (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - On Skill Upgradation (No. C)" />
+			</Column>
+				<Column>
+				<Text text="Current Financial Year - On Skill Upgradation (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Health And Safety Measures (No. E)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Health And Safety Measures (% E / D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Skill Upgradation (No. F)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Skill Upgradation (% F / D)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				    <Text text="Employess" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+<Label text="32. Details of training given to workers" level="H2" design="Bold" wrapping="true"/>
+		                   <Table id="idWorkTrainingTable"
+                            
+		inset="false">
+		
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - On Health And Safety Measures (No. B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - On Health And Safety Measures (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - On Skill Upgradation (No. C)" />
+			</Column>
+				<Column>
+				<Text text="Current Financial Year - On Skill Upgradation (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Health And Safety Measures (No. E)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Health And Safety Measures (% E / D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Skill Upgradation (No. F)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - On Skill Upgradation (% F / D)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				    <Text text="Workers" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+<Label text="33. Details of performance and career development reviews of employees" level="H2" design="Bold" wrapping="true"/>
+		<Table id="idPerEmpTable"
+                            
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial - (No. B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (C)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - (No. D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (% D / C)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="34. Details of performance and career development reviews of workers" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idPerWorkTable"
+                            
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial - (No. B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (C)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - (No. D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (% D / C)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+
+<Label text="35. Employees who have been provided training on human rights issues and policy(ies) of the entity" level="H2" design="Bold" wrapping="true"/>	
+		<Table id="idEmpHumanRightTable"
+                          
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial - No. of employees covered (B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (C)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - No. of employees covered (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (% D / C)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="36. Workers who have been provided training on human rights issues and policy(ies) of the entity" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idWorkHumanRightTable"
+                         
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial - No.of workers covered (B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (C)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - No. of workers covered (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year (% D / C)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="37. Details of minimum wages paid to employees" level="H2" design="Bold" wrapping="true"/>
+             <Table id="idPEmpWageTable"
+                           
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Equal to minimum wage (No. B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Equal to minimum wage (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - More than minimum wage (No. C)" />
+			</Column>
+				<Column>
+				<Text text="Current Financial Year - More than minimum wage (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Equal to minimum wage (No. E)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Equal to minimum wage (% E / D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - More than minimum wage (No. F)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - More than minimum wage (% F / D)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				    <Text text="Employess" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+<Label text="38. Details of minimum wages paid to workers" level="H2" design="Bold" wrapping="true"/>
+		                   <Table id="idWorkWageTable"
+                           
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Category" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Total (A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Equal to minimum wage (No. B)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Equal to minimum wage (% B / A)" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - More than minimum wage (No. C)" />
+			</Column>
+				<Column>
+				<Text text="Current Financial Year - More than minimum wage (% C / A)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Total (D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Equal to minimum wage (No. E)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Equal to minimum wage (% E / D)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - More than minimum wage (No. F)" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - More than minimum wage (% F / D)" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+				    <Text text="Workers" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+<Label text="39. Details of remuneration/salary/wages" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idWageTable"
+                            
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Male (Number)" />
+			</Column>
+			<Column>
+				<Text text="Male Median Remuneration" />
+			</Column>
+			<Column>
+				<Text text="Female (Number)" />
+			</Column>
+			<Column>
+				<Text text="Female Median Remuneration" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="40. Number of Complaints on the following made by employees and workers:
+Sexual Harassment
+Discrimination at
+workplace
+Child Labour
+Forced
+Labour/Involuntary
+Labour
+Wages
+Other human rights related issues" level="H2" design="Bold" wrapping="true"/>
+		<Table id="idComplaintTable"
+                           
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Filed during the year " />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Pending resolution at the end of the year" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year - Remarks" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Filed during the year" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Pending resolution at the end of the year" />
+			</Column>
+			<Column>
+				<Text text="Previous Year - Remarks" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="41. Assessments for the year:
+Child labour
+Forced/involuntary labour
+Sexual harassment
+Discrimination at workplace
+Wages
+Others - please specify" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idAssessmentsTable"
+                            
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="% of plants and offices that were assessed (by entity or statuatory authorities or third parties)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="42. Spending on measures towards well-being of employees and workers (including
+permanent and other than permanent) in the following format" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idSpendTable"
+                           
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+				<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="43. Gross wages paid to females as % of total wages paid by the entity, in the following
+format" level="H2" design="Bold" wrapping="true"/>
+		<Table id="idGrossWageTable"
+                             
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+				<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="44. Complaints filed under the Sexual Harassment of Women at Workplace (Prevention,
+Prohibition and Redressal) Act, 2013, in the following format:" level="H2" design="Bold" wrapping="true"/>
+		<Table id="idCompFiledTable"
+                            
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+				<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="45. Job creation in smaller towns – Disclose wages paid to persons employed (including
+employees or workers employed on a permanent or non-permanent / on contract basis)
+in the following locations, as % of total wage cost" level="H2" design="Bold" wrapping="true"/>
+		<Table id="idJobCreationTable"
+                           
+		inset="false">
+		<headerToolbar>
+			<Toolbar>
+				
+					
+				
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Location" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+          </content>
+        </IconTabFilter>
+         <IconTabFilter text="EHS" class="sapUiSizeCompact">
+          <content>
+
+          <Label text="Health and safety management syste&#x0A; &#x0A; 1. Whether an occupational health and safety management system has been implemented by the entity? (Yes/ No). If yes, the coverage such system? b. What are the processes used to identify work-related hazards and assess risks on a routine and non-routine basis by the entity? c. Whether you have processes for workers to report the work related hazards and to remove themselves from such risks. (Y/N) d. Do the employees/ worker of the entity have access to non-occupational medical and healthcare services? (Yes/ No)"
+                           required="true" design="Bold" wrapping="true" />
+								<!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
+								<TextArea id="id_answ1ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange1" />
+								<Label text="Health and safety management syste&#x0A; &#x0A; 2. What are the processes used to identify work-related hazards and assess risks on a routine and non-routine basis by the entity?"
+                           required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ2ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange2" />
+								<Label text="Health and safety management syste&#x0A; &#x0A; 3. Whether you have processes for workers to report the work related hazards and to remove themselves from such risks. (Y/N)"
+                              required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ3ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChang3" />
+								<Label required="true" text="Health and safety management syste&#x0A; &#x0A; 4. Do the employees/ worker of the entity have access to non-occupational medical and healthcare services? (Y/N)."
+                            design="Bold" wrapping="true" />
+								<TextArea id="id_answ4ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange4" />
+								<Label text="5. Describe the measures taken by the entity to ensure a safe and healthy work place."
+                              required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ5ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
+								<Label required="true" text="6. Provide details of any corrective action taken or underway to address safety-related incidents (if any) and on significant risks / concerns arising from assessments of health and safety practices and working conditions"
+                              design="Bold" wrapping="true" />
+								<TextArea id="id_answ6ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" />
+								<Label text="7. Provide details of any corrective actions taken or underway to address significant risks / concerns arising from assessments of health and safety practices and working conditions of value chain partners."
+                             design="Bold" wrapping="true" />
+								<TextArea id="id_answ7ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange7" />
+								<Label text="8. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any"
+                              required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ8ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange8" />
+								<Label text="9. Has the entity implemented a mechanism for Zero Liquid Discharge? If yes, provide details of its coverage and implementation."
+                              required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ9ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange9" />
+								<Label text="10. Does the entity have any project related to reducing Green House Gas emission? If Yes, then provide details."
+                           required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ10ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange10" />
+								<Label text="11. Briefly describe the waste management practices adopted in your establishments. Describe the strategy adopted by your company to reduce usage of hazardous and toxic chemicals in your products and processes and the practices adopted to manage such wastes"
+                             required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ11ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange11" />
+								<Label text="12. If the entity has operations/offices in/around ecologically sensitive areas (such as national parks, wildlife sanctuaries, biosphere reserves, wetlands, biodiversity hotspots, forests, coastal regulation zones etc.) where environmental approvals / clearances are required, please specify details."
+                           required="true" design="Bold" wrapping="true" />
+								<!-- <TextArea id="id_answ12" rows="3" placeholder="Your Answer..." cols="200" maxLength="5000" showExceededText="true" liveChange="handleLiveChange12" /> -->
+								<Table id="tableq12" items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text text="Location of operations/offices"/>
+										</Column>
+										<Column width="">
+											<Text text="Type of Operators"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Whether conditions of environmental approval/clearance are complied with?(Y/N) If no, the reasons thereof and corrective action taken if any"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<TextArea value="{oModel1>location_of_operations_offices}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>type_of_operations}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>conditions_of_environmental_approval}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Label text="13. Details of environmental impact assessments of projects undertaken by the entity based on applicable laws, in the current financial year."
+                             required="true" design="Bold" wrapping="true" />
+								<Table id="tableq13" items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Name and Brief details of Project"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="EIA notification No."/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Date"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Whether conducted independent external agency(Y/N)"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Results communicated in public domain(Y/N)"/>
+										</Column>
+										<Column width="">
+											<Text text="Relevant Web Link"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<TextArea value="{oModel1>name_brief_details_of_project}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>eia_notification_no}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<DatePicker value="{oModel1>date}" />
+												<TextArea value="{oModel1>conducted_by_independent_external_agency}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>results_communicated_in_public_domain}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>relevant_web_link}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Label text="14. Is the entity compliant with the applicable environmental law / regulations / guidelines in India such as the Water (Prevention and Control of Pollution) Act, Air (Prevention and Control of Pollution) Act, Environment protection act and rules thereunder (Y/N). If not, provide details of all such non compliances."
+                         required="true" design="Bold" wrapping="true" />
+								<Table id="tableq14" items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Specify the law / regulation / guidelines which was not complied with"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Provide details of non-compliance"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Any fines / penalties / action taken by regulatory such as pollution control board or by courts"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Corrective action taken if any"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<TextArea value="{oModel1>guidelines_not_compiled_with}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>details_of_non_compliance}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>action_taken_by_regulatory_agencies}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>corrective_action}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Label text="15. With respect to the ecologically sensitive areas reported at Question 10 of Essential Indicators above, provide details of significant direct and indirect impact of the entity on biodiversity in such areas along-with prevention and remediation activities."
+                             design="Bold" wrapping="true" />
+								<TextArea id="id_answ15ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange15" />
+								<Label text="16. If the entity has undertaken any specific initiatives or used innovative technology or solutions to improve resource efficiency, or reduce impact due to emissions / effluent discharge / waste generated, please provide details of the same as well as outcome of such initiatives." />
+                  <Table id= "tableq16"  items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Initiatives Undertaken"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Details of initiative(Web-Link if nay may be provided along with summary)"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Outcome of the Initiative"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<TextArea value="{oModel1>initiative_undertaken}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>details_of_initiative}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea value="{oModel1>outcome_of_initiative}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Label text="17. Percentage of value chain partners (by value of business done with such partners) that were assessed for environmental impacts."
+                             design="Bold" wrapping="true" />
+								<TextArea id="id_answ17ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange17" />
+							
+							<Label text="18. Details of total energy consumption (in Joules or multiples) and energy intensity, in the following format:"
+                           design="Bold" wrapping="true" />
+							<Table id="table1" >
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Parameter"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="From Renewable Energy Sources"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Electricity Consumption (A)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_renewable_electricity}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_renewable_electricity}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Fuel Consumption (B)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_renewable_fuel}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_renewable_fuel}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Energy Consumption from other sources (C)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_renewable_energy}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_renewable_energy}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Energy Consumption from Renewable Energy Sources"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_renewable}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_renewable}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="From Non-Renewable Energy Sources"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Electricity Consumption (D)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_nonrenewable_electricity}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_nonrenewable_electricity}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Fuel Consumption (E)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_nonrenewable_fuel}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_nonrenewable_fuel}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Energy Consumption from other sources (F)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_nonrenewable_energy}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_nonrenewable_energy}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Energy Consumption from Non-Renewable Energy Sources"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_nonrenewable}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_nonrenewable}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Energy Consumed "/>
+												<Text text="{oTable1>/currentYear/energyConsumption_total}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_total}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Energy intensity per rupee of turnover (Total energy consumed / Revenue from operations)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_energyIntensityTurnover}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_energyIntensityTurnover}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Energy intensity per rupee of turnover adjusted for Purchasing Power Parity (PPP)
+(Total energy consumed / Revenue from operations adjusted for PPP)"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_energyIntensityTurnoverPPP}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_energyIntensityTurnoverPPP}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Energy intensity in terms of physical output"/>
+												<Text text="{oTable1>/currentYear/energyConsumption_energyIntensityPhysicalOutput}" />
+												<Text text="{oTable1>/previousYear/energyConsumption_energyIntensityPhysicalOutput}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+<Label text="19. Details of the following disclosures related to water, in the following format:"
+                            design="Bold" wrapping="true" />
+					<Table id="table2" >
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Parameter"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="Water withdrawal by source (in kilolitres)"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Surface Water"/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_surfaceWater}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_surfaceWater}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Ground Water"/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_groundWater}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_groundWater}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Third Party Water"/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_thirdPartyWater}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_thirdPartyWater}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Seawater/Desalinated Water"/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_seaWater}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_seaWater}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Others"/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_others}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_others}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total volume of water withdrawal (in kilolitres)"/>
+												<Text text="{oTable2>/currentYear/totalWaterDisclosures}" />
+												<Text text="{oTable2>/previousYear/totalWaterDisclosures}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total volume of water consumption (in kilolitres)"/>
+												<Text text="{oTable2>/currentYear/totalWaterConsumed}" />
+												<Text text="{oTable2>/previousYear/totalWaterConsumed}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Water intensity per rupee of turnover (Total water consumption / Revenue from operations) "/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_energyIntensityTurnover}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_energyIntensityTurnover}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Water intensity per rupee of turnover adjusted for Purchasing Power Parity (PPP)
+(Total water consumption / Revenue from operations adjusted for PPP)"/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_energyIntensityTurnoverPPP}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_energyIntensityTurnoverPPP}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Water intensity in terms of physical output"/>
+												<Text text="{oTable2>/currentYear/waterDisclosures_energyIntensityPhysicalOutput}" />
+												<Text text="{oTable2>/previousYear/waterDisclosures_energyIntensityPhysicalOutput}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+								<Label text="20. Details related to water discharged:	"
+                             design="Bold" wrapping="true" />	
+							<Table id="table3"> 
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Parameter"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="Water discharge by destination and level of treatment (in kilolitres)"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="To surface water "/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="No treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_sw_noTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_sw_noTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="With treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_sw_withTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_sw_withTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="To ground water"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="No treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_gw_noTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_gw_noTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="With treatment "/>
+												<Text text="{oTable3>/currentYear/waterDischarged_gw_withTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_gw_withTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="To seawater"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="No treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_dw_noTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_dw_noTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="With treatment "/>
+												<Text text="{oTable3>/currentYear/waterDischarged_dw_withTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_dw_withTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="To third-parties"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="No treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_tw_noTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_tw_noTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="With treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_tw_withTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_tw_withTreatment}" />
+											</cells>
+										</ColumnListItem>
+												<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="To others"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="No treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_otw_noTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_otw_noTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="With treatment"/>
+												<Text text="{oTable3>/currentYear/waterDischarged_otw_withTreatment}" />
+												<Text text="{oTable3>/previousYear/waterDischarged_otw_withTreatment}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="Total water discharged (in kilolitres)"/>
+												<Text text="{oTable3>/currentYear/totalwaterDischarged}" />
+												<Text text="{oTable3>/previousYear/totalwaterDischarged}" />
+											</cells>
+										</ColumnListItem>		
+									</items>
+								</Table>
+
+				<Label text="21. Details of air emissions (other than GHG emissions) by the entity, in the following format:"
+                              design="Bold" wrapping="true" />
+					<Table id="table4" >
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Parameter"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="SOx"/>
+												<Text text="{oTable4>/currentYear/airEmission_sox}" />
+												<Text text="{oTable4>/previousYear/airEmission_sox}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="NOx"/>
+												<Text text="{oTable4>/currentYear/airEmission_nox}" />
+												<Text text="{oTable4>/previousYear/airEmission_nox}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Particulate Matter"/>
+												<Text text="{oTable4>/currentYear/airEmission_particulateMatter}" />
+												<Text text="{oTable4>/previousYear/airEmission_particulateMatter}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Persistent organic pollutants (POP)"/>
+												<Text text="{oTable4>/currentYear/airEmission_pop}" />
+												<Text text="{oTable4>/previousYear/airEmission_pop}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Volatile organic compounds (VOC)"/>
+												<Text text="{oTable4>/currentYear/airEmission_voc}" />
+												<Text text="{oTable4>/previousYear/airEmission_voc}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Hazardous air pollutants (HAP)"/>
+												<Text text="{oTable4>/currentYear/airEmission_hap}" />
+												<Text text="{oTable4>/previousYear/airEmission_hap}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Others – please specify"/>
+												<Text text="{oTable4>/currentYear/airEmission_others}" />
+												<Text text="{oTable4>/previousYear/airEmission_others}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+<Label text="22. Details of greenhouse gas emissions (Scope 1 and Scope 2 emissions) and its intensity, in the following format:"
+                             id="id_q22" design="Bold" wrapping="true" />
+				<Table id="table5">
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Parameter"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Unit"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Scope 1 Emissions "/>
+												<Text text="Metric tonnes of CO2 equivalent"/>
+												<Text text="{oTable5>/currentYear/ghgEmission_scope1}" />
+												<Text text="{oTable5>/previousYear/ghgEmission_scope1}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Scope 2 Emissions"/>
+												<Text text="Metric tonnes of CO2 equivalent"/>
+												<Text text="{oTable5>/currentYear/ghgEmission_scope2}" />
+												<Text text="{oTable5>/previousYear/ghgEmission_scope2}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Scope 1 and Scope 2 emission intensity per rupee of turnover"/>
+												<Text text="Metric tonnes of CO2 equivalent"/>
+												<Text text="{oTable5>/currentYear/ghgEmission_energyIntensityTurnover}" />
+												<Text text="{oTable5>/previousYear/ghgEmission_energyIntensityTurnover}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Scope 1 and Scope 2 emission intensity per rupee of turnover adjusted for Purchasing Power Parity (PPP)"/>
+												<Text text="Metric tonnes of CO2 equivalent"/>
+												<Text text="{oTable5>/currentYear/ghgEmission_energyIntensityTurnoverPPP}" />
+												<Text text="{oTable5>/previousYear/ghgEmission_energyIntensityTurnoverPPP}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total Scope 1 and Scope 2 emission intensity in terms of physical output"/>
+												<Text text="Metric tonnes of CO2 equivalent"/>
+												<Text text="{oTable5>/currentYear/ghgEmission_energyIntensityPhysicalOutput}" />
+												<Text text="{oTable5>/previousYear/ghgEmission_energyIntensityPhysicalOutput}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+<Label text="23. Details related to waste management by the entity, in the following format:	"
+                             id="id_q23" design="Bold" wrapping="true" />
+					<Table id="table6">
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Parameter"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="Total Waste generated (in metric tonnes)"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Plastic Waste"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_electronicWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_electronicWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Electronic Waste"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_bioMedicalWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_bioMedicalWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Bio Medical Waste"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_constDemoWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_constDemoWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Construction and Demolition Waste"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_batteryWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_batteryWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Battery Waste"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_radioActiveWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_radioActiveWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Radioactive waste"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_otherHazardousWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_otherHazardousWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Other Hazardous waste. Please specify, if any"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_otherNonHazardousWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_otherNonHazardousWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Other Non-hazardous waste generated.  Please specify, if any"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_otherNonHazardousWaste}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_otherNonHazardousWaste}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total"/>
+												<Text text="{oTable6>/currentYear/totalWasteGenerated}" />
+												<Text text="{oTable6>/previousYear/totalWasteGenerated}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Waste intensity per rupee of turnover (Total waste generated / Revenue from operations)"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_energyIntensityTurnover}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_energyIntensityTurnover}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Waste intensity per rupee of turnover adjusted for Purchasing Power Parity (PPP) (Total water consumption / Revenue from operations adjusted for PPP) "/>
+												<Text text="{oTable6>/currentYear/wasteManagement_energyIntensityTurnoverPPP}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_energyIntensityTurnoverPPP}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Waste intensity in terms of physical output"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_energyIntensityPhysicalOutput}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_energyIntensityPhysicalOutput}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="For each category of waste generated, total waste recovered through recycling, re-using or other recovery operations (in metric tonnes)" wrapping="true"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="Category of waste"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Recycled"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_recycled}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_recycled}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Reused"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_reused}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_reused}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Other recovery operations "/>
+												<Text text="{oTable6>/currentYear/wasteManagement_otherRecoveryOperations}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_otherRecoveryOperations}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total"/>
+												<Text text="{oTable6>/currentYear/totalWasteRecoveredThroughRecycling}" />
+												<Text text="{oTable6>/previousYear/totalWasteRecoveredThroughRecycling}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="For each category of waste generated, total waste disposed by nature of disposal method (in metric tonnes)" wrapping="true"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Title text="Category of waste"/>
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Incineration"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_incineration}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_incineration}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Landfilling"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_landfilling}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_landfilling}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Other disposal operations"/>
+												<Text text="{oTable6>/currentYear/wasteManagement_otherDisposalOperations}" />
+												<Text text="{oTable6>/previousYear/wasteManagement_otherDisposalOperations}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total"/>
+												<Text text="{oTable6>/currentYear/totalWasteDisposed}" />
+												<Text text="{oTable6>/previousYear/totalWasteDisposed}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+<Label text="24. Details of total Scope 3 emissions and its intensity, in the following format:"
+                             id="id_q24" design="Bold" wrapping="true" />
+									<Table id="table7">
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Parameter"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Unit"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Scope 1 Emissions "/>
+												<Text text="Metric tonnes of CO2 equivalent"/>
+												<Text text="{oTable7>/currentYear/scope3mission_total}" />
+												<Text text="{oTable7>/previousYear/scope3mission_total}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Scope 2 Emissions"/>
+												<Text text="Metric tonnes of CO2 equivalent"/>
+												<Text text="{oTable7>/currentYear/scope3mission_energyIntensityTurnover}" />
+												<Text text="{oTable7>/previousYear/scope3mission_energyIntensityTurnover}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+							<Label text="25. Details of safety related incidents, in the following format:"
+                             id="id_q25" design="Bold" wrapping="true" />
+									<Table id="table8" >
+									<columns>
+										<Column width="">
+											<Text wrapping="true" text="Safety Incident/Number"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Category"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Lost Time Injury Frequency Rate (LTIFR) (per one million person hours worked)"/>
+												<Text text="Employees"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_LTIFR_Employees}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_LTIFR_Employees}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Lost Time Injury Frequency Rate (LTIFR) (per one million person hours worked)"/>
+												<Text text="Workers"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_LTIFR_Workers}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_LTIFR_Workers}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total recordable work-related injuries"/>
+												<Text text="Employees"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_totalWRI_Employees}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_totalWRI_Employees}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Total recordable work-related injuries"/>
+												<Text text="Workers"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_totalWRI_Workers}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_totalWRI_Workers}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="No. of fatalities "/>
+												<Text text="Employees"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_fatalities_Employees}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_fatalities_Employees}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="No. of fatalities "/>
+												<Text text="Workers"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_fatalities_Workers}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_fatalities_Workers}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="High consequence work-related injury or ill-health (excluding fatalities)"/>
+												<Text text="Employees"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_highConsequenceInjuries_Employees}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_highConsequenceInjuries_Employees}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="High consequence work-related injury or ill-health (excluding fatalities)"/>
+												<Text text="Workers"/>
+												<Text text="{oTable8>/currentYear/safetyRelatedIncidents_highConsequenceInjuries_Workers}" />
+												<Text text="{oTable8>/previousYear/safetyRelatedIncidents_highConsequenceInjuries_Workers}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+<Label text="26. Number of Complaints on the following made by employees and workers:"
+                             id="id_q26" design="Bold" wrapping="true" />
+												<Table id="table9" >
+									<columns>
+									<Column width="">
+											<Text wrapping="true" text=""/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year (Filed during the year)"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Current Financial Year (Pending resolution at the end of year)"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year (Filed during the year)"/>
+										</Column>
+										<Column width="">
+											<Text wrapping="true" text="Previous Financial Year (Pending resolution at the end of year)"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Working Conditions"/>
+												<Text text="{oTable9>/currentYear/detailsOfComplaints_WC_filedDuringYear}"/>
+												<Text text="{oTable9>/currentYear/detailsOfComplaints_WC_pendingResolution}" />
+												<Text text="{oTable9>/previousYear/detailsOfComplaints_WC_filedDuringYear}" />
+												<Text text="{oTable9>/previousYear/detailsOfComplaints_WC_pendingResolution}" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+												<Text text="Health and Safety"/>
+												<Text text="{oTable9>/currentYear/detailsOfComplaints_HS_filedDuringYear}"/>
+												<Text text="{oTable9>/currentYear/detailsOfComplaints_HS_pendingResolution}" />
+												<Text text="{oTable9>/previousYear/detailsOfComplaints_HS_filedDuringYear}" />
+												<Text text="{oTable9>/previousYear/detailsOfComplaints_HS_pendingResolution}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+           </content>
+        </IconTabFilter>
+        <IconTabFilter text="Finance" class="sapUiSizeCompact">
+          <content>
+          <Label text="1.Provide the measures undertaken by the entity to ensure that statutory dues have been deducted and deposited by the value chain partners."
+                    design="Bold" wrapping="true" />
+                    
+                    <TextArea id="id_answ1f" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange1" />
+                    
+                    <Label required="true" text="2. Describe the processes for identifying key stakeholder groups of the entity."
+                        design="Bold" wrapping="true" />
+                    <TextArea id="id_answ2f" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange2" />
+
+                    <Label required="true" text="3. List stakeholder groups identified as key for your entity and the frequency of engagement with each stakeholder group."
+                      design="Bold" wrapping="true" />
+                    <!-- <TextArea id="id_answ3" rows="3" placeholder="Your Answer..." cols="200" maxLength="5000" showExceededText="true" liveChange="handleLiveChang3" /> -->
+                    <Table id="_IDGenTable1f" mode="Delete" delete="deleteRowTab1">
+                    <columns>
+
+                    <Column  width="" >
+                    <Text wrapping="true" text="Stakeholder Group" />
+                    </Column>
+                    
+                    <Column  width="" >
+                    <Text wrapping="true"  text="Whether identified as vulnerable and marginalized group (Yes/No)" />
+                    </Column>
+
+                    
+                    <Column  width="">
+                    <Text wrapping="true"  text="Channels of communication (Email, SMS, NewsPaper, Pamplates, Advertisement, community meetings, notice board, website), others" />
+                    </Column>
+
+                    <Column  width="" >
+                    <Text wrapping="true"  text="Frequency of engagement (Annually/ Half/ Yearly/ Quarterly/ others - please specify)" />
+                    </Column>
+
+                    <Column  width="" >
+                    <Text wrapping="true" text="Purpose and scope of engagement including key topics and concerns raised during sunch engagement" />
+                    </Column>
+
+                   
+                    </columns>
+                    
+                    
+                  
+                    </Table>
+                    <Label  text="4.Provide the processes for consultation between stakeholders and the Board on economic, environmental, and social topics or if consultation is delegated, how is feedback from such consultations provided to the Board."
+                        design="Bold" wrapping="true" />
+                    <TextArea id="id_answ4f" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChang3" />
+                    
+                    <Label  text="5.Whether stakeholder consultation is used to support the identification and management of environmental, and social topics (Yes / No). If so, provide details of instances as to how the inputs received from stakeholders on these topics were incorporated into policies and activities of the entity."
+                         design="Bold" wrapping="true" />
+                    <TextArea id="id_answ5f" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
+                    
+                    <Label text="6.Provide details of instances of engagement with, and actions taken to, address the concerns of vulnerable/ marginalized stakeholder groups"
+                         design="Bold" wrapping="true" />
+                    <TextArea id="id_answ6f" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" />
+
+                <Label text="7. Percentage of R and D and capital expenditure (capex) investments in specific technologies to improve the environmental and social impacts of product and processes to total R and D and capex investments made by the entity, respectively." level="H2" design="Bold" wrapping="true"/>   
+                <Table id="idRDTable"
+                             
+		inset="false">
+        <headerToolbar>
+                   
+        </headerToolbar>
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+			<Column>
+				<Text text="Details of improvement in environmental and social aspects" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="8. Turnover of products and/ services as a percentage of turnover from all products/service that carry information about: Environmental and social parameters relevant to the product Safe and responsible usage Recycling and/or safe disposal" level="H2" design="Bold" wrapping="true"/>
+	<Table id="idTurnoverTable"
+                           
+		inset="false">
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="As a percentage of total turnover" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="9. Number of days of accounts payables ((Accounts payable *365) / Cost of goods/services procured) in the following format" level="H2" wrapping="true" design="Bold"/>
+		<Table id="idAccountTable"
+                            
+		inset="false">
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+          </content>
+        </IconTabFilter>
+		<IconTabFilter text="Compliance/Legal" class="sapUiSizeCompact">
+          <content>
+
+		  <Label text="1. Of the instances disclosed in Question 2 above, details of the Appeal/ Revision
+preferred in cases where monetary or non-monetary action has been appealed."
+                             required="true" design="Bold" wrapping="true" />
+								<!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
+								
+                    
+
+                                 <Table id="tableq1a"  items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text text="Case Details"/>
+										</Column>
+										<Column width="">
+											<Text text="Name of regulatory/enforement agencies/judicial institutions"/>
+										</Column>
+									</columns>
+                                    <items>
+										<ColumnListItem vAlign="Middle"> 
+											<cells>
+												<TextArea editable="false" value="{oModel1>case_details}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>name_regulatory_agencies}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+                              
+
+
+								<Label text="2. Does the entity have an anti-corruption or anti-bribery policy? If yes, provide details in"
+                              required="true" design="Bold" wrapping="true" />
+								<TextArea id="id_answ2c" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange2" />
+								
+                                <Label text="3. Details of complaints with regard to conflict of interest:"
+                             required="true" design="Bold" wrapping="true" />
+
+                        
+
+                                 <Table id="tableq3a" >
+                                    <columns>
+                                       <Column width="">
+											<Text  wrapping="true" text=""/>
+										</Column>
+										<Column width="">
+											<Text  wrapping="true" text="FY Current Financial Year (Number)"/>
+										</Column>
+										<Column width="">
+											<Text  wrapping="true" text="FY Current Financial Year (Remarks)"/>
+										</Column>
+										<Column width="">
+											<Text  wrapping="true" text="FY Previous Financial Year(Number)"/>
+										</Column>
+										<Column width="">
+											<Text  wrapping="true" text="FY Previous Financial Year (Remarks)"/>
+										</Column>
+									</columns>
+                                    <items>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+                                                <Text text="Number of complaints received in relation to issues of Conflict of interest of the Directors"  />
+												<TextArea editable="false" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea  editable="false" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea  editable="false" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+										<ColumnListItem vAlign="Middle">
+											<cells>
+                                                <Text text="Number of complaints received in relation to issues of Conflict of interest of the KMP's"  />
+												<TextArea editable="false" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+                             
+
+
+								
+								<Label required="true" text="4. Provide details of any corrective action taken or underway on issues related to fines /penalties / action taken by regulators/ law enforcement agencies/ judicial institutions,on cases of corruption and conflicts of interest"
+                          design="Bold" wrapping="true" />
+								<TextArea id="id_answ4c" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange4" />
+								<Label text="5. Does the entity have processes in place to avoid/ manage conflict of interests involving members of the Board? (Yes/No) If Yes, provide details of the same."
+                             design="Bold" wrapping="true" />
+								<TextArea id="id_answ5c" editable="false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
+								
+                                <Label required="true" text="6. Number of affiliations with trade and industry chambers/ associations. b. List the top 10 trade and industry chambers/ associations (determined based on the total members of such body) the entity is a member of/ affiliated to."
+                             design="Bold" wrapping="true" />
+
+							
+
+                                 <Table id="tableq6a" items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text  wrapping="true" text="Name of trade and industry chambers/associations"/>
+										</Column>
+										<Column width="">
+											<Text  wrapping="true" text="Reach of trade and industry chambers/associations(State/National)"/>
+										</Column>
+									</columns>
+                                    <items>
+										<ColumnListItem vAlign="Middle"> 
+											<cells>
+												<TextArea editable="false" value="{oModel1>name_of_trade_industy_associations}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>reach_of_trade_industy_associations}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+                              
+								
+                                
+                                <Label required="true" text="7. Provide details of corrective action taken or underway on any issues related to anticompetitive conduct by the entity, based on adverse orders from regulatory authorities"
+                          design="Bold" wrapping="true" />
+
+
+                                 <Table id="tableq7a" items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text  wrapping="true" text="Name of authority"/>
+										</Column>
+										<Column width="">
+											<Text  wrapping="true" text="Brief of the case"/>
+										</Column>
+                                        <Column width="">
+											<Text  wrapping="true" text="Corrective action taken"/>
+										</Column>
+									</columns>
+                                    <items>
+										<ColumnListItem vAlign="Middle"> 
+											<cells>
+												<TextArea editable="false" value="{oModel1>name_of_authority}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>brief_of_case}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+                                                <TextArea editable="false" value="{oModel1>corrective_actions_taken}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+								
+								
+                                <Label text="8. Details of public policy positions advocated by the entity"
+                             design="Bold" wrapping="true" />
+								
+
+                                 <Table id="tableq8a"   items="{oModel1>/results}">
+									<columns>
+										<Column width="">
+											<Text  wrapping="true" text="Public policy advocated"/>
+										</Column>
+										<Column width="">
+											<Text  wrapping="true" text="Method resorted for advocacy"/>
+										</Column>
+                                        <Column width="">
+											<Text  wrapping="true" text="Whether information availabe in public domain? (Y/N)"/>
+										</Column>
+                                         <Column width="">
+											<Text  wrapping="true" text="Frequency of Review by Board(Annually/Half Yearly/Quarterly/Others-please specify)"/>
+										</Column>
+                                         <Column width="">
+											<Text  wrapping="true" text="Web link if available"/>
+                                        </Column>    
+									</columns>
+                                    <items>
+										<ColumnListItem vAlign="Middle"> 
+											<cells>
+												<TextArea editable="false" value="{oModel1>public_policy_advocated}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>method_resorted_for_advocacy}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+                                                <TextArea editable="false" value="{oModel1>information_available_in_public_domain}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+                                                <TextArea editable="false" value="{oModel1>frequency_of_review_by_board}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+                                                <TextArea editable="false" value="{oModel1>web_link}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+
+
+<Label id="titleMON" text="9. Monetary" level="H2" design="Bold"/>
+								<Table id="idMonetaryTable"
+                             
+		inset="false">
+		<columns>
+        	<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="NGRBC Principle" />
+			</Column>
+			<Column>
+				<Text text="Name of regulatory/enforcement agencies/judicial institutions" />
+			</Column>
+			<Column>
+				<Text text="Amount (in INR)" />
+			</Column>
+			<Column>
+				<Text text="Brief of the case" />
+			</Column>
+			<Column>
+				<Text text="Has an appeal been preferred? (Yes/No)" />
+			</Column>
+		</columns>
+		<items>
+		
+		</items>
+	</Table>
+
+	<Label text="10. Non-Monetary" level="H2" design="Bold"/>
+                            <Table id="idNonMonetaryTable"
+                             
+		inset="false">
+		<columns>
+        	<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="NGRBC Principle" />
+			</Column>
+			<Column>
+				<Text text="Name of regulatory/enforcement agencies/judicial institutions" />
+			</Column>
+			<Column>
+				<Text text="Amount (in INR)" />
+			</Column>
+			<Column>
+				<Text text="Brief of the case" />
+			</Column>
+			<Column>
+				<Text text="Has an appeal been preferred? (Yes/No)" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="11. Number of Directors/KMPs/employees/workers against whom disciplinary action was
+taken by any law enforcement agency for the charges of bribery/ corruption" level="H2" design="Bold"/>
+                       <Table id="idTable"
+                        
+		inset="false">
+		<columns>
+            <Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="12. Details of complaints with regard to conflict of interest" level="H2" design="Bold"/>
+    
+                       <Table id="idTable1"
+                       
+		inset="false">
+		<columns>
+        	<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year Number" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year Remarks" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year Number" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year Remarks" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="13. Provide the following information relating to data breaches:" level="H2" design="Bold"/>
+	                       <Table id="idQuestionsTable"
+                        
+		inset="false">
+		<columns>
+        	<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+		  </content>
+        </IconTabFilter>
+		<IconTabFilter text="Procurement" class="sapUiSizeCompact">
+          <content>
+		  <Label text="1. Does the entity have procedures in place for sustainable sourcing? (Yes/No)"
+                              design="Bold" wrapping="true" required="true" />
+                            <!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
+                            <TextArea id="id_answ1p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange1" />
+                            
+                            <Label text="2. Do you have a preferential procurement policy where you give preference to purchase from suppliers comprising marginalized /vulnerable groups? (Yes/No)"
+                              design="Bold" wrapping="true" />
+                            <TextArea id="id_answ2p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange2" />
+
+                            <Label text="3. From which marginalized /vulnerable groups do you procure?"
+                              design="Bold" wrapping="true" />
+                            <TextArea id="id_answ3p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChang3" />
+
+                            <Label required="true" text="4. What percentage of total procurement (by value) does it constitute?"
+                              design="Bold" wrapping="true" />
+                            <TextArea id="id_answ4p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange4" />
+
+                            <Label text="5. Describe the measures taken by the entity to ensure a safe and healthy work place."
+                              design="Bold" wrapping="true" />
+                            <TextArea id="id_answ5p" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
+
+<Label text="6. Percentage of input material (inputs to total inputs by value) sourced from suppliers" level="H2" design="Bold" wrapping="true"/>
+<Table id="idInputMaterialTable"
+                    
+		inset="false">
+		<columns>
+			<Column>
+				<Text text="" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+
+<Label text="7. Provide details of concentration of purchases and sales with trading houses, dealers, and related parties along-with loans and advances and investments, with related parties, in the following format:" level="H2" design="Bold" wrapping="true"/>
+		<Table id="idDetailsConcentrationTable"
+                             
+		inset="false">
+		<columns>
+			<Column>
+				<Text text="Parameters" />
+			</Column>
+			<Column>
+				<Text text="Metrics" />
+			</Column>
+			<Column>
+				<Text text="Current Financial Year" />
+			</Column>
+			<Column>
+				<Text text="Previous Financial Year" />
+			</Column>
+		</columns>
+		<items>
+		</items>
+	</Table>
+		  </content>
+        </IconTabFilter>
       </items>
     </IconTabBar>
   </VBox>
  </VBox>
 
+<<<<<<< HEAD
 <Toolbar id="yourToolbarId" class="toolbar"  width="100%" height="46px" design="Auto" enabled="true" visible="true">
     <content>
         <ToolbarSpacer/> <!-- Pushes buttons to the right -->
@@ -1623,6 +4422,9 @@ each product category." level="H2" wrapping="true" />
         <Button id="Submit" text="Submit" press="onSubmitPress" icon="sap-icon://open-command-field" iconFirst="false" type="Transparent" width="auto" enabled="true" visible="true" design="Bold" flexGrow="2" />
     </content>
 </Toolbar>
+=======
+
+>>>>>>> 70365465a20729c6bf919647fcd991bef361b1d3
 
         </content>
 
