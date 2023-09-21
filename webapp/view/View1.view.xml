@@ -2930,37 +2930,37 @@ in the following locations, as % of total wage cost" level="H2" design="Bold" wr
           <Label text="Health and safety management syste&#x0A; &#x0A; 1. Whether an occupational health and safety management system has been implemented by the entity? (Yes/ No). If yes, the coverage such system? b. What are the processes used to identify work-related hazards and assess risks on a routine and non-routine basis by the entity? c. Whether you have processes for workers to report the work related hazards and to remove themselves from such risks. (Y/N) d. Do the employees/ worker of the entity have access to non-occupational medical and healthcare services? (Yes/ No)"
                            required="true" design="Bold" wrapping="true" />
 								<!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
-								<TextArea id="id_answ1ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange1" />
+								<TextArea editable="false" id="id_answ1ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange1" />
 								<Label text="Health and safety management syste&#x0A; &#x0A; 2. What are the processes used to identify work-related hazards and assess risks on a routine and non-routine basis by the entity?"
                            required="true" design="Bold" wrapping="true" />
-								<TextArea id="id_answ2ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange2" />
+								<TextArea editable="false" id="id_answ2ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange2" />
 								<Label text="Health and safety management syste&#x0A; &#x0A; 3. Whether you have processes for workers to report the work related hazards and to remove themselves from such risks. (Y/N)"
                               required="true" design="Bold" wrapping="true" />
-								<TextArea id="id_answ3ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChang3" />
+								<TextArea editable="false" id="id_answ3ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChang3" />
 								<Label required="true" text="Health and safety management syste&#x0A; &#x0A; 4. Do the employees/ worker of the entity have access to non-occupational medical and healthcare services? (Y/N)."
                             design="Bold" wrapping="true" />
-								<TextArea id="id_answ4ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange4" />
+								<TextArea editable="false" id="id_answ4ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange4" />
 								<Label text="5. Describe the measures taken by the entity to ensure a safe and healthy work place."
                               required="true" design="Bold" wrapping="true" />
-								<TextArea id="id_answ5ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
+								<TextArea editable="false" id="id_answ5ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
 								<Label required="true" text="6. Provide details of any corrective action taken or underway to address safety-related incidents (if any) and on significant risks / concerns arising from assessments of health and safety practices and working conditions"
                               design="Bold" wrapping="true" />
-								<TextArea id="id_answ6ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" />
+								<TextArea editable="false" id="id_answ6ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange6" />
 								<Label text="7. Provide details of any corrective actions taken or underway to address significant risks / concerns arising from assessments of health and safety practices and working conditions of value chain partners."
                              design="Bold" wrapping="true" />
-								<TextArea id="id_answ7ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange7" />
+								<TextArea editable="false" id="id_answ7ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange7" />
 								<Label text="8. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any"
                               required="true" design="Bold" wrapping="true" />
-								<TextArea id="id_answ8ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange8" />
+								<TextArea editable="false" id="id_answ8ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange8" />
 								<Label text="9. Has the entity implemented a mechanism for Zero Liquid Discharge? If yes, provide details of its coverage and implementation."
                               required="true" design="Bold" wrapping="true" />
-								<TextArea id="id_answ9ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange9" />
+								<TextArea editable="false" id="id_answ9ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange9" />
 								<Label text="10. Does the entity have any project related to reducing Green House Gas emission? If Yes, then provide details."
                            required="true" design="Bold" wrapping="true" />
-								<TextArea id="id_answ10ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange10" />
+								<TextArea editable="false" id="id_answ10ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange10" />
 								<Label text="11. Briefly describe the waste management practices adopted in your establishments. Describe the strategy adopted by your company to reduce usage of hazardous and toxic chemicals in your products and processes and the practices adopted to manage such wastes"
                              required="true" design="Bold" wrapping="true" />
-								<TextArea id="id_answ11ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange11" />
+								<TextArea editable="false" id="id_answ11ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange11" />
 								<Label text="12. If the entity has operations/offices in/around ecologically sensitive areas (such as national parks, wildlife sanctuaries, biosphere reserves, wetlands, biodiversity hotspots, forests, coastal regulation zones etc.) where environmental approvals / clearances are required, please specify details."
                            required="true" design="Bold" wrapping="true" />
 								<!-- <TextArea id="id_answ12" rows="3" placeholder="Your Answer..." cols="200" maxLength="5000" showExceededText="true" liveChange="handleLiveChange12" /> -->
@@ -3052,7 +3052,7 @@ in the following locations, as % of total wage cost" level="H2" design="Bold" wr
 								</Table>
 								<Label text="15. With respect to the ecologically sensitive areas reported at Question 10 of Essential Indicators above, provide details of significant direct and indirect impact of the entity on biodiversity in such areas along-with prevention and remediation activities."
                              design="Bold" wrapping="true" />
-								<TextArea id="id_answ15ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange15" />
+								<TextArea editable="false" id="id_answ15ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange15" />
 								<Label text="16. If the entity has undertaken any specific initiatives or used innovative technology or solutions to improve resource efficiency, or reduce impact due to emissions / effluent discharge / waste generated, please provide details of the same as well as outcome of such initiatives." />
                   <Table id= "tableq16"  items="{oModel1>/results}">
 									<columns>
@@ -3078,7 +3078,7 @@ in the following locations, as % of total wage cost" level="H2" design="Bold" wr
 								</Table>
 								<Label text="17. Percentage of value chain partners (by value of business done with such partners) that were assessed for environmental impacts."
                              design="Bold" wrapping="true" />
-								<TextArea id="id_answ17ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange17" />
+								<TextArea editable="false" id="id_answ17ehs" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange17" />
 							
 							<Label text="18. Details of total energy consumption (in Joules or multiples) and energy intensity, in the following format:"
                            design="Bold" wrapping="true" />
