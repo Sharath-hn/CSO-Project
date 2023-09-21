@@ -71,10 +71,68 @@
     justify-content: space-between;
   }
   
-  .customFooter {
-    background-color: #f3f3f3;
-    padding: 8px;
-    border-top: 1px solid #ccc;
-    width: 100%;
+  .customToolbar {
+    background-color: #f5f5f5;
+    border: none; /* Remove toolbar border */
+    padding: 0; /* Adjust padding as needed */
   }
   
+  .pageLayout {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 3rem);
+    margin-bottom: 60px;
+    min-height: 100vh;
+   
+  
+}
+
+.toolbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  background-color: white;
+  border-top-left-radius: 20px; /* Adjust border radius to create curved ends */
+  border-top-right-radius: 20px;
+  overflow: hidden; 
+}
+
+.toolbar .sapMBtnInner {
+  border-radius: 10px; /* Adjust button border radius */
+  overflow: hidden; /* Hide overflowing content in buttons */
+}
+
+.toolbar1 {
+  background-color: #f0f0f0; /* Adjust background color as needed */
+  padding: 2rem; /* Increase padding to increase toolbar size */
+  font-size: 1.2rem; /* Increase font size */
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden; /* Display overflowed content as hidden */
+  white-space: nowrap; /* Prevent wrapping of content */
+  text-overflow: ellipsis; /* Display ellipsis (...) for overflowed content */
+  border: 3px solid;
+  
+ 
+  border-radius: 15px; /* Adjust the radius for the curved effect */
+}
+
+.marginTop {
+  margin-top: 2rem; /* Adjust the margin top as needed */
+}
+
+.backgroundGrid {
+  background-color: white; /* Set your desired background color */
+  padding: 0.5rem; 
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  height: 25vh; /* Set height to fill the viewport */
+}
+
+/* CSS to style the delete button */
+
