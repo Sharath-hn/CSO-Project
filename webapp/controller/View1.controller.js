@@ -64,10 +64,969 @@ sap.ui.define([
         // Year is selected, show the VBox and its contents
         this.toggleVBoxVisibility(true);
 
+        
+      this.Table4(selectedYear);
+      this.Table3(selectedYear);  
+      this.Table1(selectedYear);  
+      this.Table2(selectedYear);
+      this.Table5(selectedYear);
+      this.Table6(selectedYear);
+      this.Table7(selectedYear);
+      this.Table8(selectedYear);
+      this.Table9(selectedYear);
+      this.Table10(selectedYear);
+      this.Table11(selectedYear); 
+      this.Table13(selectedYear);
+      this.Table15(selectedYear);
+      this.Table14(selectedYear);
+
+      }
+    },
+
+
+
+    Table4: function (selectedYear) {
+      var oODataModel = this.getView().getModel("Catalog");
+      var oTable4 = this.getView().byId("Table4");
+    
+      // Define filters and sort property for Table4
+      var filters = [
+        new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+        new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+        new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+        new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "19a")
+      ];
+    
+      var sortProperty = "number"; 
+    
+      // Define the path for Table4
+      var pathTable4 = "/qualitative_data_sectionABC_Table4"; // Adjust the path if needed
+    
+      console.log("Table4 Filters:", filters); // Log the filters
+      console.log("Table4 Sort Property:", sortProperty); // Log the sort property
+      console.log("Table4 Path:", pathTable4); // Log the path
+    
+      oODataModel.read(pathTable4, {
+        filters: filters,
+        sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+        success: function (data, response) {
+          console.log("Table4 Read Success:", data); // Log the success data
+    
+          // Now, let's add the data items for Table4
+          var aItems = [];
+    
+          for (var i = 0; i < data.results.length; i++) {
+            // Create a ColumnListItem with cells
+            var oItem234 = new sap.m.ColumnListItem({
+              cells: [
+                new sap.m.Text({ text: data.results[i].locations }), // Bind to 'locations' property
+                new sap.m.Input({
+                  value: data.results[i].number,
+                  editable: "{Catalog>/edit/editable}" // Bind the editable property to your model
+                }),
+              ]
+            });
+    
+            aItems.push(oItem234);
+          }
+    
+          // Clear existing items and add the new ones to Table4
+          oTable4.removeAllItems();
+          for (var j = 0; j < aItems.length; j++) {
+            oTable4.addItem(aItems[j]);
+          }
+    
+          // If Table4 is still empty, add static rows
+          if (oTable4.getItems().length === 0) {
+            var r23 = new sap.m.ColumnListItem({
+              cells: [
+                new sap.m.Text({ text: "National" }),
+                new sap.m.Input({
+                  editable: "{Catalog>/edit/editable}" // Bind the editable property to your model
+                }),
+              ]
+            });
+    
+            var r24 = new sap.m.ColumnListItem({
+              cells: [
+                new sap.m.Text({ text: "International" }),
+                new sap.m.Input({
+                  editable: "{Catalog>/edit/editable}" // Bind the editable property to your model
+                }),
+              ]
+            });
+    
+            // Add the static rows
+            oTable4.addItem(r23);
+            oTable4.addItem(r24);
+          }
+    
+          // Make Table4 visible
+          oTable4.setVisible(true);
+        },
+        error: function (error) {
+          console.log("Table4 Read Error:", error); // Log the error
+    
+          // Handle the case when there is an error in reading data for Table4
+          // You can add code here to display an error message or handle the error in a suitable way.
+        }
+      });
+    },
+
+
+Table3: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable3 = this.getView().byId("Table3");
+
+  // Define filters and sort property for Table3
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "18")
+  ];
+
+  var sortProperty = "location"; // Replace with your desired sort property
+
+  // Define the path for Table3
+  var pathTable3 = "/qualitative_data_sectionABC_Table3"; // Adjust the path if needed
+
+  
+  oODataModel.read(pathTable3, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table3 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table3
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells for Table3
+        var oItem1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].location }),
+            new sap.m.Input({ value: data.results[i].numberOfPlants, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].numberOfOffices, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItem1);
+      }
+
+      // Clear existing items and add the new ones to Table3
+      oTable3.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable3.addItem(aItems[j]);
+      }
+
+      // If Table3 is still empty, add static rows
+      if (oTable3.getItems().length === 0) {
+        var oItemNational1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "National" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+          ]
+        });
+
+        var oItemInternational2 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "International" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+          ]
+        });
+
+        // Add the static rows
+        oTable3.addItem(oItemNational1);
+        oTable3.addItem(oItemInternational2);
+      }
+
+      // Make Table3 visible
+      oTable3.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table3 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table3
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+
+Table1: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable1 = this.getView().byId("Table1");
+
+  // Define filters and sort property for Table1
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "16")
+  ];
+
+  var sortProperty = "sr_no"; // Replace with your desired sort property
+
+  // Define the path for Table1
+  var pathTable1 = "/qualitative_data_sectionABC_Table1"; // Adjust the path if needed
+
+  console.log("Table1 Filters:", filters); // Log the filters
+  console.log("Table1 Sort Property:", sortProperty); // Log the sort property
+  console.log("Table1 Path:", pathTable1); // Log the path
+
+  oODataModel.read(pathTable1, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table1 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table1
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItemk = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ value: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].descriptionOfMainActivity, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].descriptionOfBusinessActivity, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfTurnoverOfTheEntity, editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItemk);
+      }
+
+      // Clear existing items and add the new ones to Table1
+      oTable1.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable1.addItem(aItems[j]);
       }
 
 
-      var oODataModel = this.getView().getModel("Catalog");
+       // If Table3 is still empty, add static rows
+       if (oTable1.getItems().length === 0) {
+        var R = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+          ]
+        });
+
+        
+        oTable1.addItem(R);
+        
+      }
+
+      // Make Table1 visible
+      oTable1.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table1 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table1
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+
+},
+Table2: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable2 = this.getView().byId("Table2");
+
+  // Define filters and sort property for Table1
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "17")
+  ];
+
+  var sortProperty = "sr_no"; // Replace with your desired sort property
+
+  // Define the path for Table1
+  var pathTable1 = "/qualitative_data_sectionABC_Table1"; // Adjust the path if needed
+
+  console.log("Table1 Filters:", filters); // Log the filters
+  console.log("Table1 Sort Property:", sortProperty); // Log the sort property
+  console.log("Table1 Path:", pathTable1); // Log the path
+
+  oODataModel.read(pathTable1, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table1 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table1
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItemk = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ value: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].nameOfProductOrService, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].nicCode, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverContribute, editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItemk);
+      }
+
+      // Clear existing items and add the new ones to Table1
+      oTable2.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable2.addItem(aItems[j]);
+      }
+
+
+       // If Table3 is still empty, add static rows
+       if (oTable2.getItems().length === 0) {
+        var K = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+          ]
+        });
+
+        
+        oTable2.addItem(K);
+        
+      }
+
+      // Make Table1 visible
+      oTable2.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table2 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table1
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+
+},
+
+Table7: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable7 = this.getView().byId("Table7");
+
+  // Define filters and sort property for Table7
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "21")
+  ];
+
+  var sortProperty = "name"; // Replace with your desired sort property
+
+  // Define the path for Table7
+  var pathTable7 = "/qualitative_data_sectionABC_Table7"; // Adjust the path if needed
+
+  console.log("Table7 Filters:", filters); // Log the filters
+  console.log("Table7 Sort Property:", sortProperty); // Log the sort property
+  console.log("Table7 Path:", pathTable7); // Log the path
+
+  oODataModel.read(pathTable7, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table7 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table7
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItemk = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].name, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItemk);
+      }
+
+      // Clear existing items and add the new ones to Table7
+      oTable7.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable7.addItem(aItems[j]);
+      }
+
+      if (oTable7.getItems().length === 0) {
+        var S = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Board of Directors" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+          ]
+        });
+
+        var S1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Key Management Personnel" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+          ]
+        });
+
+        oTable7.addItem(S);
+        oTable7.addItem(S1);
+      }
+      oTable7.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table7 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table7
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+
+
+Table8: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable8 = this.getView().byId("Table8");
+
+  // Define filters and sort property for Table8
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "22")
+  ];
+
+  var sortProperty = "type"; // Replace with your desired sort property
+
+  // Define the path for Table8
+  var pathTable8 = "/qualitative_data_sectionABC_Table8"; // Adjust the path if needed
+
+  console.log("Table8 Filters:", filters); // Log the filters
+  console.log("Table8 Sort Property:", sortProperty); // Log the sort property
+  console.log("Table8 Path:", pathTable8); // Log the path
+
+  oODataModel.read(pathTable8, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table8 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table8
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItemk = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].type }),
+            new sap.m.Input({ value: data.results[i].maleTurnoverRateInCurrentFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInCurrentFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverRateInCurrentFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].maleTurnoverRateInPreviousFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInPreviousFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverRateInPreviousFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].maleTurnoverRateInYearPriorToPreviousFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInYearPriorToPreviousFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverRateInYearPriorToPreviousFY, editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItemk);
+      }
+
+      // Clear existing items and add the new ones to Table8
+      oTable8.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable8.addItem(aItems[j]);
+      }
+      if (oTable8.getItems().length === 0) {
+        var c = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Permanent Employees" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        var c1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Permanent Workers" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        oTable8.addItem(c);
+        oTable8.addItem(c1);
+      }
+      oTable8.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table8 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table8
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+
+Table9: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable9 = this.getView().byId("Table9");
+
+  // Define filters and sort property for Table8
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "23")
+  ];
+
+  var sortProperty = "sr_no"; // Replace with your desired sort property
+
+  // Define the path for Table8
+  var pathTable8 = "/qualitative_data_sectionABC_Table9"; // Adjust the path if needed
+
+  
+  oODataModel.read(pathTable8, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table8 Read Success:", data); // Log the success data
+
+      
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItem = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ value: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].name, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].type, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfShares, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].participationStatus, editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItem);
+      }
+
+      // Clear existing items and add the new ones to Table9
+      oTable9.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable9.addItem(aItems[j]);
+      }
+
+      if (oTable9.getItems().length === 0) {
+        var a12 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+        oTable9.addItem(a12);
+      }
+
+      oTable9.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table9 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table9
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+
+Table11: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable11 = this.getView().byId("Table11");
+
+  // Define filters and sort property for Table8
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "26")
+  ];
+
+  var sortProperty = "sr_no"; // Replace with your desired sort property
+
+  // Define the path for Table8
+  var pathTable8 = "/qualitative_data_sectionABC_Table11"; // Adjust the path if needed
+
+  console.log("Table8 Filters:", filters); // Log the filters
+  console.log("Table8 Sort Property:", sortProperty); // Log the sort property
+  console.log("Table8 Path:", pathTable8); // Log the path
+
+  oODataModel.read(pathTable8, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table8 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table8
+      var aItems = [];
+
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItem = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].issue, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].type, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].rationale, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].approach, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].financialImplications, editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItem);
+      }
+
+      // Clear existing items and add the new ones to Table11
+      oTable11.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable11.addItem(aItems[j]);
+      }
+
+      if (oTable11.getItems().length === 0) {
+        var a12 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+          ]
+        });
+        oTable11.addItem(a12);
+      }
+
+      oTable11.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table11 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table11
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+
+
+
+      
+  
+      Table5: function (selectedYear) {
+        var oODataModel = this.getView().getModel("Catalog");
+        var oTable5 = this.getView().byId("Table5");
+    
+        // Define filters and sort property for Table5
+        var filters = [
+            new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+            new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+            new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+            new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "20a")
+        ];
+    
+        var sortProperty = "sr_no"; // Replace with your desired sort property
+    
+        // Define the path for Table5
+        var pathTable5 = "/qualitative_data_sectionABC_Table5"; // Adjust the path if needed
+    
+        oODataModel.read(pathTable5, {
+            filters: filters,
+            sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+            success: function (data, response) {
+                console.log("Table5 Read Success:", data); // Log the success data
+    
+                // Now, let's add the data items for Table5
+                var aItems = [];
+    
+                for (var i = 0; i < data.results.length; i++) {
+                    // Create a ColumnListItem with cells for Table5
+                    var oItem1 = new sap.m.ColumnListItem({
+                        cells: [
+                            new sap.m.Text({ text: data.results[i].type }), // Static text
+                            new sap.m.Text({ text: data.results[i].sr_no }), // Static text
+                            new sap.m.Text({ text: data.results[i].particulars }), // Static text
+                            new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].numberOfMale, editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].percentageOfMale, editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{Catalog>/edit/editable}" }),
+                        ]
+                    });
+    
+                    aItems.push(oItem1);
+                }
+    
+                // Clear existing items and add the new ones to Table5
+                oTable5.removeAllItems();
+                for (var j = 0; j < aItems.length; j++) {
+                    oTable5.addItem(aItems[j]);
+                }
+    
+                // If Table5 is still empty, add static rows
+                if (oTable5.getItems().length === 0) {
+                    var h2 = new sap.m.ColumnListItem({
+                        cells: [
+                            new sap.m.Text({ text: "Employees" }), // Static text
+                            new sap.m.Text({ text: "1" }), // Static text
+                            new sap.m.Text({ text: "Permanent (D)" }), // Static text
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                        ]
+                    });
+    
+                    var h3 = new sap.m.ColumnListItem({
+                        cells: [
+                            new sap.m.Text({ text: "Employees" }), // Static text
+                            new sap.m.Text({ text: "2" }), // Static text
+                            new sap.m.Text({ text: "Other than Permanent (E)" }), // Static text
+                            new sap.m.Text({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                        ]
+                    });
+    
+                    var h4 = new sap.m.ColumnListItem({
+                        cells: [
+                            new sap.m.Text({ text: "Employees" }), // Static text
+                            new sap.m.Text({ text: "3" }), // Static text
+                            new sap.m.Text({ text: "Total employees (D + E)" }), // Static text
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                        ]
+                    });
+    
+                    var h5 = new sap.m.ColumnListItem({
+                        cells: [
+                            new sap.m.Text({ text: "Workers" }), // Static text
+                            new sap.m.Text({ text: "4" }), // Static text
+                            new sap.m.Text({ text: "Permanent (F)" }), // Static text
+                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                ]
+                              });
+
+                              var h6 = new sap.m.ColumnListItem({
+                                cells: [
+                                  new sap.m.Text({ text: "DIFFERENTLY ABLED WORKERS" }),
+                                  new sap.m.Text({ text: "5" }),
+                                  new sap.m.Text({ text: "Total employees(F + G)" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                ]
+                              });
+                              var h7 = new sap.m.ColumnListItem({
+                                cells: [
+                                  new sap.m.Text({ text: "DIFFERENTLY ABLED WORKERS" }),
+                                  new sap.m.Text({ text: "6" }),
+                                  new sap.m.Text({ text: "Permanent(D)" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                ]
+                              });
+                    
+                              // Add the static rows
+                              oTable5.addItem(h2);
+                              oTable5.addItem(h3);
+                              oTable5.addItem(h4);
+                    
+                    
+                              oTable5.addItem(h5);
+                    
+                              oTable5.addItem(h6);
+                    
+                              oTable5.addItem(h7);
+                    
+                    
+                            }
+                    
+                          
+                            oTable5.setVisible(true);
+                          },
+                          error: function (error) {
+                            console.log("Table5 Read Error:", error); 
+                    
+                           
+                          }
+                        });
+      },
+                        Table6: function (selectedYear) {
+                          var oODataModel = this.getView().getModel("Catalog");
+                          var oTable6 = this.getView().byId("Table6");
+                        
+                          // Define filters and sort property for Table6
+                          var filters = [
+                            new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+                            new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+                            new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+                            new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "20b")
+                          ];
+                        
+                          var sortProperty = "sr_no"; // Replace with your desired sort property
+                        
+                          // Define the path for Table6
+                          var pathTable6 = "/qualitative_data_sectionABC_Table6"; // Adjust the path if needed
+                        
+                          oODataModel.read(pathTable6, {
+                            filters: filters,
+                            sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+                            success: function (data, response) {
+                              console.log("Table6 Read Success:", data); // Log the success data
+                        
+                              // Now, let's add the data items for Table6
+                              var aItems = [];
+                        
+                              for (var i = 0; i < data.results.length; i++) {
+                                // Create a ColumnListItem with cells for Table6
+                                var oItem1 = new sap.m.ColumnListItem({
+                                  cells: [
+                                    new sap.m.Text({ text: data.results[i].type }), // Static text
+                                    new sap.m.Text({ text: data.results[i].sr_no }), // Static text
+                                    new sap.m.Text({ text: data.results[i].particulars }), // Static text
+                                    new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ value: data.results[i].numberOfMale, editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ value: data.results[i].percentageOfMale, editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{Catalog>/edit/editable}" }),
+                                  ]
+                                });
+                        
+                                aItems.push(oItem1);
+                              }
+                        
+                              // Clear existing items and add the new ones to Table6
+                              oTable6.removeAllItems();
+                              for (var j = 0; j < aItems.length; j++) {
+                                oTable6.addItem(aItems[j]);
+                              }
+                        
+                              // If Table6 is still empty, add static rows
+                              if (oTable6.getItems().length === 0) {
+                                var z2 = new sap.m.ColumnListItem({
+                                  cells: [
+                                    new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
+                                    new sap.m.Text({ text: "1" }), // Static text
+                                    new sap.m.Text({ text: "Permanent (D)" }), // Static text
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),  
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  ]
+                                });
+                        
+                                var z3 = new sap.m.ColumnListItem({
+                                  cells: [
+                                    new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
+                                    new sap.m.Text({ text: "2" }), // Static text
+                                    new sap.m.Text({ text: "Other than Permanent (E)" }), // Static text
+                                    new sap.m.Text({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  ]
+                                });
+                        
+                                var z4 = new sap.m.ColumnListItem({
+                                  cells: [
+                                    new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
+                                    new sap.m.Text({ text: "3" }), // Static text
+                                    new sap.m.Text({ text: "Total differently abled employees(D + E)" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  ]
+                                });
+                        
+                                // Add the static rows
+                                oTable6.addItem(z2);
+                                oTable6.addItem(z3);
+                                oTable6.addItem(z4);
+                              }
+                        
+                              // Make Table6 visible
+                              oTable6.setVisible(true);
+                            },
+                            error: function (error) {
+                              console.log("Table6 Read Error:", error); // Log the error
+                        
+                              // Handle the case when there is an error in reading data for Table6
+                              // You can add code here to display an error message or handle the error in a suitable way.
+                            }
+                          });
+                        
+                        
+
+
+
+/*
+
+      //var oODataModel = this.getView().getModel("Catalog");
+      var oODataModel = this.getOwnerComponent().getModel("Catalog");
       var oTable = this.getView().byId("Table2");
 
       // Create ColumnListItems
@@ -174,14 +1133,10 @@ sap.ui.define([
           console.log("Read Error:", error); // Log the error
         }
       });
+    
 
 
-
-
-
-
-
-      var oODataModel = this.getView().getModel("Catalog");
+      var oODataModel = this.getOwnerComponent().getModel("Catalog");
       var oTable = this.getView().byId("Table4");
 
       // Create ColumnListItems
@@ -514,21 +1469,6 @@ sap.ui.define([
           console.log("Read Error:", error); // Log the error
         }
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table6");
@@ -1717,318 +2657,318 @@ sap.ui.define([
           ],
           sortProperty: "questions"
         },
+*/
+        
 
-        {
-          id: "textArea1",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "1")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea2",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "2")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea3",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "3")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea4",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "4")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea5",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "5")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea6",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "6")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea7",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "7")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea8",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "8")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea9",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "9")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea10",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "10")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea11",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "11")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea12",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "12")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea13",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "13")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea14",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "14")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea15",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "15")
-          ],
-          sortProperty: "answer"
-        },
 
-        {
-          id: "textArea16",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19a")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea17",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19b")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea18",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "20")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea19",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "24a")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea20",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "24b")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea21",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "24c")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea22",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "B"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "7")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea23",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "B"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "8")
-          ],
-          sortProperty: "answer"
-        },
-        {
-          id: "textArea24",
-          entitySet: "/qualitative_data_sectionABC",
-          filters: [
-            new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-            new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-            new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "B"),
-            new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "9")
-          ],
-          sortProperty: "answer"
-        },
-      ];
 
-      var oODataModel = this.getView().getModel("Catalog");
+var textAreas = [
+  {
+    
+    id: "textArea1",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "1")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea2",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "2")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea3",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "3")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea4",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "4")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea5",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "5")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea6",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "6")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea7",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "7")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea8",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "8")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea9",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "9")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea10",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "10")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea11",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "11")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea12",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "12")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea13",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "13")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea14",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "14")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea15",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "15")
+    ],
+    sortProperty: "answer"
+  },
 
-      for (var i = 0; i < elementsConfig.length; i++) {
-        (function (config) { // Create a closure to capture the config
-          // Define the filter conditions for the element
-          var aFilters = config.filters;
-          var oCombinedFilter = new sap.ui.model.Filter(aFilters, true);
+  {
+    id: "textArea16",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19a")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea17",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19b")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea18",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "20")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea19",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "24a")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea20",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "24b")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea21",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "24c")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea22",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "B"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "7")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea23",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "B"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "8")
+    ],
+    sortProperty: "answer"
+  },
+  {
+    id: "textArea24",
+    entitySet: "/qualitative_data_sectionABC",
+    filters: [
+      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "B"),
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "9")
+    ],
+    sortProperty: "answer"
+  },
+];
+  
 
-          // Fetch the data for the entity set with filters using the named OData model
-          oODataModel.read(config.entitySet, {
-            filters: [oCombinedFilter],
-            success: function (oData) {
-              // Handle the data or perform any further actions here
-              console.log("Filtered data:", oData);
+function updateTextArea(textAreaConfig) {
+  var oTextArea = this.getView().byId(textAreaConfig.id);
+  var oModel = this.getView().getModel("Catalog"); 
 
-              if (config.id.startsWith("Table")) {
-                // Get the table and apply the filter and sorter
-                var oTable = this.getView().byId(config.id);
-                var oBinding = oTable.getBinding("items");
-                if (oBinding) {
-                  oBinding.filter(oCombinedFilter);
-                  var oSorter = new sap.ui.model.Sorter(config.sortProperty, false);
-                  oBinding.sort(oSorter);
-                  oTable.setVisible(true);
-                } else {
-                  console.error("Binding object is undefined for table with ID:", config.id);
-                }
-              } else {
-                // Handle the text area control
-                var oTextArea = this.getView().byId(config.id);
-                if (oData.results && oData.results.length > 0) {
-                  oTextArea.setValue(oData.results[0].answer);
-                } else {
-                  // oTextArea.setValue("No data available");
-                }
-              }
-            }.bind(this),
-            error: function (oError) {
-              // Handle errors if needed
-              console.error("Error reading data with filters: " + oError);
-            }
-          });
-        }).call(this, elementsConfig[i]); // Call the closure with the current config
+  // Perform a read operation to fetch data (e.g., text for the TextArea) from the model
+  oModel.read("/qualitative_data_sectionABC", {
+    filters: textAreaConfig.filters,
+    success: function (data, response) {
+      if (data.results.length > 0) {
+        var newText = data.results[0].answer;
+
+        // Update the value of the TextArea
+        oTextArea.setValue(newText);
       }
+    },
+    error: function (error) {
+      console.log("TextArea Read Error:", error); // Log the error
+    }
+  });
+}
+
+// Loop through the TextArea configurations and update each TextArea
+for (var i = 0; i < textAreas.length; i++) {
+  updateTextArea.call(this, textAreas[i]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4703,21 +5643,6 @@ sap.ui.define([
         console.log("abcArr:", abcArr);
 
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       console.log("Creating q18 object");
       var Table3 = this.getView().byId("Table3").getItems();
