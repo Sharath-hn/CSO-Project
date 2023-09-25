@@ -17,12 +17,9 @@ sap.ui.define([
   return Controller.extend("com.brsr.controller.View1", {
     onInit: function () {
 
-<<<<<<< HEAD
       // In your controller file (e.g., MyController.controller.js)
 
-=======
     
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
 
 
@@ -174,11 +171,8 @@ this.getView().setModel(oODataModel, "Catalog");
       var oYearDropdown = this.getView().byId("yearDropdown");
       var selectedYear = oYearDropdown.getSelectedKey();
 
-<<<<<<< HEAD
-=======
      // this.fiscalyear = this.getView().byId("id_fiscalyear").getSelectedKey();
    
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       if (selectedYear) {
        
         this.toggleVBoxVisibility(true);
@@ -240,100 +234,16 @@ this.getView().setModel(oODataModel, "Catalog");
 
     },
 
-<<<<<<< HEAD
-      var oODataModel = this.getView().getModel("Catalog");
-      var oTable = this.getView().byId("Table2");
-
-      // Create ColumnListItems
-      var A71 = new sap.m.ColumnListItem({
-        cells: [
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
-        ]
-      });
-
-      // Check if the table already has items
-      if (oTable.getItems().length < 1) {
-        console.log("Success Callback Executed");
-
-        // Add "National" item
-        oTable.addItem(A71);
-        console.log("Added National Item");
-      }
-
-      oTable.setVisible(true);
-
-      // Define filters and sort property
-      var filters = [
-        new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-        new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-        new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
-        new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "17")
-      ];
-
-      var sortProperty = "sr_no"; // Replace with your desired sort property
-
-      // Perform OData read operation with filters and sorting
-      var pathBf = "/qualitative_data_sectionABC_Table2"; // Adjust the path if needed
-
-      console.log("Filters:", filters); // Log the filters
-      console.log("Sort Property:", sortProperty); // Log the sort property
-      console.log("Path:", pathBf); // Log the path
-
-
-
-      oODataModel.read(pathBf, {
-        filters: filters,
-        sorters: [new sap.ui.model.Sorter(sortProperty, false)],
-        success: function (data, response) {
-          console.log("Read Success:", data); // Log the success data
-          // Handle success if needed
-        },
-        error: function (error) {
-          console.log("Read Error:", error); // Log the error
-        }
-      });
-
-      var oODataModel = this.getView().getModel("Catalog");
-      var oTable = this.getView().byId("Table1");
-
-      // Create ColumnListItems
-      var A73 = new sap.m.ColumnListItem({
-        cells: [
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-          new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
-        ]
-      });
-
-      // Check if the table already has items
-      if (oTable.getItems().length < 1) {
-        console.log("Success Callback Executed");
-
-        // Add "National" item
-        oTable.addItem(A73);
-        console.log("Added National Item");
-      }
-
-      oTable.setVisible(true);
-
-      // Define filters and sort property
-=======
 
     Table4: function (selectedYear) {
       var oODataModel = this.getOwnerComponent().getModel("Catalog");
       var oTable4 = this.getView().byId("Table4");
 
       // Define filters and sort property for Table4
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
         new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
-<<<<<<< HEAD
         new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "16")
       ];
 
@@ -422,7 +332,6 @@ this.getView().setModel(oODataModel, "Catalog");
         success: function (data, response) {
           console.log("Read Success:", data); // Log the success data
           // Handle success if needed
-=======
         new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "19a")
       ];
 
@@ -485,7 +394,6 @@ this.getView().setModel(oODataModel, "Catalog");
 
           // Make Table4 visible
           oTable4.setVisible(true);
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         },
         error: function (error) {
           console.log("Table4 Read Error:", error); // Log the error
@@ -496,7 +404,6 @@ this.getView().setModel(oODataModel, "Catalog");
       });
     },
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table3");
 
@@ -533,7 +440,6 @@ this.getView().setModel(oODataModel, "Catalog");
       }
       oTable.setVisible(true);
       // Define filters and sort property
-=======
 
     Table3: function (selectedYear) {
       //var oODataModel = this.getView().getModel("Catalog");
@@ -541,7 +447,6 @@ this.getView().setModel(oODataModel, "Catalog");
       var oODataModel = this.getOwnerComponent().getModel("Catalog");
 
       // Define filters and sort property for Table3
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -551,7 +456,6 @@ this.getView().setModel(oODataModel, "Catalog");
 
       var sortProperty = "location"; // Replace with your desired sort property
 
-<<<<<<< HEAD
       // Perform OData read operation with filters and sorting
       var pathBf = "/qualitative_data_sectionABC_Table3"; // Adjust the path if needed
 
@@ -560,7 +464,6 @@ this.getView().setModel(oODataModel, "Catalog");
       console.log("Path:", pathBf); // Log the path
 
       oODataModel.read(pathBf, {
-=======
       // Define the path for Table3
       var pathTable3 = "/qualitative_data_sectionABC_Table3"; // Adjust the path if needed
 
@@ -569,7 +472,6 @@ this.getView().setModel(oODataModel, "Catalog");
       console.log("Table3 Path:", pathTable3); // Log the path
 
       oODataModel.read(pathTable3, {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         filters: filters,
         sorters: [new sap.ui.model.Sorter(sortProperty, false)],
         success: function (data, response) {
@@ -589,7 +491,6 @@ this.getView().setModel(oODataModel, "Catalog");
               ]
             });
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table5");
 
@@ -702,7 +603,6 @@ this.getView().setModel(oODataModel, "Catalog");
       oTable.setVisible(true);
 
       // Define filters and sort property
-=======
             aItems.push(oItem1);
           }
 
@@ -756,7 +656,6 @@ this.getView().setModel(oODataModel, "Catalog");
      var oODataModel = this.getOwnerComponent().getModel("Catalog");
 
       // Define filters and sort property for Table1
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -766,7 +665,6 @@ this.getView().setModel(oODataModel, "Catalog");
 
       var sortProperty = "sr_no"; // Replace with your desired sort property
 
-<<<<<<< HEAD
       // Perform OData read operation with filters and sorting
       var pathBf = "/qualitative_data_sectionABC_Table5"; // Adjust the path if needed
 
@@ -775,7 +673,6 @@ this.getView().setModel(oODataModel, "Catalog");
       console.log("Path:", pathBf); // Log the path
 
       oODataModel.read(pathBf, {
-=======
       // Define the path for Table1
       var pathTable1 = "/qualitative_data_sectionABC_Table1"; // Adjust the path if needed
 
@@ -785,7 +682,6 @@ this.getView().setModel(oODataModel, "Catalog");
 
 
       oODataModel.read(pathTable1, {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         filters: filters,
         sorters: [new sap.ui.model.Sorter(sortProperty, false)],
         success: function (data, response) {
@@ -836,7 +732,6 @@ this.getView().setModel(oODataModel, "Catalog");
         }
       });
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table7");
 
@@ -873,7 +768,6 @@ this.getView().setModel(oODataModel, "Catalog");
       }
       oTable.setVisible(true);
       // Define filters and sort property
-=======
     },
 
     Table2: function (selectedYear) {
@@ -882,14 +776,12 @@ this.getView().setModel(oODataModel, "Catalog");
       var oTable2 = this.getView().byId("Table2");
 
       // Define filters and sort property for Table1
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
         new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
         new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "17")
       ];
-<<<<<<< HEAD
 
       var sortProperty = "name"; // Replace with your desired sort property
 
@@ -911,8 +803,6 @@ this.getView().setModel(oODataModel, "Catalog");
           console.log("Read Error:", error); // Log the error
         }
       });
-=======
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
       var sortProperty = "sr_no"; // Replace with your desired sort property
 
@@ -972,10 +862,8 @@ this.getView().setModel(oODataModel, "Catalog");
         error: function (error) {
           console.log("Table2 Read Error:", error); // Log the error
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table6");
-
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table6");
 
@@ -1107,10 +995,8 @@ this.getView().setModel(oODataModel, "Catalog");
         success: function (data, response) {
           console.log("Read Success:", data); // Log the success data
           // Handle success if needed
-=======
         }
       });
-    },
     Table9: function (selectedYear) {
       //var oODataModel = this.getView().getModel("Catalog");
       var oODataModel = this.getOwnerComponent().getModel("Catalog");
@@ -1176,18 +1062,13 @@ this.getView().setModel(oODataModel, "Catalog");
           }
 
           oTable9.setVisible(true);
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         },
         error: function (error) {
-          console.log("Table9 Read Error:", error); // Log the error
 
         }
       });
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
     },
     Table11: function (selectedYear) {
@@ -1195,7 +1076,6 @@ this.getView().setModel(oODataModel, "Catalog");
      var oODataModel = this.getOwnerComponent().getModel("Catalog");
       var oTable11 = this.getView().byId("Table11");
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table8");
 
@@ -1246,9 +1126,7 @@ this.getView().setModel(oODataModel, "Catalog");
       }
       oTable.setVisible(true);
       // Define filters and sort property
-=======
       // Define filters and sort property for Table1
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -1256,7 +1134,6 @@ this.getView().setModel(oODataModel, "Catalog");
         new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "26")
       ];
 
-<<<<<<< HEAD
       var sortProperty = "type"; // Replace with your desired sort property
 
       // Perform OData read operation with filters and sorting
@@ -1267,7 +1144,6 @@ this.getView().setModel(oODataModel, "Catalog");
       console.log("Path:", pathBf); // Log the path
 
       oODataModel.read(pathBf, {
-=======
       var sortProperty = "sr_no"; // Replace with your desired sort property
 
       // Define the path for Table1
@@ -1276,7 +1152,6 @@ this.getView().setModel(oODataModel, "Catalog");
 
 
       oODataModel.read(pathTable11, {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         filters: filters,
         sorters: [new sap.ui.model.Sorter(sortProperty, false)],
         success: function (data, response) {
@@ -1332,7 +1207,6 @@ this.getView().setModel(oODataModel, "Catalog");
     },
 
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table9");
 
@@ -1362,7 +1236,6 @@ this.getView().setModel(oODataModel, "Catalog");
       }
       oTable.setVisible(true);
       // Define filters and sort property
-=======
 
 
 
@@ -1372,7 +1245,6 @@ this.getView().setModel(oODataModel, "Catalog");
       var oTable5 = this.getView().byId("Table5");
 
       // Define filters and sort property for Table5
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -1382,7 +1254,6 @@ this.getView().setModel(oODataModel, "Catalog");
 
       var sortProperty = "sr_no"; // Replace with your desired sort property
 
-<<<<<<< HEAD
       // Perform OData read operation with filters and sorting
       var pathBf = "/qualitative_data_sectionABC_Table9"; // Adjust the path if needed
 
@@ -1391,12 +1262,10 @@ this.getView().setModel(oODataModel, "Catalog");
       console.log("Path:", pathBf); // Log the path
 
       oODataModel.read(pathBf, {
-=======
       // Define the path for Table5
       var pathTable5 = "/qualitative_data_sectionABC_Table5"; // Adjust the path if needed
 
       oODataModel.read(pathTable5, {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         filters: filters,
         sorters: [new sap.ui.model.Sorter(sortProperty, false)],
         success: function (data, response) {
@@ -1534,18 +1403,14 @@ this.getView().setModel(oODataModel, "Catalog");
           // You can add code here to display an error message or handle the error in a suitable way.
         }
       });
-<<<<<<< HEAD
 
-=======
     },
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
     Table6: function (selectedYear) {
       //var oODataModel = this.getView().getModel("Catalog");
       var oODataModel = this.getOwnerComponent().getModel("Catalog");
       var oTable6 = this.getView().byId("Table6");
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table11");
 
@@ -1575,9 +1440,7 @@ this.getView().setModel(oODataModel, "Catalog");
       }
       oTable.setVisible(true);
       // Define filters and sort property
-=======
       // Define filters and sort property for Table5
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -1587,7 +1450,6 @@ this.getView().setModel(oODataModel, "Catalog");
 
       var sortProperty = "sr_no"; // Replace with your desired sort property
 
-<<<<<<< HEAD
       // Perform OData read operation with filters and sorting
       var pathBf = "/qualitative_data_sectionABC_Table11"; // Adjust the path if needed
 
@@ -1596,12 +1458,10 @@ this.getView().setModel(oODataModel, "Catalog");
       console.log("Path:", pathBf); // Log the path
 
       oODataModel.read(pathBf, {
-=======
       // Define the path for Table5
       var pathTable6 = "/qualitative_data_sectionABC_Table6"; // Adjust the path if needed
 
       oODataModel.read(pathTable6, {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         filters: filters,
         sorters: [new sap.ui.model.Sorter(sortProperty, false)],
         success: function (data, response) {
@@ -1739,7 +1599,6 @@ this.getView().setModel(oODataModel, "Catalog");
           // You can add code here to display an error message or handle the error in a suitable way.
         }
       });
-<<<<<<< HEAD
 
 
       var oODataModel = this.getView().getModel("Catalog");
@@ -1776,7 +1635,6 @@ this.getView().setModel(oODataModel, "Catalog");
       }
       oTable.setVisible(true);
       // Define filters and sort property
-=======
     },
 
     Table7: function (selectedYear) {
@@ -1785,7 +1643,6 @@ this.getView().setModel(oODataModel, "Catalog");
       var oTable7 = this.getView().byId("Table7");
 
       // Define filters and sort property for Table5
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -1793,7 +1650,6 @@ this.getView().setModel(oODataModel, "Catalog");
         new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "21")
       ];
 
-<<<<<<< HEAD
       var sortProperty = "p1"; // Replace with your desired sort property
 
       // Perform OData read operation with filters and sorting
@@ -1804,14 +1660,12 @@ this.getView().setModel(oODataModel, "Catalog");
       console.log("Path:", pathBf); // Log the path
 
       oODataModel.read(pathBf, {
-=======
       var sortProperty = "name"; // Replace with your desired sort property
 
       // Define the path for Table5
       var pathTable5 = "/qualitative_data_sectionABC_Table7"; // Adjust the path if needed
 
       oODataModel.read(pathTable5, {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         filters: filters,
         sorters: [new sap.ui.model.Sorter(sortProperty, false)],
         success: function (data, response) {
@@ -1833,7 +1687,6 @@ this.getView().setModel(oODataModel, "Catalog");
               ]
             });
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table10");
 
@@ -2178,7 +2031,6 @@ this.getView().setModel(oODataModel, "Catalog");
         },
         error: function (error) {
           console.log("Read Error:", error); // Log the error
-=======
             aItems.push(oItem1);
           }
 
@@ -3245,7 +3097,6 @@ this.getView().setModel(oODataModel, "Catalog");
           // Add "International" item
           oTable.addItem(b1);
           console.log("Added International Item");
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
         }
         oTable.setVisible(true);
         // Define filters and sort property
@@ -4238,7 +4089,6 @@ this.getView().setModel(oODataModel, "Catalog");
           ]
         });
 
-<<<<<<< HEAD
       var oODataModel = this.getView().getModel("Catalog");
       var oTable = this.getView().byId("Table13");
 
@@ -4491,7 +4341,6 @@ this.getView().setModel(oODataModel, "Catalog");
           console.log("Read Error:", error); // Log the error
         }
       });
-=======
         // Check if the table already has items
         if (oTable.getItems().length < 1) {
           console.log("Success Callback Executed");
@@ -4511,7 +4360,6 @@ this.getView().setModel(oODataModel, "Catalog");
           console.log("Added National Item");
 
 
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
 
         }
@@ -4546,7 +4394,6 @@ this.getView().setModel(oODataModel, "Catalog");
         });
 
 
-<<<<<<< HEAD
       var elementsConfig = [
         {
           id: "Table1",
@@ -5029,7 +4876,6 @@ this.getView().setModel(oODataModel, "Catalog");
       }
 
 
-=======
 */
 // Assuming you have a dropdown control for selecting the year with an ID "yearDropdown"
 var selectedYear = this.getView().byId("yearDropdown").getSelectedItem().getText();
@@ -5324,7 +5170,6 @@ function updateTextArea(textAreaConfig) {
     }
   });
 }
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
 // Loop through the TextArea configurations and update each TextArea
 for (var i = 0; i < textAreas.length; i++) {
@@ -5334,13 +5179,10 @@ for (var i = 0; i < textAreas.length; i++) {
 
 
 
-<<<<<<< HEAD
 
       // that.Table2(selectedYear);
 
 
-=======
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
 
 
@@ -5430,7 +5272,6 @@ for (var i = 0; i < textAreas.length; i++) {
         });
 
 
-<<<<<<< HEAD
     },
     quantitativep: function (fiscalyear) {
       var oODataModel = this.getView().getModel("Catalog");
@@ -5456,7 +5297,6 @@ for (var i = 0; i < textAreas.length; i++) {
             }
             else if (oData.results[i].position === 1) {
               aItems[1] = oItem;
-=======
         oODataModel.read("/qualitative_data_Procurement(up__fiscalYear='" + fiscalyear + "',up__businessFunction='Procurement',principle='1',indicator='Essential',questionID='9')/principle1_essential_9", {
           success: function (oData) {
             let aItems = [];
@@ -5499,7 +5339,6 @@ for (var i = 0; i < textAreas.length; i++) {
               else if (oData.results[i].position === 9) {
                 aItems[9] = oItem;
               }
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
             }
             for (let i = 0; i < aItems.length; i++)
               detailsConcentrationTable.addItem(aItems[i]);
@@ -5512,14 +5351,12 @@ for (var i = 0; i < textAreas.length; i++) {
           }
         });
 
-<<<<<<< HEAD
         },
         error: function (oError) {
           that.getView().setBusy(false);
 
         }
       });
-=======
       },
       ehsdata3: function (fyear) {
         var oODataModel = this.getView().getModel("Catalog");
@@ -5532,7 +5369,6 @@ for (var i = 0; i < textAreas.length; i++) {
           },
           filters: [Filter1, Filter2],
           success: function (Data, response) {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
             that.getView().byId("id_answ1p").setValue(Data.results[0].Procurement.results[0].answer);
             that.getView().byId("id_answ2p").setValue(Data.results[0].Procurement.results[1].answer);
@@ -5540,7 +5376,6 @@ for (var i = 0; i < textAreas.length; i++) {
             that.getView().byId("id_answ4p").setValue(Data.results[0].Procurement.results[3].answer);
             that.getView().byId("id_answ5p").setValue(Data.results[0].Procurement.results[4].answer);
 
-<<<<<<< HEAD
       oODataModel.read("/qualitative_data_Procurement(up__fiscalYear='" + fiscalyear + "',up__businessFunction='Procurement',principle='1',indicator='Essential',questionID='9')/principle1_essential_9", {
         success: function (oData) {
           let aItems = [];
@@ -5587,8 +5422,6 @@ for (var i = 0; i < textAreas.length; i++) {
           for (let i = 0; i < aItems.length; i++)
             detailsConcentrationTable.addItem(aItems[i]);
           that.getView().setBusy(false);
-=======
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
           },
           error: function (Error) {
@@ -5765,10 +5598,8 @@ for (var i = 0; i < textAreas.length; i++) {
             debugger;
           }
 
-<<<<<<< HEAD
           for (let i = 0; i < aItems.length; i++)
             oTable1.addItem(aItems[i]);
-          that.getView().setBusy(false);
         },
         error: function (oError) {
           debugger;
@@ -5823,10 +5654,8 @@ for (var i = 0; i < textAreas.length; i++) {
         error: function (oError) {
           debugger;
         }
-=======
         });
 
-        oODataModel.read("/qualitative_data_Legal_Compliance(up__fiscalYear='" + fiscalyear + "',up__businessFunction='Legal_Compliance',principle='9',indicator='Essential',questionID='7c')", {
           success: function (oData) {
             let oItem = new sap.m.ColumnListItem({
               cells: [
@@ -5839,10 +5668,8 @@ for (var i = 0; i < textAreas.length; i++) {
           error: function (oError) {
             debugger;
           }
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
         });
-
       },
       ehsdata2: function (fyear) {
         var oODataModel = this.getView().getModel("Catalog");
@@ -6479,7 +6306,6 @@ for (var i = 0; i < textAreas.length; i++) {
 
       },
 
-<<<<<<< HEAD
     quantitativeHr: function (fiscalyear) {
       var oODataModel = this.getView().getModel("Catalog");
       var TableSegment = this.getView().byId("idTableSegment");
@@ -6568,7 +6394,6 @@ for (var i = 0; i < textAreas.length; i++) {
           let aItems1 = [];
           for (let i = 0; i < oData.results.length; i++) {
             if (oData.results[i].type === "Permanent employees") {
-=======
       quantitativeHr: function (fiscalyear) {
         var oODataModel = this.getView().getModel("Catalog");
         var TableSegment = this.getView().byId("idTableSegment");
@@ -6623,7 +6448,6 @@ for (var i = 0; i < textAreas.length; i++) {
           success: function (oData) {
             let aItems = [];
             for (let i = 0; i < oData.results.length; i++) {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
               let oItem = new sap.m.ColumnListItem({
                 cells: [
                   new sap.m.Text({ text: oData.results[i].segment }),
@@ -6645,10 +6469,8 @@ for (var i = 0; i < textAreas.length; i++) {
                 aItems[3] = oItem;
               }
             }
-<<<<<<< HEAD
             else
               if (oData.results[i].type === "Other than Permanent employees") {
-=======
             for (let i = 0; i < aItems.length; i++)
               TableSegment.addItem(aItems[i]);
           },
@@ -6662,7 +6484,6 @@ for (var i = 0; i < textAreas.length; i++) {
             let aItems1 = [];
             for (let i = 0; i < oData.results.length; i++) {
               if (oData.results[i].type === "Permanent employees") {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
                 let oItem = new sap.m.ColumnListItem({
                   cells: [
                     new sap.m.Text({ text: oData.results[i].category }),
@@ -6689,7 +6510,6 @@ for (var i = 0; i < textAreas.length; i++) {
                   aItems[2] = oItem;
                 }
               }
-<<<<<<< HEAD
           }
           for (let i = 0; i < aItems.length; i++)
             PEmpTable.addItem(aItems[i]);
@@ -6735,7 +6555,6 @@ for (var i = 0; i < textAreas.length; i++) {
             }
             else
               if (oData.results[i].type === "Other than Permanent workers") {
-=======
               else
                 if (oData.results[i].type === "Other than Permanent employees") {
                   let oItem = new sap.m.ColumnListItem({
@@ -6780,7 +6599,6 @@ for (var i = 0; i < textAreas.length; i++) {
             let aItems1 = [];
             for (let i = 0; i < oData.results.length; i++) {
               if (oData.results[i].type === "Permanent workers") {
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
                 let oItem = new sap.m.ColumnListItem({
                   cells: [
                     new sap.m.Text({ text: oData.results[i].category }),
@@ -7416,7 +7234,6 @@ for (var i = 0; i < textAreas.length; i++) {
             for (let i = 0; i < oData.results.length; i++) {
               let oItem = new sap.m.ColumnListItem({
                 cells: [
-<<<<<<< HEAD
                   new sap.m.Text({ text: oData.results[i].subType + " " + oData.results[i].category }),
                   new sap.m.Input({ value: oData.results[i].currentFYTotal, editable: false }),
                   new sap.m.Input({ value: oData.results[i].currentFYNumberEqualToMinimumWage, editable: false }),
@@ -7428,11 +7245,9 @@ for (var i = 0; i < textAreas.length; i++) {
                   new sap.m.Input({ value: oData.results[i].previousFYPercentageEqualToMinimumWage, editable: false }),
                   new sap.m.Input({ value: oData.results[i].previousFYNumberMoreThanMinimumWage, editable: false }),
                   new sap.m.Input({ value: oData.results[i].previousFYPercentageMoreThanMinimumWage, editable: false }),
-=======
                   new sap.m.Text({ text: oData.results[i].location }),
                   new sap.m.Input({ value: oData.results[i].valueForCurrentFinancialYear, editable: false }),
                   new sap.m.Input({ value: oData.results[i].valueForPreviousFinancialYear, editable: false }),
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
                 ]
               });
               if (oData.results[i].position === 0) {
@@ -7448,7 +7263,6 @@ for (var i = 0; i < textAreas.length; i++) {
                 aItems[3] = oItem;
               }
 
-<<<<<<< HEAD
             } else
               if (oData.results[i].type === "Workers") {
                 let oItem = new sap.m.ColumnListItem({
@@ -7478,7 +7292,6 @@ for (var i = 0; i < textAreas.length; i++) {
                 else if (oData.results[i].position === 3) {
                   aItems1[3] = oItem;
                 }
-=======
             }
             for (let i = 0; i < aItems.length; i++)
               JobCreationTable.addItem(aItems[i]);
@@ -7954,7 +7767,6 @@ for (var i = 0; i < textAreas.length; i++) {
         var oTable = this.getView().byId("Table11");
         oTable.addItem(oItem);
 
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
 
       },
@@ -8393,7 +8205,6 @@ for (var i = 0; i < textAreas.length; i++) {
           console.log("Table3 is empty or does not have the expected structure.");
         }
 
-<<<<<<< HEAD
     },
     onAdd1: function (oEvent) {
       var oItem = new sap.m.ColumnListItem({
@@ -8502,7 +8313,6 @@ for (var i = 0; i < textAreas.length; i++) {
 
 
 
-=======
 
         var Table4 = this.getView().byId("Table4").getItems();
 
@@ -8751,7 +8561,6 @@ for (var i = 0; i < textAreas.length; i++) {
 
         abcArr.push(q20b);
         console.log("abcArr:", abcArr);
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
 
 
@@ -8759,7 +8568,6 @@ for (var i = 0; i < textAreas.length; i++) {
         var Table7 = this.getView().byId("Table7").getItems();
         console.log("Table7:", Table7);
 
-<<<<<<< HEAD
       var that = this;
       var Name = this.Name;
       var UserEmail = this.UserEmail;
@@ -8789,7 +8597,6 @@ for (var i = 0; i < textAreas.length; i++) {
       var textAreaValue24 = this.getView().byId("textArea24").getValue();
 
       var abcArr = []
-=======
         let q21 = {
           "section": "A",
           "questionID": "21",
@@ -8808,13 +8615,11 @@ for (var i = 0; i < textAreas.length; i++) {
             }
           ]
         };
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
         abcArr.push(q21);
         console.log("abcArr:", abcArr);
 
 
-<<<<<<< HEAD
       if (textAreaValue22 == "") {
         textAreaValue22 = "NA";
       }
@@ -9107,7 +8912,6 @@ for (var i = 0; i < textAreas.length; i++) {
       if (textAreaValue16 == "") {
         textAreaValue16 = "NA";
       }
-=======
         var Table8 = this.getView().byId("Table8").getItems();
         let q22 = {
           "section": "A",
@@ -9699,7 +9503,6 @@ for (var i = 0; i < textAreas.length; i++) {
             if (sAction === "OK") {
               var oBusy = new sap.m.BusyDialog();
               oBusy.open();
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
       var q19b = {
         "section": "A",
@@ -9707,18 +9510,15 @@ for (var i = 0; i < textAreas.length; i++) {
         "answer": textAreaValue16
       };
 
-<<<<<<< HEAD
+
       abcArr.push(q19b);
       console.log("abcArr:", abcArr);
-=======
             //  var oODataModel = that.getView().getModel("Catalog");
           
-           var oODataModel = that.getOwnerComponent().getModel("Catalog");
            // var oODataModel = this.getOwnerComponent().getModel("Catalog");
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
+
 
            oODataModel.create("/qualitative_data", obj, {
-                success: function (odata) {
                   oBusy.close();
 
                   sap.m.MessageBox.success("Draft Saved", {
@@ -9737,7 +9537,6 @@ for (var i = 0; i < textAreas.length; i++) {
                   // Handle the error
                 }
 
-<<<<<<< HEAD
       if (textAreaValue17 == "") {
         textAreaValue17 = "NA";
 
@@ -12337,7 +12136,6 @@ for (var i = 0; i < textAreas.length; i++) {
           "valueForPreviousFY": table7ehsItems[i].getCells()[2].getText(),
         }
         table7ehs.push(oItem);
-=======
               });
             }
           }
@@ -12640,11 +12438,9 @@ for (var i = 0; i < textAreas.length; i++) {
 
         abcArr.push(q24c);
         console.log("abcArr:", abcArr);
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
       }
 
-<<<<<<< HEAD
       let table8ehsItems = this.getView().byId("table4").getItems();
       let table8ehs = [];
       for (let i = 0; i < table8ehsItems.length; i++) {
@@ -12942,7 +12738,6 @@ for (var i = 0; i < textAreas.length; i++) {
         table8c.push(oItem);
 
       }
-=======
 
         if (textAreaValue14 == "") {
           textAreaValue14 = "NA";
@@ -13215,7 +13010,6 @@ for (var i = 0; i < textAreas.length; i++) {
 
         abcArr.push(q20b);
         console.log("abcArr:", abcArr);
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
       let table1hrItems = this.getView().byId("_IDGenTable1hr").getItems();
       let table1hr = [];
@@ -13226,7 +13020,6 @@ for (var i = 0; i < textAreas.length; i++) {
         }
         table1hr.push(oItem);
 
-<<<<<<< HEAD
       }
 
       let table2hrItems = this.getView().byId("_IDGenTable2hr").getItems();
@@ -13302,7 +13095,6 @@ for (var i = 0; i < textAreas.length; i++) {
         table6hr.push(oItem);
 
       }
-=======
         */
 
 
@@ -13478,7 +13270,6 @@ for (var i = 0; i < textAreas.length; i++) {
 
         abcArr.push(q21);
         console.log("abcArr:", abcArr);
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
       let table7hrItems = this.getView().byId("_IDGenTable7").getItems();
       let table7hr = [];
@@ -13491,9 +13282,7 @@ for (var i = 0; i < textAreas.length; i++) {
         }
         table7hr.push(oItem);
 
-<<<<<<< HEAD
       }
-=======
         var Table8 = this.getView().byId("Table8").getItems();
         let q22 = {
           "section": "A",
@@ -14113,7 +13902,6 @@ for (var i = 0; i < textAreas.length; i++) {
           }
         });
 
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
       let table8hrItems = this.getView().byId("_IDGenTable8").getItems();
       let table8hr = [];
@@ -14129,7 +13917,6 @@ for (var i = 0; i < textAreas.length; i++) {
 
       }
 
-<<<<<<< HEAD
       let table9hrItems = this.getView().byId("idTableSegment").getItems();
       let table9hr = [];
       for (let i = 0; i < table9hrItems.length; i++) {
@@ -14743,9 +14530,7 @@ for (var i = 0; i < textAreas.length; i++) {
         }
       });
     }
-=======
       },
->>>>>>> 9fcb579126c86893d31b59b462876eed8c67dfa3
 
 
     });
