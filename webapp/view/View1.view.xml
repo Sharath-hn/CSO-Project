@@ -109,9 +109,9 @@ contacted in case of any queries on the BRSR report"  wrapping="true" />
 which form a part of its consolidated financial statements, taken together)."  wrapping="true" />
    <TextArea id="textArea13" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
 
-   <Label text="Name of assurance provider "  wrapping="true" />
+   <Label text="14. Name of assurance provider "  wrapping="true" />
    <TextArea id="textArea14" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
-   <Label text="Type of assurance obtained "  wrapping="true" />
+   <Label text="15. Type of assurance obtained "  wrapping="true" />
    <TextArea id="textArea15" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
 </l:Grid>
     
@@ -847,11 +847,11 @@ reasons to be stated:" level="H2"  wrapping="true" />
                              id="id_q2" design="Bold" wrapping="true" />
                             <TextArea id="id_answ2" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" />
 
-                            <Label text="Provide the following information relating to data breaches:&#x0A; &#x0A; 3. Number of instances of data breaches along-with impact"
+                            <Label text="3. Number of instances of data breaches along-with impact"
                              id="id_q3" design="Bold" wrapping="true" />
                             <TextArea id="id_answ3" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
 
-                            <Label text="Provide the following information relating to data breaches:&#x0A; &#x0A; 4. Percentage of data breaches involving personally identifiable information of customers"
+                            <Label text="4. Percentage of data breaches involving personally identifiable information of customers"
                              id="id_q4" design="Bold" wrapping="true" />
                             <TextArea id="id_answ4" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
            </content>
@@ -931,7 +931,7 @@ reasons to be stated:" level="H2"  wrapping="true" />
                              id="id_q5" design="Bold" wrapping="true" class="sapUiMediumMarginTop"/>
                             <TextArea id="id_answ5" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true"  />
                             
-                            <Label text="6. Steps taken to inform and educate consumers about safe and responsible usage of products and/or services."
+                            <Label text="6. Channels / platforms where information on products and services of the entity can be accessed (provide web link, if available)."
                              id="id_q6" design="Bold" wrapping="true" />
                             <TextArea id="id_answ6" editable = "false" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" />
                            
@@ -3567,23 +3567,23 @@ taken by any law enforcement agency for the charges of bribery/ corruption" leve
 		  <Label text="1. Does the entity have procedures in place for sustainable sourcing? (Yes/No)"
                               design="Bold" wrapping="true" required="true" />
                             <!-- <core:Title Wrapping="Soft" text="1. Does the entity have any sites / facilities identified as designated consumers (DCs) under the Performance, Achieve and Trade (PAT) Scheme of the Government of India? (Y/N) If yes, disclose whether targets set under the PAT scheme have been achieved. In case targets have not been achieved, provide the remedial action taken, if any." /> -->
-                            <TextArea id="id_answ1p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange1" />
+                            <TextArea editable="false" id="id_answ1p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange1" />
                             
                             <Label text="2. Do you have a preferential procurement policy where you give preference to purchase from suppliers comprising marginalized /vulnerable groups? (Yes/No)"
                               design="Bold" wrapping="true" />
-                            <TextArea id="id_answ2p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange2" />
+                            <TextArea editable="false" id="id_answ2p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange2" />
 
                             <Label text="3. From which marginalized /vulnerable groups do you procure?"
                               design="Bold" wrapping="true" />
-                            <TextArea id="id_answ3p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChang3" />
+                            <TextArea editable="false" id="id_answ3p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChang3" />
 
                             <Label required="true" text="4. What percentage of total procurement (by value) does it constitute?"
                               design="Bold" wrapping="true" />
-                            <TextArea id="id_answ4p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange4" />
+                            <TextArea editable="false" id="id_answ4p" rows="3" placeholder="Your Answer..." cols="200" maxLength="2500" showExceededText="true" liveChange="handleLiveChange4" />
 
                             <Label text="5. Describe the measures taken by the entity to ensure a safe and healthy work place."
                               design="Bold" wrapping="true" />
-                            <TextArea id="id_answ5p" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
+                            <TextArea editable="false" id="id_answ5p" rows="3" placeholder="Your Answer..." cols="200" maxLength="1500" showExceededText="true" liveChange="handleLiveChange5" />
 
 <Label text="6. Percentage of input material (inputs to total inputs by value) sourced from suppliers" level="H2" design="Bold" wrapping="true"/>
 <Table id="idInputMaterialTable"
@@ -3637,6 +3637,7 @@ taken by any law enforcement agency for the charges of bribery/ corruption" leve
         <ToolbarSpacer/> <!-- Pushes buttons to the right -->
         <Button id="SaveDraft" text="Save as Draft" press="onSaveDraftPress" icon="sap-icon://notes" iconFirst="false" type="Transparent" width="auto" enabled="true" visible="true" flexGrow="1" />
         <Button id="Submit" text="Submit" press="onSubmitPress" icon="sap-icon://open-command-field" iconFirst="false" type="Transparent" width="auto" enabled="true" visible="true" design="Bold" flexGrow="2" />
+		<Button id="pdf" text="Generate Report" press="onReportPress" icon="sap-icon://pdf-attachment" iconFirst="false" type="Transparent" width="auto" enabled="true" visible="true" design="Bold" flexGrow="2" />
     </content>
 </Toolbar>
 
