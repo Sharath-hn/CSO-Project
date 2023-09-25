@@ -19,6 +19,11 @@
                 id="yearDropdown"
                 items="{yearModel>/years}">
                 <core:Item key="{yearModel>key}" text="{yearModel>text}" />
+				  <!--<Label text="Fiscal Year: " required="true" design="Bold" wrapping="true" />
+            <Select
+                change="onFChange"  id="id_fiscalyear" enabled="{/Enabled}" editable="{/Editable}" forceSelection="false" items="{ path: '/i', sorter: { path: 'Name' } }">
+				<core:Item id="_IDGenItem1" key="{ProductId1}" text="{Name}"/>
+            </Select>  -->
             </Select>
             <Button
                 text="Submit"
@@ -68,7 +73,7 @@
 
  <l:Grid defaultSpan="L6 M6 S12" class="customGrid">
    <Label text="1. Corporate Identity Number (CIN)" />
-  <TextArea id="textArea1" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
+  <TextArea id="textArea1"  editable="{Catalog>/edit/editable}" maxLength="1500" wrapping="Hard" rows="2" cols="140" />
   
   <Label text="2. Name of the Listed Entity" />
    <TextArea id="textArea2" maxLength="1500" wrapping="Hard"  rows="2" cols="140" />
@@ -162,7 +167,7 @@ Business Activity" />
 
   <VBox class="sapUiContentPadding">
   
-   <Table id="Table2"  visible="false"   mode="Delete" delete="deleteRow2"> 
+   <Table id="Table2"  visible="true"   mode="Delete" delete="deleteRow2"> 
     <headerToolbar>
         <OverflowToolbar>
         <Title text="17. Products/Services sold by the entity (accounting for 90% of the entity's Turnover):" level="H2" />
@@ -228,7 +233,7 @@ Business Activity" />
 
 <VBox class="sapUiContentPadding">
   <Title text="19. Markets served by the entity:" level="H2"  />
- <Table id="Table4" visible="false" >
+ <Table id="Table4" visible="true" >
       <columns>
         <Column>
           <Text text="Locations" />
@@ -238,7 +243,8 @@ Business Activity" />
         </Column>
       </columns>
       <items>
-        <!-- Add your items here -->
+     
+
       </items>
     </Table>
 </VBox>
@@ -472,17 +478,17 @@ Business Activity" />
 
 <VBox class="sapUiContentPadding">
   <Title text="24. (i) Whether CSR is applicable as per section 135 of Companies Act, 2013: (Yes/No)" level="H2" />
-  <TextArea id="textArea19" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+  <TextArea id="textArea19"  rows="2" cols="180" />
 </VBox>
 
 <VBox class="sapUiContentPadding">
   <Title text="(ii) Turnover (in Rs.)" level="H2" />
-  <TextArea id="textArea20" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+  <TextArea id="textArea20"  rows="2" cols="180" />
 </VBox>
 
 <VBox class="sapUiContentPadding">
   <Title text="(iii) Net worth (in Rs.)" level="H2" />
-  <TextArea id="textArea21" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+  <TextArea id="textArea21" rows="2" cols="180" />
 </VBox>
 
 
@@ -641,13 +647,13 @@ put in place towards adopting the NGRBC Principles and Core Elements" level="H2"
 <Title text="7. Statement by director responsible for the business responsibility report, highlighting ESG 
 related challenges, targets and achievements (listed entity has flexibility regarding the 
 placement of this disclosure)" level="H2" wrapping="true"/>
-     <TextArea id="textArea22" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+     <TextArea id="textArea22"  rows="2" cols="180" />
     </VBox>
 <VBox class="sapUiContentPadding">
 <Title text="8. Details of the highest authority responsible 
 for implementation and oversight of the 
 Business Responsibility policy (ies)." level="H2" wrapping="true"/>
-     <TextArea id="textArea23" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+     <TextArea id="textArea23"  rows="2" cols="180" />
     </VBox>
   <VBox class="sapUiContentPadding">
 <Title text="9. Does the entity have a specified 
@@ -655,7 +661,7 @@ Committee of the Board/ Director
 responsible for decision making on 
 sustainability related issues? (Yes / No). If 
 yes, provide details." level="H2" wrapping="true" />
-     <TextArea id="textArea24" value="{Catalog>/qualitative_data_sectionABC}" rows="1" cols="180" />
+     <TextArea id="textArea24" rows="2" cols="180" />
   </VBox>
   <VBox class="sapUiContentPadding">
   
