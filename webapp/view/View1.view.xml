@@ -2238,9 +2238,9 @@ in the following locations, as % of total wage cost" level="H2" design="Bold" wr
 									<items>
 										<ColumnListItem vAlign="Middle">
 											<cells>
-												<TextArea value="{oModel1>location_of_operations_offices}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>type_of_operations}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>conditions_of_environmental_approval}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>location_of_operations_offices}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>type_of_operations}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>conditions_of_environmental_approval}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
 											</cells>
 										</ColumnListItem>
 									</items>
@@ -2271,12 +2271,12 @@ in the following locations, as % of total wage cost" level="H2" design="Bold" wr
 									<items>
 										<ColumnListItem vAlign="Middle">
 											<cells>
-												<TextArea value="{oModel1>name_brief_details_of_project}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>eia_notification_no}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<DatePicker value="{oModel1>date}" />
-												<TextArea value="{oModel1>conducted_by_independent_external_agency}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>results_communicated_in_public_domain}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>relevant_web_link}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>name_brief_details_of_project}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>eia_notification_no}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<DatePicker editable="false" value="{oModel1>date}" />
+												<TextArea editable="false" value="{oModel1>conducted_by_independent_external_agency}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>results_communicated_in_public_domain}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>relevant_web_link}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
 											</cells>
 										</ColumnListItem>
 									</items>
@@ -2301,10 +2301,10 @@ in the following locations, as % of total wage cost" level="H2" design="Bold" wr
 									<items>
 										<ColumnListItem vAlign="Middle">
 											<cells>
-												<TextArea value="{oModel1>guidelines_not_compiled_with}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>details_of_non_compliance}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>action_taken_by_regulatory_agencies}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>corrective_action}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>guidelines_not_compiled_with}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>details_of_non_compliance}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>action_taken_by_regulatory_agencies}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>corrective_action}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
 											</cells>
 										</ColumnListItem>
 									</items>
@@ -2328,9 +2328,9 @@ in the following locations, as % of total wage cost" level="H2" design="Bold" wr
 									<items>
 										<ColumnListItem vAlign="Middle">
 											<cells>
-												<TextArea value="{oModel1>initiative_undertaken}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>details_of_initiative}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
-												<TextArea value="{oModel1>outcome_of_initiative}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>initiative_undertaken}" rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>details_of_initiative}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
+												<TextArea editable="false" value="{oModel1>outcome_of_initiative}"  rows="3"  cols="200" maxLength="1500" showExceededText="true" />
 											</cells>
 										</ColumnListItem>
 									</items>
