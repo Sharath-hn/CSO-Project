@@ -73,9 +73,6 @@ sap.ui.define([
       this.Table6(selectedYear);
       this.Table7(selectedYear);
       this.Table8(selectedYear);
-      this.Table9(selectedYear);
-      this.Table10(selectedYear);
-      this.Table11(selectedYear); 
       this.Table13(selectedYear);
       this.Table15(selectedYear);
       this.Table14(selectedYear);
