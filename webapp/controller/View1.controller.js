@@ -17,76 +17,168 @@ sap.ui.define([
   return Controller.extend("com.brsr.controller.View1", {
     onInit: function () {
 
-      // In your controller file (e.g., MyController.controller.js)
-
-
-
-
-
-
-      that = this;
       this.toggleVBoxVisibility(false);
+      that = this;
+
+      
+      let cYear = new Date();
+      cYear = cYear.getFullYear();
+      let year1 = String(cYear + 10);
+      let year2 = String(cYear - 1);
+      cYear = String(cYear);
+      var oData = {
+          "i": [
+              {
+                  "ProductId1": year1,
+                  "Name": year1
+              },
+              {
+                  "ProductId1": cYear,
+                  "Name": cYear
+              },
+              {
+                  "ProductId1": year2,
+                  "Name": year2
+              }
+          ],
+          "ProductCollection2": [
+              {
+                  "ProductId2": "XYZ",
+                  "Name": "XYZ"
+              },
+              {
+                  "ProductId2": "EHS",
+                  "Name": "EHS"
+              }
+          ],
+          "ProductCollection3": [
+              {
+                  "ProductId3": "1",
+                  "Name": "1"
+              },
+              {
+                  "ProductId3": "2",
+                  "Name": "2"
+              },
+              {
+                  "ProductId3": "3",
+                  "Name": "3"
+              },
+              {
+                  "ProductId3": "4",
+                  "Name": "4"
+              },
+              {
+                  "ProductId3": "5",
+                  "Name": "5"
+              },
+              {
+                  "ProductId3": "6",
+                  "Name": "6"
+              }
+          ],
+          "Editable": true,
+          "Enabled": true
+      };
+      
+      this.getView().setModel(oEditModel, "EditModel");
+    
+      var oEdit = {
+        editable: false
+    };
+    var myedit = {};
+    myedit.edit = oEdit;
+    var oEditModel = new JSONModel(myedit);
+    this.getView().setModel(oEditModel, "ABEditModel");
+
+    // set explored app's demo model on this sample
+    var oModel = new JSONModel(oData);
+    this.getView().setModel(oModel);
+
+    that.oDataModel = this.getOwnerComponent().getModel();
+    //that._getUserId();
 
 
-      var oYearModel = new JSONModel({
-        years: [
-          { key: "2023", text: "2023" },
-          { key: "2024", text: "2024" },
-          { key: "2026", text: "2026" },
-          { key: "2030", text: "2030" }
-        ]
-      });
-      this.getView().setModel(oYearModel, "yearModel");
+    /*_getUserId: function (val) {
+                
+      if(sap.ushell.Container.getService("UserInfo").getUser().getFullName() != undefined){
+          that.Name = sap.ushell.Container.getService("UserInfo").getUser().getFullName();
+          that.UserEmail = sap.ushell.Container.getService("UserInfo").getUser().getEmail();
+      }else{
+          MessageBox.warning("Error while getting userdata.");
+      }
+  },
+*/
+      
+      
 
-      // Wait for the view to be fully initialized
-      this.getView().attachAfterInit(function () {
-        // Get the Year dropdown
-        var oYearDropdown = this.getView().byId("yearDropdown");
 
-        // Check if the control exists before attaching the event handler
-        if (oYearDropdown) {
-          oYearDropdown.attachChange(this.onYearSelectChange.bind(this));
-        }
-      }.bind(this));
-    },
-
+},
 
     toggleVBoxVisibility: function (isVisible) {
       var oVBox = this.getView().byId("myVBox");
       oVBox.setVisible(isVisible);
 
     },
+  
+    
     onSubmitFilter: function (oEvent) {
-      var oYearDropdown = this.getView().byId("yearDropdown");
-      var selectedYear = oYearDropdown.getSelectedKey();
+      
+    
+      var selectedYear = this.getView().byId("id_fiscalyear").getSelectedKey();
+        if (selectedYear) {
+          var oODataModel = this.getOwnerComponent().getModel("Catalog");
+          that.oEditModel = this.getView().getModel("ABEditModel");
+        that.getView().setBusy(false);
+        oODataModel.read("/qualitative_data", {
+          filters: [
+            new sap.ui.model.Filter("fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear), // Replace with your fiscal year
+            new sap.ui.model.Filter("businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+          ],
+          success: function (data, response) {
+            if (data.results.length > 0) {
+              var status = data.results[0].status;
+              if (status == "Submitted") {
+                that.getView().getModel("ABEditModel").oData.edit.editable = false;
+              } else if (status == "Draft") {
+                that.getView().getModel("ABEditModel").oData.edit.editable = true;
+              }
+            }
+          },
+          
+        });
+       
+       
+   // this.that(selectedYear);
 
-      if (selectedYear) {
-        // Year is selected, show the VBox and its contents
+        that.getView().getModel("ABEditModel").oData.edit.editable = false;
         this.toggleVBoxVisibility(true);
-
-        
-      this.Table4(selectedYear);
-      this.Table3(selectedYear);  
-      this.Table1(selectedYear);  
-      this.Table2(selectedYear);
-      this.Table5(selectedYear);
-      this.Table6(selectedYear);
-      this.Table7(selectedYear);
-      this.Table8(selectedYear);
-      this.Table13(selectedYear);
-      this.Table15(selectedYear);
-      this.Table14(selectedYear);
-
+        this.Table10(selectedYear);
+        this.Table9(selectedYear);
+        this.Table4(selectedYear);
+        this.Table3(selectedYear);
+        this.Table1(selectedYear);
+        this.Table2(selectedYear);
+        this.Table5(selectedYear);
+        this.Table6(selectedYear);
+        this.Table7(selectedYear);
+        this.Table8(selectedYear);
+        this.Table13(selectedYear);
+        this.Table15(selectedYear);
+        this.Table14(selectedYear);
+        this.Table11(selectedYear);
+        this.Table12(selectedYear);
       }
     },
-
-
-
+    
     Table4: function (selectedYear) {
+      that.getView().getModel("ABEditModel").oData.edit.editable = false;
+      
+      
       var oODataModel = this.getView().getModel("Catalog");
       var oTable4 = this.getView().byId("Table4");
     
-      // Define filters and sort property for Table4
+      // Define filters and sort property for Table3
       var filters = [
         new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
         new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -94,21 +186,24 @@ sap.ui.define([
         new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "19a")
       ];
     
-      var sortProperty = "number"; 
+      var sortProperty = "locations"; // Replace with your desired sort property
     
-      // Define the path for Table4
-      var pathTable4 = "/qualitative_data_sectionABC_Table4"; // Adjust the path if needed
+      // Define the path for Table3
+      var pathTable3 = "/qualitative_data_sectionABC_Table4"; // Adjust the path if needed
     
-      console.log("Table4 Filters:", filters); // Log the filters
-      console.log("Table4 Sort Property:", sortProperty); // Log the sort property
-      console.log("Table4 Path:", pathTable4); // Log the path
-    
-      oODataModel.read(pathTable4, {
+      
+      oODataModel.read(pathTable3, {
         filters: filters,
         sorters: [new sap.ui.model.Sorter(sortProperty, false)],
         success: function (data, response) {
           console.log("Table4 Read Success:", data); // Log the success data
     
+          // Now, let's add the data items for Table3
+          var aItems = [];
+    
+    
+     
+          
           // Now, let's add the data items for Table4
           var aItems = [];
     
@@ -119,7 +214,7 @@ sap.ui.define([
                 new sap.m.Text({ text: data.results[i].locations }), // Bind to 'locations' property
                 new sap.m.Input({
                   value: data.results[i].number,
-                  editable: "{Catalog>/edit/editable}" // Bind the editable property to your model
+                  editable: "{ABEditModel>/edit/editable}" // Bind the editable property to your model
                 }),
               ]
             });
@@ -139,7 +234,7 @@ sap.ui.define([
               cells: [
                 new sap.m.Text({ text: "National" }),
                 new sap.m.Input({
-                  editable: "{Catalog>/edit/editable}" // Bind the editable property to your model
+                  editable: "{ABEditModel>/edit/editable}" // Bind the editable property to your model
                 }),
               ]
             });
@@ -148,7 +243,7 @@ sap.ui.define([
               cells: [
                 new sap.m.Text({ text: "International" }),
                 new sap.m.Input({
-                  editable: "{Catalog>/edit/editable}" // Bind the editable property to your model
+                  editable: "{ABEditModel>/edit/editable}" // Bind the editable property to your model
                 }),
               ]
             });
@@ -169,6 +264,7 @@ sap.ui.define([
         }
       });
     },
+    
 
 
 Table3: function (selectedYear) {
@@ -203,9 +299,9 @@ Table3: function (selectedYear) {
         var oItem1 = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: data.results[i].location }),
-            new sap.m.Input({ value: data.results[i].numberOfPlants, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].numberOfOffices, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].numberOfPlants, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].numberOfOffices, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].total, editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
@@ -223,18 +319,18 @@ Table3: function (selectedYear) {
         var oItemNational1 = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: "National" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
           ]
         });
 
         var oItemInternational2 = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: "International" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
           ]
         });
 
@@ -289,10 +385,10 @@ Table1: function (selectedYear) {
         // Create a ColumnListItem with cells
         var oItemk = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Input({ value: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].descriptionOfMainActivity, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].descriptionOfBusinessActivity, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].percentageOfTurnoverOfTheEntity, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].sr_no, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].descriptionOfMainActivity, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].descriptionOfBusinessActivity, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfTurnoverOfTheEntity, editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
@@ -310,10 +406,10 @@ Table1: function (selectedYear) {
        if (oTable1.getItems().length === 0) {
         var R = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
           ]
         });
 
@@ -338,7 +434,7 @@ Table2: function (selectedYear) {
   var oODataModel = this.getView().getModel("Catalog");
   var oTable2 = this.getView().byId("Table2");
 
-  // Define filters and sort property for Table1
+  // Define filters and sort property for Table2
   var filters = [
     new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
     new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -348,66 +444,59 @@ Table2: function (selectedYear) {
 
   var sortProperty = "sr_no"; // Replace with your desired sort property
 
-  // Define the path for Table1
-  var pathTable1 = "/qualitative_data_sectionABC_Table1"; // Adjust the path if needed
+  // Define the path for Table2
+  var pathTable2 = "/qualitative_data_sectionABC_Table2"; // Adjust the path if needed
 
-  console.log("Table1 Filters:", filters); // Log the filters
-  console.log("Table1 Sort Property:", sortProperty); // Log the sort property
-  console.log("Table1 Path:", pathTable1); // Log the path
-
-  oODataModel.read(pathTable1, {
+  oODataModel.read(pathTable2, {
     filters: filters,
     sorters: [new sap.ui.model.Sorter(sortProperty, false)],
     success: function (data, response) {
-      console.log("Table1 Read Success:", data); // Log the success data
+      console.log("Table2 Read Success:", data); // Log the success data
 
-      // Now, let's add the data items for Table1
+      // Now, let's add the data items for Table2
       var aItems = [];
 
       for (var i = 0; i < data.results.length; i++) {
         // Create a ColumnListItem with cells
         var oItemk = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Input({ value: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].nameOfProductOrService, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].nicCode, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].totalTurnoverContribute, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].sr_no, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].nameOfProductOrService, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].nicCode, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverContributed, editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
         aItems.push(oItemk);
       }
 
-      // Clear existing items and add the new ones to Table1
+      // Clear existing items and add the new ones to Table2
       oTable2.removeAllItems();
       for (var j = 0; j < aItems.length; j++) {
         oTable2.addItem(aItems[j]);
       }
 
-
-       // If Table3 is still empty, add static rows
-       if (oTable2.getItems().length === 0) {
-        var K = new sap.m.ColumnListItem({
+      // If Table2 is still empty, add static rows
+      if (oTable2.getItems().length === 0) {
+        var G = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
           ]
         });
 
-        
-        oTable2.addItem(K);
-        
+        oTable2.addItem(G);
       }
 
-      // Make Table1 visible
+      // Make Table2 visible
       oTable2.setVisible(true);
     },
     error: function (error) {
       console.log("Table2 Read Error:", error); // Log the error
 
-      // Handle the case when there is an error in reading data for Table1
+      // Handle the case when there is an error in reading data for Table2
       // You can add code here to display an error message or handle the error in a suitable way.
     }
   });
@@ -448,10 +537,10 @@ Table7: function (selectedYear) {
         // Create a ColumnListItem with cells
         var oItemk = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Text({ text: data.results[i].name, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Text({ text: data.results[i].name,}),
+            new sap.m.Input({ value: data.results[i].total, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
@@ -468,18 +557,18 @@ Table7: function (selectedYear) {
         var S = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: "Board of Directors" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
           ]
         });
 
         var S1 = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: "Key Management Personnel" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" })
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
           ]
         });
 
@@ -533,15 +622,15 @@ Table8: function (selectedYear) {
         var oItemk = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: data.results[i].type }),
-            new sap.m.Input({ value: data.results[i].maleTurnoverRateInCurrentFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInCurrentFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].totalTurnoverRateInCurrentFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].maleTurnoverRateInPreviousFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInPreviousFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].totalTurnoverRateInPreviousFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].maleTurnoverRateInYearPriorToPreviousFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInYearPriorToPreviousFY, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].totalTurnoverRateInYearPriorToPreviousFY, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].maleTurnoverRateInCurrentFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInCurrentFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverRateInCurrentFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].maleTurnoverRateInPreviousFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInPreviousFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverRateInPreviousFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].maleTurnoverRateInYearPriorToPreviousFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].femaleTurnoverRateInYearPriorToPreviousFY, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].totalTurnoverRateInYearPriorToPreviousFY, editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
@@ -557,32 +646,32 @@ Table8: function (selectedYear) {
         var c = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: "Permanent Employees" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
 
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
 
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
         var c1 = new sap.m.ColumnListItem({
           cells: [
             new sap.m.Text({ text: "Permanent Workers" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
@@ -600,6 +689,81 @@ Table8: function (selectedYear) {
   });
 },
 
+Table11: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable11 = this.getView().byId("Table11");
+
+  // Define filters and sort property for Table11
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "26")
+  ];
+
+  var sortProperty = "sr_no"; // Replace with your desired sort property
+
+  // Define the path for Table11
+  var pathTable11 = "/qualitative_data_sectionABC_Table11"; // Adjust the path if needed
+
+  oODataModel.read(pathTable11, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table11 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table11
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItem = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ value: data.results[i].sr_no, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].issue, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].type, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].rationale, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].approach, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].financialImplications, editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItem);
+      }
+
+      // Clear existing items and add the new ones to Table11
+      oTable11.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable11.addItem(aItems[j]);
+      }
+
+      if (oTable11.getItems().length === 0) {
+        var a12 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+        oTable11.addItem(a12);
+      }
+
+      // Make Table11 visible
+      oTable11.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table11 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table11
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+
+
 Table9: function (selectedYear) {
   var oODataModel = this.getView().getModel("Catalog");
   var oTable9 = this.getView().byId("Table9");
@@ -615,14 +779,14 @@ Table9: function (selectedYear) {
   var sortProperty = "sr_no"; // Replace with your desired sort property
 
   // Define the path for Table8
-  var pathTable8 = "/qualitative_data_sectionABC_Table9"; // Adjust the path if needed
+  var pathTable9 = "/qualitative_data_sectionABC_Table9"; // Adjust the path if needed
 
   
-  oODataModel.read(pathTable8, {
+  oODataModel.read(pathTable9, {
     filters: filters,
     sorters: [new sap.ui.model.Sorter(sortProperty, false)],
     success: function (data, response) {
-      console.log("Table8 Read Success:", data); // Log the success data
+      console.log("Table9 Read Success:", data); // Log the success data
 
       
       var aItems = [];
@@ -631,11 +795,11 @@ Table9: function (selectedYear) {
         // Create a ColumnListItem with cells
         var oItem = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Input({ value: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].name, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].type, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].percentageOfShares, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].participationStatus, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].sr_no, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].name, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].type, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfShares, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].participationStatus, editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
 
@@ -651,11 +815,11 @@ Table9: function (selectedYear) {
       if (oTable9.getItems().length === 0) {
         var a12 = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
         oTable9.addItem(a12);
@@ -672,87 +836,972 @@ Table9: function (selectedYear) {
   });
 },
 
-Table11: function (selectedYear) {
-  var oODataModel = this.getView().getModel("Catalog");
-  var oTable11 = this.getView().byId("Table11");
 
-  // Define filters and sort property for Table8
+
+Table14: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable14 = this.getView().byId("Table14");
+
+  // Define filters and sort property for Table4
   var filters = [
     new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
     new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
-    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "26")
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "B"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "11")
   ];
 
-  var sortProperty = "sr_no"; // Replace with your desired sort property
+  var sortProperty = "p1"; 
 
-  // Define the path for Table8
-  var pathTable8 = "/qualitative_data_sectionABC_Table11"; // Adjust the path if needed
+  // Define the path for Table4
+  var pathTable4 = "/qualitative_data_sectionABC_Table14"; // Adjust the path if needed
 
-  console.log("Table8 Filters:", filters); // Log the filters
-  console.log("Table8 Sort Property:", sortProperty); // Log the sort property
-  console.log("Table8 Path:", pathTable8); // Log the path
+  
 
-  oODataModel.read(pathTable8, {
+  oODataModel.read(pathTable4, {
     filters: filters,
     sorters: [new sap.ui.model.Sorter(sortProperty, false)],
     success: function (data, response) {
-      console.log("Table8 Read Success:", data); // Log the success data
+      console.log("Table4 Read Success:", data); // Log the success data
 
-      // Now, let's add the data items for Table8
+      // Now, let's add the data items for Table4
       var aItems = [];
-
 
       for (var i = 0; i < data.results.length; i++) {
         // Create a ColumnListItem with cells
-        var oItem = new sap.m.ColumnListItem({
+        var oItem234 = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Text({ text: data.results[i].sr_no, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].issue, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].type, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].rationale, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].approach, editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ value: data.results[i].financialImplications, editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p1, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p2, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p3, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p4, editable: "{ABEditModel>/edit/editable}" }), 
+            new sap.m.Input({ value: data.results[i].p5, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p6, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p7, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p8, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p9, editable: "{ABEditModel>/edit/editable}" }),
+            
           ]
         });
 
-        aItems.push(oItem);
+        aItems.push(oItem234);
       }
 
-      // Clear existing items and add the new ones to Table11
-      oTable11.removeAllItems();
+      // Clear existing items and add the new ones to Table4
+      oTable14.removeAllItems();
       for (var j = 0; j < aItems.length; j++) {
-        oTable11.addItem(aItems[j]);
+        oTable14.addItem(aItems[j]);
       }
 
-      if (oTable11.getItems().length === 0) {
-        var a12 = new sap.m.ColumnListItem({
+      // If Table4 is still empty, add static rows
+      if (oTable14.getItems().length === 0) {
+        var r15 = new sap.m.ColumnListItem({
           cells: [
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
           ]
         });
-        oTable11.addItem(a12);
+
+        // Add the static rows
+        oTable14.addItem(r15);
+        
       }
 
-      oTable11.setVisible(true);
+      // Make Table4 visible
+      oTable14.setVisible(true);
     },
     error: function (error) {
-      console.log("Table11 Read Error:", error); // Log the error
+      console.log("Table14 Read Error:", error); // Log the error
 
-      // Handle the case when there is an error in reading data for Table11
+      // Handle the case when there is an error in reading data for Table4
       // You can add code here to display an error message or handle the error in a suitable way.
     }
   });
 },
 
 
+Table12: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable12 = this.getView().byId("Table12");
 
+  // Define filters and sort property for Table6
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "B"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "1")
+  ];
+
+  var sortProperty = "questions"; // Replace with your desired sort property
+
+  // Define the path for Table6
+  var pathTable6 = "/qualitative_data_sectionABC_Table12"; // Adjust the path if needed
+
+  oODataModel.read(pathTable6, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table12 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table6
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells for Table6
+        var oItem1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].questions }),
+            new sap.m.Input({ value: data.results[i].p1, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p2, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p3, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p4, editable: "{ABEditModel>/edit/editable}" }), 
+            new sap.m.Input({ value: data.results[i].p5, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p6, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p7, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p8, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p9, editable: "{ABEditModel>/edit/editable}" }),
+           
+          ]
+        });
+
+        aItems.push(oItem1);
+      }
+
+      // Clear existing items and add the new ones to Table6
+      oTable12.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable12.addItem(aItems[j]);
+      }
+
+      // If Table6 is still empty, add static rows
+      if (oTable12.getItems().length === 0) {
+        var f = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "1. a. Whether your entity's policy/policies cover each principle and its core elements of the NGRBCs. (Yes/No)" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel/edit/editable}" }),
+  
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+          ]
+        });
+  
+        var f1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "1. b. Has the policy been approved by the Board? (Yes/No)" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+          ]
+        });
+        var f2 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "1. c. Web Link of the Policies, if available" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+        var f3 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "2. Whether the entity has translated the policy into procedures. (Yes / No)" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+          ]
+        });
+        var f4 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "3. Do the enlisted policies extend to your value chain partners? (Yes/No)" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+          ]
+        });
+        var f5 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "4. Name of the national and international codes/certifications/labels/ standards (e.g. Forest Stewardship Council, Fairtrade, Rainforest Alliance, Trustea) standards (e.g. SA 8000, OHSAS, ISO, BIS) adopted by your entity and mapped to each principle" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+  
+          ]
+        });
+        var f6 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "5. Specific commitments, goals and targets set by the entity with defined timelines, if any.", }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+  
+          ]
+        });
+        var f7 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "6. Performance of the entity against the specific commitments, goals and targets along-with reasons in case the same are not met", }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+  
+          ]
+        });
+        // Add the static rows
+        oTable12.addItem(f);
+        oTable12.addItem(f1);
+        oTable12.addItem(f2);
+        oTable12.addItem(f3);
+        oTable12.addItem(f4);
+        oTable12.addItem(f5);
+        oTable12.addItem(f6);
+        oTable12.addItem(f7);
       
+      }
+
+      // Make Table6 visible
+      oTable12.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table12 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table6
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+Table13: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable13 = this.getView().byId("Table13");
+
+  // Define filters and sort property for Table6
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "B"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "10")
+  ];
+
+  var sortProperty = "subjectFoReview"; // Replace with your desired sort property
+
+  // Define the path for Table6
+  var pathTable6 = "/qualitative_data_sectionABC_Table13"; // Adjust the path if needed
+
+  oODataModel.read(pathTable6, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table13 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table6
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells for Table6
+        var oItem1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].subjectFoReview }), // Static text
+            new sap.m.Input({ value: data.results[i].p1review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p2review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p3review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p4review, editable: "{ABEditModel>/edit/editable}" }), 
+            new sap.m.Input({ value: data.results[i].p5review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p6review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p7review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p8review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p9review, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p1frequency, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p2frequency, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p3frequency, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p4frequency, editable: "{ABEditModel>/edit/editable}" }), 
+            new sap.m.Input({ value: data.results[i].p5frequency, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p6frequency, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p7frequency, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p8frequency, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p9frequency, editable: "{ABEditModel>/edit/editable}" }),
+           
+          ]
+        });
+
+        aItems.push(oItem1);
+      }
+
+      // Clear existing items and add the new ones to Table6
+      oTable13.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable13.addItem(aItems[j]);
+      }
+
+      // If Table6 is still empty, add static rows
+      if (oTable13.getItems().length === 0) {
+        var e = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Performance against above policies and follow up action" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+           
+          ]
+        });
+  
+        var e1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Compliance with statutory requirements of relevance to the principles, and, rectification of any non-compliances" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+          ]
+        });
+  
+        // Add the static rows
+        oTable13.addItem(e);
+        oTable13.addItem(e1);
+        
+       
+      
+      }
+
+      // Make Table6 visible
+      oTable13.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table13 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table6
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+
+Table15: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable15 = this.getView().byId("Table15");
+
+  // Define filters and sort property for Table1
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "B"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "12")
+  ];
+
+  var sortProperty = "questions"; // Replace with your desired sort property
+
+  // Define the path for Table1
+  var pathTable1 = "/qualitative_data_sectionABC_Table15"; // Adjust the path if needed
+
+
+  oODataModel.read(pathTable1, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table15 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table1
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells
+        var oItemk = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].questions}),
+            new sap.m.Input({ value: data.results[i].p1, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p2, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p3, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p4, editable: "{ABEditModel>/edit/editable}" }), 
+            new sap.m.Input({ value: data.results[i].p5, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p6, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p7, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p8, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].p9, editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItemk);
+      }
+
+      // Clear existing items and add the new ones to Table1
+      oTable15.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable15.addItem(aItems[j]);
+      }
+
+
+       // If Table3 is still empty, add static rows
+       if (oTable15.getItems().length === 0) {
+          var g = new sap.m.ColumnListItem({
+            cells: [
+              new sap.m.Text({ text: "the entity does not consider the Principles material to its business (Yes/No" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+            ]
+          });
+    
+          var g1 = new sap.m.ColumnListItem({
+            cells: [
+              new sap.m.Text({ text: "The entity is not at a stage where it is in a position to formulate and implement the policies on specified principles (Yes/No)" }),
+              
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+    
+            ]
+          });
+    
+          var g11 = new sap.m.ColumnListItem({
+            cells: [
+              new sap.m.Text({ text: "The entity does not have the financial or/human and technical resources available for the task (Yes/No)" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+    
+            ]
+          });
+    
+          var g2 = new sap.m.ColumnListItem({
+            cells: [
+              new sap.m.Text({ text: "It is planned to be done in the next financial year (Yes/No)" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+            ]
+          });
+    
+          var g3 = new sap.m.ColumnListItem({
+            cells: [
+              new sap.m.Text({ text: "Any other reason (please specify)" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+    
+            ]
+          });
+    
+          
+         
+    
+    
+
+        
+        oTable15.addItem(g);
+        oTable15.addItem(g1);
+        oTable15.addItem(g11);
+        oTable15.addItem(g2);
+        oTable15.addItem(g3);
+      
+     
+        
+      }
+
+      // Make Table1 visible
+      oTable15.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table1 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table1
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+
+},
+
+
+Table10: function (selectedYear) {
+  var oODataModel = this.getView().getModel("Catalog");
+  var oTable10 = this.getView().byId("Table10");
+
+  // Define filters and sort property for Table10
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "25")
+  ];
+
+  var sortProperty = "name"; // Replace with your desired sort property
+
+  // Define the path for Table10
+  var pathTable10 = "/qualitative_data_sectionABC_Table10"; // Adjust the path if needed
+
+  oODataModel.read(pathTable10, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table10 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table10
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells for Table10
+        var oItem1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].name }), // Static text
+            new sap.m.Input({ value: data.results[i].status, editable: "{ABEditModel>/edit/editable}"  }),
+            new sap.m.Input({ value: data.results[i].currentFYComplaintsFiled, editable: "{ABEditModel>/edit/editable}"  }),
+            new sap.m.Input({ value: data.results[i].currentFYComplaintsPending, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].currentFYComplaintsRemarks, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].previousFYComplaintsFiled, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].previousFYComplaintsPending, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].previousFYComplaintsRemarks, editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItem1);
+      }
+
+      // Clear existing items and add the new ones to Table10
+      oTable10.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable10.addItem(aItems[j]);
+      }
+
+      // If Table10 is still empty, add static rows
+      if (oTable10.getItems().length === 0) {
+        var d = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Communities" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+             
+    
+          ]
+        });
+
+        var d1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Investors (other than shareholders)" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+    
+          ]
+        });
+
+        var d2 = new sap.m.ColumnListItem({
+          cells: [
+              new sap.m.Text({ text: "Shareholders" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              
+             
+    
+          ]
+        });
+
+        var d3 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Employees and workers" }),
+           
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              ,
+          ]
+        });
+
+        var d4 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Customers" }),
+           
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+           
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+  
+           ,
+          ]
+        });
+
+        var d5 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Value Chain Partners" }),
+           
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+             
+    
+             
+          ]
+        });
+
+        var d6 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "Other (please specify)" }),
+         ,
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+    
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+             
+    
+              
+          ]
+        });
+
+        // Add the static rows
+        oTable10.addItem(d);
+        oTable10.addItem(d1);
+        oTable10.addItem(d2);
+        oTable10.addItem(d3);
+        oTable10.addItem(d4);
+        oTable10.addItem(d5);
+        oTable10.addItem(d6);
+      }
+
+      // Make Table10 visible
+      oTable10.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table10 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table10
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
+Table6: function (selectedYear) {
+  //var oODataModel = this.getView().getModel("Catalog");
+  var oODataModel = this.getOwnerComponent().getModel("Catalog");
+  var oTable6 = this.getView().byId("Table6");
+
+  // Define filters and sort property for Table6
+  var filters = [
+    new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+    new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
+    new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "20b")
+  ];
+
+  var sortProperty = "sr_no"; // Replace with your desired sort property
+
+  // Define the path for Table6
+  var pathTable6 = "/qualitative_data_sectionABC_Table6"; // Adjust the path if needed
+
+  oODataModel.read(pathTable6, {
+    filters: filters,
+    sorters: [new sap.ui.model.Sorter(sortProperty, false)],
+    success: function (data, response) {
+      console.log("Table6 Read Success:", data); // Log the success data
+
+      // Now, let's add the data items for Table6
+      var aItems = [];
+
+      for (var i = 0; i < data.results.length; i++) {
+        // Create a ColumnListItem with cells for Table6
+        var oItem1 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: data.results[i].type }), // Static text
+            new sap.m.Text({ text: data.results[i].sr_no }), // Static text
+            new sap.m.Text({ text: data.results[i].particulars }), // Static text
+            new sap.m.Input({ value: data.results[i].total, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].numberOfMale, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfMale, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+
+        aItems.push(oItem1);
+      }
+
+      // Clear existing items and add the new ones to Table6
+      oTable6.removeAllItems();
+      for (var j = 0; j < aItems.length; j++) {
+        oTable6.addItem(aItems[j]);
+      }
+
+      // If Table6 is still empty, add static rows
+      if (oTable6.getItems().length === 0) {
+        var z2 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
+            new sap.m.Text({ text: "1" }), // Static text
+            new sap.m.Text({ text: "Permanent (D)" }), // Static text
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              
+          ]
+        });
+
+        var z3 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
+            new sap.m.Text({ text: "2" }), // Static text
+            new sap.m.Text({ text: "Other than Permanent (E)" }), // Static text
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+
+        var z4 = new sap.m.ColumnListItem({
+          cells: [
+            new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
+            new sap.m.Text({ text: "3" }), // Static text
+            new sap.m.Text({ text: "Total differently abled employees(D + E)" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+          ]
+        });
+        var z5 = new sap.m.ColumnListItem({
+          cells: [
+              new sap.m.Text({ text: "DIFFERENTLY ABLED Workers" }), // Static text
+              new sap.m.Text({ text: "4" }), // Static text
+              new sap.m.Text({ text: "Permanent (F)" }), // Static text
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+              new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+          ]
+                });
+
+                var z6 = new sap.m.ColumnListItem({
+                  cells: [
+                    new sap.m.Text({ text: "DIFFERENTLY ABLED WORKERS" }),
+                    new sap.m.Text({ text: "5" }),
+                    new sap.m.Text({ text: "Total employees(F + G)" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                  ]
+                });
+                var z7 = new sap.m.ColumnListItem({
+                  cells: [
+                    new sap.m.Text({ text: "DIFFERENTLY ABLED WORKERS" }),
+                    new sap.m.Text({ text: "6" }),
+                    new sap.m.Text({ text: "Permanent(D)" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                    new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                  ]
+                });
+
+        // Add the static rows
+        oTable6.addItem(z2);
+        oTable6.addItem(z3);
+        oTable6.addItem(z4);
+      oTable6.addItem(z5);
+      oTable6.addItem(z6);
+      oTable6.addItem(z7);
+    }
+
+      // Make Table6 visible
+      oTable6.setVisible(true);
+    },
+    error: function (error) {
+      console.log("Table6 Read Error:", error); // Log the error
+
+      // Handle the case when there is an error in reading data for Table6
+      // You can add code here to display an error message or handle the error in a suitable way.
+    }
+  });
+},
   
       Table5: function (selectedYear) {
         var oODataModel = this.getView().getModel("Catalog");
@@ -784,14 +1833,14 @@ Table11: function (selectedYear) {
                     // Create a ColumnListItem with cells for Table5
                     var oItem1 = new sap.m.ColumnListItem({
                         cells: [
-                            new sap.m.Text({ text: data.results[i].type }), // Static text
-                            new sap.m.Text({ text: data.results[i].sr_no }), // Static text
-                            new sap.m.Text({ text: data.results[i].particulars }), // Static text
-                            new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ value: data.results[i].numberOfMale, editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ value: data.results[i].percentageOfMale, editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Text({ text: data.results[i].type }), 
+                            new sap.m.Text({ text: data.results[i].sr_no }),
+                            new sap.m.Text({ text: data.results[i].particulars }), 
+                            new sap.m.Input({ value: data.results[i].total, editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].numberOfMale, editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].percentageOfMale, editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{ABEditModel>/edit/editable}" }),
                         ]
                     });
     
@@ -811,11 +1860,11 @@ Table11: function (selectedYear) {
                             new sap.m.Text({ text: "Employees" }), // Static text
                             new sap.m.Text({ text: "1" }), // Static text
                             new sap.m.Text({ text: "Permanent (D)" }), // Static text
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
                         ]
                     });
     
@@ -824,11 +1873,11 @@ Table11: function (selectedYear) {
                             new sap.m.Text({ text: "Employees" }), // Static text
                             new sap.m.Text({ text: "2" }), // Static text
                             new sap.m.Text({ text: "Other than Permanent (E)" }), // Static text
-                            new sap.m.Text({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
                         ]
                     });
     
@@ -837,11 +1886,11 @@ Table11: function (selectedYear) {
                             new sap.m.Text({ text: "Employees" }), // Static text
                             new sap.m.Text({ text: "3" }), // Static text
                             new sap.m.Text({ text: "Total employees (D + E)" }), // Static text
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
                         ]
                     });
     
@@ -850,36 +1899,36 @@ Table11: function (selectedYear) {
                             new sap.m.Text({ text: "Workers" }), // Static text
                             new sap.m.Text({ text: "4" }), // Static text
                             new sap.m.Text({ text: "Permanent (F)" }), // Static text
-                            new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                            new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
                                 ]
                               });
 
                               var h6 = new sap.m.ColumnListItem({
                                 cells: [
-                                  new sap.m.Text({ text: "DIFFERENTLY ABLED WORKERS" }),
+                                  new sap.m.Text({ text: "WORKERS" }),
                                   new sap.m.Text({ text: "5" }),
                                   new sap.m.Text({ text: "Total employees(F + G)" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
                                 ]
                               });
                               var h7 = new sap.m.ColumnListItem({
                                 cells: [
-                                  new sap.m.Text({ text: "DIFFERENTLY ABLED WORKERS" }),
+                                  new sap.m.Text({ text: "WORKERS" }),
                                   new sap.m.Text({ text: "6" }),
                                   new sap.m.Text({ text: "Permanent(D)" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" }),
+                                  new sap.m.Input({ editable: "{ABEditModel>/edit/editable}" })
                                 ]
                               });
                     
@@ -907,119 +1956,79 @@ Table11: function (selectedYear) {
                            
                           }
                         });
+      
+          
+                    
+          
+/*
+
+that: function (selectedYear) {
+  var oODataModel = this.getOwnerComponent().getModel("Catalog");
+  var that = this; 
+ 
+  that.getView().setBusy(true); 
+
+ 
+               var Filter1 = new sap.ui.model.Filter("fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear);
+                var Filter2 = new sap.ui.model.Filter("businessFunction", sap.ui.model.FilterOperator.EQ, 'sectionABC');
+                var pathBf = "/qualitative_data";
+                oODataModel.read(pathBf, {
+                    urlParameters: {
+                        "$expand": "sectionABC",
+                    },
+                  
+                  filters: [Filter1, Filter2],
+                
+      success: function (data, response) {
+          if (data.results[0].sectionABC.results.length > 0) {
+              // Check if sectionABC is defined and has results before accessing them
+              that.getView().byId("textArea1").setValue(data.results[0].sectionABC.results[0].answer);
+              that.getView().byId("textArea2").setValue(data.results[0].sectionABC.results[1].answer);
+              that.getView().byId("textArea3").setValue(data.results[0].sectionABC.results[2].answer);
+              that.getView().byId("textArea4").setValue(data.results[0].sectionABC.results[3].answer);
+              that.getView().byId("textArea5").setValue(data.results[0].sectionABC.results[4].answer);
+
+              that.getView().setBusy(false); // Set back to false as data loading is complete
+          } else {
+              // Handle the case when there are no results
+              that.getView().setBusy(false);
+              MessageBox.warning("No data found for the selected year and business function.");
+          }
       },
-                        Table6: function (selectedYear) {
-                          var oODataModel = this.getView().getModel("Catalog");
-                          var oTable6 = this.getView().byId("Table6");
-                        
-                          // Define filters and sort property for Table6
-                          var filters = [
-                            new sap.ui.model.Filter("up__up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-                            new sap.ui.model.Filter("up__up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-                            new sap.ui.model.Filter("up__section", sap.ui.model.FilterOperator.EQ, "A"),
-                            new sap.ui.model.Filter("up__questionID", sap.ui.model.FilterOperator.EQ, "20b")
-                          ];
-                        
-                          var sortProperty = "sr_no"; // Replace with your desired sort property
-                        
-                          // Define the path for Table6
-                          var pathTable6 = "/qualitative_data_sectionABC_Table6"; // Adjust the path if needed
-                        
-                          oODataModel.read(pathTable6, {
-                            filters: filters,
-                            sorters: [new sap.ui.model.Sorter(sortProperty, false)],
-                            success: function (data, response) {
-                              console.log("Table6 Read Success:", data); // Log the success data
-                        
-                              // Now, let's add the data items for Table6
-                              var aItems = [];
-                        
-                              for (var i = 0; i < data.results.length; i++) {
-                                // Create a ColumnListItem with cells for Table6
-                                var oItem1 = new sap.m.ColumnListItem({
-                                  cells: [
-                                    new sap.m.Text({ text: data.results[i].type }), // Static text
-                                    new sap.m.Text({ text: data.results[i].sr_no }), // Static text
-                                    new sap.m.Text({ text: data.results[i].particulars }), // Static text
-                                    new sap.m.Input({ value: data.results[i].total, editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ value: data.results[i].numberOfMale, editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ value: data.results[i].percentageOfMale, editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ value: data.results[i].numberOfFemale, editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ value: data.results[i].percentageOfFemale, editable: "{Catalog>/edit/editable}" }),
-                                  ]
-                                });
-                        
-                                aItems.push(oItem1);
-                              }
-                        
-                              // Clear existing items and add the new ones to Table6
-                              oTable6.removeAllItems();
-                              for (var j = 0; j < aItems.length; j++) {
-                                oTable6.addItem(aItems[j]);
-                              }
-                        
-                              // If Table6 is still empty, add static rows
-                              if (oTable6.getItems().length === 0) {
-                                var z2 = new sap.m.ColumnListItem({
-                                  cells: [
-                                    new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
-                                    new sap.m.Text({ text: "1" }), // Static text
-                                    new sap.m.Text({ text: "Permanent (D)" }), // Static text
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),  
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  ]
-                                });
-                        
-                                var z3 = new sap.m.ColumnListItem({
-                                  cells: [
-                                    new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
-                                    new sap.m.Text({ text: "2" }), // Static text
-                                    new sap.m.Text({ text: "Other than Permanent (E)" }), // Static text
-                                    new sap.m.Text({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  ]
-                                });
-                        
-                                var z4 = new sap.m.ColumnListItem({
-                                  cells: [
-                                    new sap.m.Text({ text: "DIFFERENTLY ABLED EMPLOYEES" }), // Static text
-                                    new sap.m.Text({ text: "3" }), // Static text
-                                    new sap.m.Text({ text: "Total differently abled employees(D + E)" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                    new sap.m.Input({ editable: "{Catalog>/edit/editable}" }),
-                                  ]
-                                });
-                        
-                                // Add the static rows
-                                oTable6.addItem(z2);
-                                oTable6.addItem(z3);
-                                oTable6.addItem(z4);
-                              }
-                        
-                              // Make Table6 visible
-                              oTable6.setVisible(true);
+      error: function (error) { // Use 'error' instead of 'Error' in the error callback
+          MessageBox.warning("Error while reading Data.");
+          that.getView().setBusy(false); // Ensure to set back to false in case of an error
+      }
+  });
+*/
+
+
+  
+/*
+                        var oODataModel = this.getView().getModel("Catalog");
+                          var Filter1 = new sap.ui.model.Filter("fiscalYear", sap.ui.model.FilterOperator.EQ, fyear);
+                          var Filter2 = new sap.ui.model.Filter("businessFunction", sap.ui.model.FilterOperator.EQ, 'sectionABC');
+                    
+                          oODataModel.read("/qualitative_data", {
+                            urlParameters: {
+                              "$expand": "Procurement",
                             },
-                            error: function (error) {
-                              console.log("Table6 Read Error:", error); // Log the error
-                        
-                              // Handle the case when there is an error in reading data for Table6
-                              // You can add code here to display an error message or handle the error in a suitable way.
+                            filters: [Filter1, Filter2],
+                            success: function (Data, response) {
+                    
+                              
+                    
+                    
+                            },
+                            error: function (Error) {
+                              MessageBox.warning("Error while reading Data.");
                             }
                           });
+                        },
+                    
+      
                         
-                        
-
-
-
+/*     
 /*
 
       //var oODataModel = this.getView().getModel("Catalog");
@@ -2654,16 +3663,16 @@ Table11: function (selectedYear) {
           ],
           sortProperty: "questions"
         },
+ 
 */
-        
 
-
+      
 
 var textAreas = [
   {
     
     id: "textArea1",
-    entitySet: "/qualitative_data_sectionABC",
+    entitySet: "/ABEditModel>qualitative_data_sectionABC",
     filters: [
       new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
       new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
@@ -2834,7 +3843,7 @@ var textAreas = [
       new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
       new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
       new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19a")
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19b")
     ],
     sortProperty: "answer"
   },
@@ -2845,21 +3854,11 @@ var textAreas = [
       new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
       new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
       new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19b")
+      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "19c")
     ],
     sortProperty: "answer"
   },
-  {
-    id: "textArea18",
-    entitySet: "/qualitative_data_sectionABC",
-    filters: [
-      new sap.ui.model.Filter("up__fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
-      new sap.ui.model.Filter("up__businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
-      new sap.ui.model.Filter("section", sap.ui.model.FilterOperator.EQ, "A"),
-      new sap.ui.model.Filter("questionID", sap.ui.model.FilterOperator.EQ, "20")
-    ],
-    sortProperty: "answer"
-  },
+ 
   {
     id: "textArea19",
     entitySet: "/qualitative_data_sectionABC",
@@ -2926,50 +3925,81 @@ var textAreas = [
     ],
     sortProperty: "answer"
   },
+        
+ 
 ];
   
-
 function updateTextArea(textAreaConfig) {
+  var oModel = this.getView().getModel("Catalog");
   var oTextArea = this.getView().byId(textAreaConfig.id);
-  var oModel = this.getView().getModel("Catalog"); 
+  var that = this; // Ensure 'that' is defined within the function
 
-  // Perform a read operation to fetch data (e.g., text for the TextArea) from the model
+  // Log relevant information
+  console.log("Updating TextArea:", textAreaConfig.id);
+
+  // Perform a read operation to fetch data for the TextArea from the model
   oModel.read("/qualitative_data_sectionABC", {
-    filters: textAreaConfig.filters,
-    success: function (data, response) {
-      if (data.results.length > 0) {
-        var newText = data.results[0].answer;
+      filters: textAreaConfig.filters,
+      success: function (data, response) {
+          console.log("Read Success for TextArea:", textAreaConfig.id, "Data:", data);
 
-        // Update the value of the TextArea
-        oTextArea.setValue(newText);
+          if (data.results && data.results.length > 0) {
+              var newText = data.results[0].answer;
+              oTextArea.setValue(newText);
+          } else {
+              if (oTextArea) {
+                  oTextArea.setValue("NA");
+              }
+          }
+      },
+      error: function (error) {
+          console.error("TextArea Read Error:", textAreaConfig.id, "Error:", error);
       }
-    },
-    error: function (error) {
-      console.log("TextArea Read Error:", error); // Log the error
-    }
   });
 }
 
-// Loop through the TextArea configurations and update each TextArea
+
 for (var i = 0; i < textAreas.length; i++) {
   updateTextArea.call(this, textAreas[i]);
 }
 
+var oODataModel = this.getOwnerComponent().getModel("Catalog");
+var that = this;
 
+oODataModel.read("/qualitative_data", {
+    filters: [
+        new sap.ui.model.Filter("fiscalYear", sap.ui.model.FilterOperator.EQ, selectedYear),
+        new sap.ui.model.Filter("businessFunction", sap.ui.model.FilterOperator.EQ, "sectionABC"),
+    ],
+    success: function (data, response) {
+        if (data.results.length > 0) {
+            var status = data.results[0].status;
+            updateEditableStatus(status);
+        }
+    },
+    error: function (error) {
+        console.error("Error while reading data:", error);
+     
+    }
+});
 
+function updateEditableStatus(status) {
+    var isEditable = true;
 
+    if (status === "Submitted") {
+        isEditable = false;
+    } else if (status === "Draft") {
+        isEditable = true;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    
+    for (var i = 0; i < textAreas.length; i++) {
+        var oTextArea = that.getView().byId(textAreas[i].id);
+        if (oTextArea) {
+            oTextArea.setEditable(isEditable);
+        }
+    }
+}
 
 
 
@@ -2995,7 +4025,7 @@ for (var i = 0; i < textAreas.length; i++) {
 
 
 
-
+/*
 
 
       that.ehsdata(selectedYear);
@@ -4059,7 +5089,7 @@ for (var i = 0; i < textAreas.length; i++) {
           let aItems = [];
           let aItems1 = [];
           for (let i = 0; i < oData.results.length; i++) {
-            if (oData.results[i].type === "Permanent employees") {
+            if (oData.results[i].type.includes("Permanent")) {
               let oItem = new sap.m.ColumnListItem({
                 cells: [
                   new sap.m.Text({ text: oData.results[i].category }),
@@ -4087,7 +5117,7 @@ for (var i = 0; i < textAreas.length; i++) {
               }
             }
             else
-              if (oData.results[i].type === "Other than Permanent employees") {
+              if (oData.results[i].type.includes("Other") ) {
                 let oItem = new sap.m.ColumnListItem({
                   cells: [
                     new sap.m.Text({ text: oData.results[i].category }),
@@ -5137,6 +6167,7 @@ for (var i = 0; i < textAreas.length; i++) {
       });
 
     },
+  
     /////EHS Data Fetch//////////////
 
     ehsdata: function (fyear) {
@@ -5161,7 +6192,9 @@ for (var i = 0; i < textAreas.length; i++) {
         }
       });
     },
-
+    */
+  },
+  
     toggleVBoxVisibility: function (visible) {
       var oVBox = this.getView().byId("myVBox");
       oVBox.setVisible(visible);
@@ -5287,10 +6320,8 @@ for (var i = 0; i < textAreas.length; i++) {
 
 
     onSaveDraftPress: function () {
-      var oYearDropdown = this.getView().byId("yearDropdown");
-      var selectedYear = oYearDropdown.getSelectedKey();
-
-
+     
+      var selectedYear = this.getView().byId("id_fiscalyear").getSelectedKey();
       var that = this;
       var Name = this.Name;
       var UserEmail = this.UserEmail;
@@ -5311,7 +6342,6 @@ for (var i = 0; i < textAreas.length; i++) {
       var textAreaValue15 = this.getView().byId("textArea15").getValue();
       var textAreaValue16 = this.getView().byId("textArea16").getValue();
       var textAreaValue17 = this.getView().byId("textArea17").getValue();
-
       var textAreaValue19 = this.getView().byId("textArea19").getValue();
       var textAreaValue20 = this.getView().byId("textArea20").getValue();
       var textAreaValue21 = this.getView().byId("textArea21").getValue();
@@ -5707,8 +6737,7 @@ for (var i = 0; i < textAreas.length; i++) {
 
       var Table5 = this.getView().byId("Table5").getItems();
       console.log("Table5:", Table5)
-      console.log(Table5);
-
+     
 
 
 
@@ -5720,61 +6749,62 @@ for (var i = 0; i < textAreas.length; i++) {
             "type": "EMPLOYEES",
             "sr_no": "1",
             "particulars": "Permanent (D)",
-            "total": Table5[0].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[0].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[0].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[0].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[0].getAggregation("cells")[5].getProperty("value")
+            "total": Table5[0].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[0].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[0].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[0].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[0].getAggregation("cells")[7].getProperty("value"),
+            
           },
           {
             "type": "EMPLOYEES",
             "sr_no": "2",
             "particulars": "Other than Permanent (E)",
-            "total": Table5[1].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[1].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[1].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[1].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[1].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[1].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[1].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[1].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[1].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[1].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "EMPLOYEES",
             "sr_no": "3",
             "particulars": "Total employees (D + E)",
-            "total": Table5[2].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[2].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[2].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[2].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[2].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[2].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[2].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[2].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[2].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[2].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "WORKERS",
             "sr_no": "4",
             "particulars": "Permanent (F)",
-            "total": Table5[3].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[3].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[3].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[3].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[3].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[3].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[3].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[3].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[3].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[3].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "WORKERS",
             "sr_no": "5",
             "particulars": "Other than Permanent (G)",
-            "total": Table5[4].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[4].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[4].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[4].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[4].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[4].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[4].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[4].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[4].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[4].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "WORKERS",
             "sr_no": "6",
             "particulars": "Total employees (F + G)",
-            "total": Table5[5].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[5].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[5].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[5].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[5].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[5].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[5].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[5].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[5].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[5].getAggregation("cells")[7].getProperty("value"),
           }
         ]
       };
@@ -5784,8 +6814,7 @@ for (var i = 0; i < textAreas.length; i++) {
 
       var Table6 = this.getView().byId("Table6").getItems();
       console.log("Table6:", Table6)
-      console.log(Table6);
-
+    
       let q20b = {
         "section": "A",
         "questionID": "20b",
@@ -5794,62 +6823,69 @@ for (var i = 0; i < textAreas.length; i++) {
             "type": "DIFFERENTLY ABLED EMPLOYEES",
             "sr_no": "1",
             "particulars": "Permanent (D)",
-            "total": Table6[0].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[0].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[0].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[0].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[0].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[0].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[0].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[0].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[0].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[0].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "DIFFERENTLY ABLED EMPLOYEES",
             "sr_no": "2",
             "particulars": "Other than Permanent (E)",
-            "total": Table6[1].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[1].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[1].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[1].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[1].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[1].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[1].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[1].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[1].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[1].getAggregation("cells")[7].getProperty("value"),
+          
           },
           {
             "type": "DIFFERENTLY ABLED EMPLOYEES",
             "sr_no": "3",
             "particulars": "Total differently abled employees (D + E)",
-            "total": Table6[2].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[2].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[2].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[2].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[2].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[2].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[2].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[2].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[2].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[2].getAggregation("cells")[7].getProperty("value"),
+           
           },
           {
             "type": "DIFFERENTLY ABLED WORKERS",
             "sr_no": "4",
             "particulars": "Permanent (F)",
-            "total": Table6[3].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[3].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[3].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[3].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[3].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[3].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[3].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[3].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[3].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[3].getAggregation("cells")[7].getProperty("value"),
+           
           },
+            
+          
           {
             "type": "DIFFERENTLY ABLED WORKERS",
             "sr_no": "5",
             "particulars": "Other than Permanent (G)",
-            "total": Table6[4].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[4].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[4].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[4].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[4].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[4].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[4].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[4].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[4].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[4].getAggregation("cells")[7].getProperty("value"),
+            
           },
           {
             "type": "DIFFERENTLY ABLED WORKERS",
             "sr_no": "6",
             "particulars": "Total differently abled workers (F + G)",
-            "total": Table6[5].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[5].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[5].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[5].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[5].getAggregation("cells")[5].getProperty("value"),
-          }
+            "total": Table6[5].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[5].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[5].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[5].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[5].getAggregation("cells")[7].getProperty("value"),
+           
+          },
         ]
       };
 
@@ -5891,25 +6927,25 @@ for (var i = 0; i < textAreas.length; i++) {
             "type": "Permanent Employees",
             "maleTurnoverRateInCurrentFY": Table8[0].getAggregation("cells")[1].getProperty("value"),
             "femaleTurnoverRateInCurrentFY": Table8[0].getAggregation("cells")[2].getProperty("value"),
-
-            "maleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[3].getProperty("value"),
-            "femaleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[4].getProperty("value"),
-            "totalTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[5].getProperty("value"),
-            "maleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[6].getProperty("value"),
-            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[7].getProperty("value"),
-            "totalTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInCurrentFY": Table8[0].getAggregation("cells")[3].getProperty("value"),
+            "maleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[4].getProperty("value"),
+            "femaleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[5].getProperty("value"),
+            "totalTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[6].getProperty("value"),
+            "maleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[7].getProperty("value"),
+            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[9].getProperty("value"),
           },
           {
             "type": "Permanent Workers",
             "maleTurnoverRateInCurrentFY": Table8[1].getAggregation("cells")[1].getProperty("value"),
             "femaleTurnoverRateInCurrentFY": Table8[1].getAggregation("cells")[2].getProperty("value"),
-
-            "maleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[3].getProperty("value"),
-            "femaleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[4].getProperty("value"),
-            "totalTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[5].getProperty("value"),
-            "maleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[6].getProperty("value"),
-            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[7].getProperty("value"),
-            "totalTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInCurrentFY": Table8[1].getAggregation("cells")[3].getProperty("value"),
+            "maleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[4].getProperty("value"),
+            "femaleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[5].getProperty("value"),
+            "totalTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[6].getProperty("value"),
+            "maleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[7].getProperty("value"),
+            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[9].getProperty("value"),
           }
         ]
       };
@@ -6190,6 +7226,18 @@ for (var i = 0; i < textAreas.length; i++) {
           },
           {
             "questions": "The entity does not have the financial or human and technical resources available for the task (Yes/No)",
+            "p1": Table15[1].getAggregation("cells")[1].getProperty("value"),
+            "p2": Table15[1].getAggregation("cells")[2].getProperty("value"),
+            "p3": Table15[1].getAggregation("cells")[3].getProperty("value"),
+            "p4": Table15[1].getAggregation("cells")[4].getProperty("value"),
+            "p5": Table15[1].getAggregation("cells")[5].getProperty("value"),
+            "p6": Table15[1].getAggregation("cells")[6].getProperty("value"),
+            "p7": Table15[1].getAggregation("cells")[7].getProperty("value"),
+            "p8": Table15[1].getAggregation("cells")[8].getProperty("value"),
+            "p9": Table15[1].getAggregation("cells")[9].getProperty("value")
+          },
+          {
+            "questions": "It is planned to be done in the next financial year (Yes/No)",
             "p1": Table15[2].getAggregation("cells")[1].getProperty("value"),
             "p2": Table15[2].getAggregation("cells")[2].getProperty("value"),
             "p3": Table15[2].getAggregation("cells")[3].getProperty("value"),
@@ -6201,7 +7249,7 @@ for (var i = 0; i < textAreas.length; i++) {
             "p9": Table15[2].getAggregation("cells")[9].getProperty("value")
           },
           {
-            "questions": "It is planned to be done in the next financial year (Yes/No)",
+            "questions": "Any other reason (please specify)",
             "p1": Table15[3].getAggregation("cells")[1].getProperty("value"),
             "p2": Table15[3].getAggregation("cells")[2].getProperty("value"),
             "p3": Table15[3].getAggregation("cells")[3].getProperty("value"),
@@ -6211,18 +7259,6 @@ for (var i = 0; i < textAreas.length; i++) {
             "p7": Table15[3].getAggregation("cells")[7].getProperty("value"),
             "p8": Table15[3].getAggregation("cells")[8].getProperty("value"),
             "p9": Table15[3].getAggregation("cells")[9].getProperty("value")
-          },
-          {
-            "questions": "Any other reason (please specify)",
-            "p1": Table15[4].getAggregation("cells")[1].getProperty("value"),
-            "p2": Table15[4].getAggregation("cells")[2].getProperty("value"),
-            "p3": Table15[4].getAggregation("cells")[3].getProperty("value"),
-            "p4": Table15[4].getAggregation("cells")[4].getProperty("value"),
-            "p5": Table15[4].getAggregation("cells")[5].getProperty("value"),
-            "p6": Table15[4].getAggregation("cells")[6].getProperty("value"),
-            "p7": Table15[4].getAggregation("cells")[7].getProperty("value"),
-            "p8": Table15[4].getAggregation("cells")[8].getProperty("value"),
-            "p9": Table15[4].getAggregation("cells")[9].getProperty("value")
           },
 
         ]
@@ -6251,25 +7287,25 @@ for (var i = 0; i < textAreas.length; i++) {
         if (oItem.getCells()[0].getValue() !== "") {
           oRowData2.sr_no = oItem.getCells()[0].getValue();
         } else {
-          oRowData2.sr_no = "NA";
+          oRowData2.sr_no = "";
         }
 
         if (oItem.getCells()[1].getValue() !== "") {
           oRowData2.nameOfProductOrService = oItem.getCells()[1].getValue();
         } else {
-          oRowData2.nameOfProductOrService = "NA";
+          oRowData2.nameOfProductOrService = "";
         }
 
         if (oItem.getCells()[2].getValue() !== "") {
           oRowData2.nicCode = oItem.getCells()[2].getValue();
         } else {
-          oRowData2.nicCode = "NA";
+          oRowData2.nicCode = "";
         }
 
         if (oItem.getCells()[3].getValue() !== "") {
           oRowData2.totalTurnoverContributed = oItem.getCells()[3].getValue();
         } else {
-          oRowData2.totalTurnoverContributed = "NA";
+          oRowData2.totalTurnoverContributed = "";
         }
 
         // Add the row data to the array for Table2
@@ -6300,27 +7336,27 @@ for (var i = 0; i < textAreas.length; i++) {
         if (oItem.getCells()[0].getValue() !== "") {
           oRowData.sr_no = oItem.getCells()[0].getValue();
         } else {
-          oRowData.sr_no = "NA";
+          oRowData.sr_no = "";
         }
 
         if (oItem.getCells()[1].getValue() !== "") {
           oRowData.descriptionOfMainActivity = oItem.getCells()[1].getValue();
         } else {
-          oRowData.descriptionOfMainActivity = "NA";
+          oRowData.descriptionOfMainActivity = "";
         }
 
         // Change the index to [2] for descriptionOfBusinessActivity
         if (oItem.getCells()[2].getValue() !== "") {
           oRowData.descriptionOfBusinessActivity = oItem.getCells()[2].getValue();
         } else {
-          oRowData.descriptionOfBusinessActivity = "NA";
+          oRowData.descriptionOfBusinessActivity = "";
         }
 
         // Change the index to [3] for percentageOfTurnoverOfTheEntity
         if (oItem.getCells()[3].getValue() !== "") {
           oRowData.percentageOfTurnoverOfTheEntity = oItem.getCells()[3].getValue();
         } else {
-          oRowData.percentageOfTurnoverOfTheEntity = "NA";
+          oRowData.percentageOfTurnoverOfTheEntity = "";
         }
 
         Table1Data.push(oRowData);
@@ -6337,47 +7373,32 @@ for (var i = 0; i < textAreas.length; i++) {
       console.log("abcArr:", abcArr);
 
       var oTable = this.getView().byId("Table9");
+var aTableItems = oTable.getItems();
+var Table9Data = [];
 
-      var aTableItems = oTable.getItems();
+for (var i = 0; i < aTableItems.length; i++) {
+  var oItem = aTableItems[i];
+  var oRowData3 = {};
 
-      // Create an array to store the data from the table
-      var Table9Data = [];
+  // Assuming you want to map specific properties from the table cells
+  oRowData3.sr_no = oItem.getCells()[0].getValue() || null;
+  oRowData3.name = oItem.getCells()[1].getValue() || null;
+  oRowData3.type = oItem.getCells()[2].getValue() || null;
+  oRowData3.percentageOfShares = oItem.getCells()[3].getValue() || null;
+  oRowData3.participationStatus = oItem.getCells()[4].getValue() || null;
 
-      // Loop through the table items and extract the data
-      for (var i = 0; i < aTableItems.length; i++) {
-        var oItem = aTableItems[i];
+  Table9Data.push(oRowData3);
+}
 
-        // Create an object to represent a row of data
-        var oRowData3 = {};
+var q231 = {
+  section: "A",
+  questionID: "23",
+  Table9: Table9Data
+};
+abcArr.push(q231);
 
-        // Assuming you want to map specific properties from the table cells
-        if (oItem.getCells()[0].getValue() !== "") {
-          oRowData3.type = oItem.getCells()[0].getValue();
-        } else {
-          oRowData3.type = "NA";
-        }
+console.log("abcArr:", abcArr);
 
-        if (oItem.getCells()[1].getValue() !== "") {
-          oRowData3.percentageOfShares = oItem.getCells()[1].getValue();
-        } else {
-          oRowData3.percentageOfShares = "NA";
-        }
-
-        if (oItem.getCells()[2].getValue() !== "") {
-          oRowData3.participationStatus = oItem.getCells()[2].getValue();
-        } else {
-          oRowData3.participationStatus = "NA";
-        }
-
-        Table9Data.push(oRowData3);
-      }
-
-      var q231 = {
-        section: "A",
-        questionID: "23",
-        Table9: Table9Data
-      };
-      abcArr.push(q231);
 
       console.log("abcArr:", abcArr);
 
@@ -6389,12 +7410,12 @@ for (var i = 0; i < textAreas.length; i++) {
       for (var i = 0; i < aTable11Items.length; i++) {
         var oItem = aTable11Items[i];
         var oRowData4 = {
-          "sr_no": oItem.getCells()[0].getValue() || "NA",
-          "issue": oItem.getCells()[1].getValue() || "NA",
-          "type": oItem.getCells()[2].getValue() || "NA",
-          "rationale": oItem.getCells()[3].getValue() || "NA",
-          "approach": oItem.getCells()[4].getValue() || "NA",
-          "financialImplications": oItem.getCells()[5].getValue() || "NA"
+          "sr_no": oItem.getCells()[0].getValue() || "",
+          "issue": oItem.getCells()[1].getValue() || "",
+          "type": oItem.getCells()[2].getValue() || "",
+          "rationale": oItem.getCells()[3].getValue() || "",
+          "approach": oItem.getCells()[4].getValue() || "",
+          "financialImplications": oItem.getCells()[5].getValue() || ""
         };
 
         Table11Data.push(oRowData4);
@@ -6419,15 +7440,15 @@ for (var i = 0; i < textAreas.length; i++) {
       for (var i = 0; i < aTable14Items.length; i++) {
         var oItem = aTable14Items[i];
         var oRowData5 = {
-          "p1": oItem.getCells()[0].getValue() || "NA",
-          "p2": oItem.getCells()[1].getValue() || "NA",
-          "p3": oItem.getCells()[2].getValue() || "NA",
-          "p4": oItem.getCells()[3].getValue() || "NA",
-          "p5": oItem.getCells()[4].getValue() || "NA",
-          "p6": oItem.getCells()[5].getValue() || "NA",
-          "p7": oItem.getCells()[6].getValue() || "NA", // Corrected cell index
-          "p8": oItem.getCells()[7].getValue() || "NA", // Corrected cell index
-          "p9": oItem.getCells()[8].getValue() || "NA"  // Corrected cell index
+          "p1": oItem.getCells()[0].getValue() || "",
+          "p2": oItem.getCells()[1].getValue() || "",
+          "p3": oItem.getCells()[2].getValue() || "",
+          "p4": oItem.getCells()[3].getValue() || "",
+          "p5": oItem.getCells()[4].getValue() || "",
+          "p6": oItem.getCells()[5].getValue() || "",
+          "p7": oItem.getCells()[6].getValue() || "", 
+          "p8": oItem.getCells()[7].getValue() || "", 
+          "p9": oItem.getCells()[8].getValue() || ""  
         };
 
         Table14Data.push(oRowData5);
@@ -6493,8 +7514,8 @@ for (var i = 0; i < textAreas.length; i++) {
     },
 
     onSubmitPress: function () {
-      var oYearDropdown = this.getView().byId("yearDropdown");
-      var selectedYear = oYearDropdown.getSelectedKey();
+      var selectedYear = this.getView().byId("id_fiscalyear").getSelectedKey();
+
       var that = this;
       var Name = this.Name;
       var UserEmail = this.UserEmail;
@@ -6515,7 +7536,6 @@ for (var i = 0; i < textAreas.length; i++) {
       var textAreaValue15 = this.getView().byId("textArea15").getValue();
       var textAreaValue16 = this.getView().byId("textArea16").getValue();
       var textAreaValue17 = this.getView().byId("textArea17").getValue();
-
       var textAreaValue19 = this.getView().byId("textArea19").getValue();
       var textAreaValue20 = this.getView().byId("textArea20").getValue();
       var textAreaValue21 = this.getView().byId("textArea21").getValue();
@@ -6830,10 +7850,10 @@ for (var i = 0; i < textAreas.length; i++) {
       console.log("abcArr:", abcArr);
 
 
-
+      debugger;
       if (textAreaValue17 == "") {
         textAreaValue17 = "NA";
-
+        debugger;
         var q19c = {
           "section": "A",
           "questionID": "19c",
@@ -6912,10 +7932,6 @@ for (var i = 0; i < textAreas.length; i++) {
 
       var Table5 = this.getView().byId("Table5").getItems();
       console.log("Table5:", Table5)
-      console.log(Table5);
-
-
-
 
       let q20a = {
         "section": "A",
@@ -6925,61 +7941,62 @@ for (var i = 0; i < textAreas.length; i++) {
             "type": "EMPLOYEES",
             "sr_no": "1",
             "particulars": "Permanent (D)",
-            "total": Table5[0].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[0].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[0].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[0].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[0].getAggregation("cells")[5].getProperty("value")
+            "total": Table5[0].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[0].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[0].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[0].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[0].getAggregation("cells")[7].getProperty("value"),
+            
           },
           {
             "type": "EMPLOYEES",
             "sr_no": "2",
             "particulars": "Other than Permanent (E)",
-            "total": Table5[1].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[1].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[1].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[1].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[1].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[1].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[1].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[1].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[1].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[1].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "EMPLOYEES",
             "sr_no": "3",
             "particulars": "Total employees (D + E)",
-            "total": Table5[2].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[2].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[2].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[2].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[2].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[2].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[2].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[2].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[2].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[2].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "WORKERS",
             "sr_no": "4",
             "particulars": "Permanent (F)",
-            "total": Table5[3].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[3].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[3].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[3].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[3].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[3].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[3].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[3].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[3].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[3].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "WORKERS",
             "sr_no": "5",
             "particulars": "Other than Permanent (G)",
-            "total": Table5[4].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[4].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[4].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[4].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[4].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[4].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[4].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[4].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[4].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[4].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "WORKERS",
             "sr_no": "6",
             "particulars": "Total employees (F + G)",
-            "total": Table5[5].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table5[5].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table5[5].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table5[5].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table5[5].getAggregation("cells")[5].getProperty("value"),
+            "total": Table5[5].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table5[5].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table5[5].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table5[5].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table5[5].getAggregation("cells")[7].getProperty("value"),
           }
         ]
       };
@@ -6987,10 +8004,10 @@ for (var i = 0; i < textAreas.length; i++) {
       abcArr.push(q20a);
       console.log("abcArr:", abcArr);
 
+
       var Table6 = this.getView().byId("Table6").getItems();
       console.log("Table6:", Table6)
-      console.log(Table6);
-
+    
       let q20b = {
         "section": "A",
         "questionID": "20b",
@@ -6999,67 +8016,76 @@ for (var i = 0; i < textAreas.length; i++) {
             "type": "DIFFERENTLY ABLED EMPLOYEES",
             "sr_no": "1",
             "particulars": "Permanent (D)",
-            "total": Table6[0].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[0].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[0].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[0].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[0].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[0].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[0].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[0].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[0].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[0].getAggregation("cells")[7].getProperty("value"),
           },
           {
             "type": "DIFFERENTLY ABLED EMPLOYEES",
             "sr_no": "2",
             "particulars": "Other than Permanent (E)",
-            "total": Table6[1].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[1].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[1].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[1].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[1].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[1].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[1].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[1].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[1].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[1].getAggregation("cells")[7].getProperty("value"),
+          
           },
           {
             "type": "DIFFERENTLY ABLED EMPLOYEES",
             "sr_no": "3",
             "particulars": "Total differently abled employees (D + E)",
-            "total": Table6[2].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[2].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[2].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[2].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[2].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[2].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[2].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[2].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[2].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[2].getAggregation("cells")[7].getProperty("value"),
+           
           },
           {
             "type": "DIFFERENTLY ABLED WORKERS",
             "sr_no": "4",
             "particulars": "Permanent (F)",
-            "total": Table6[3].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[3].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[3].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[3].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[3].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[3].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[3].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[3].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[3].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[3].getAggregation("cells")[7].getProperty("value"),
+           
           },
+            
+          
           {
             "type": "DIFFERENTLY ABLED WORKERS",
             "sr_no": "5",
             "particulars": "Other than Permanent (G)",
-            "total": Table6[4].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[4].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[4].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[4].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[4].getAggregation("cells")[5].getProperty("value"),
+            "total": Table6[4].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[4].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[4].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[4].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[4].getAggregation("cells")[7].getProperty("value"),
+            
           },
           {
             "type": "DIFFERENTLY ABLED WORKERS",
             "sr_no": "6",
             "particulars": "Total differently abled workers (F + G)",
-            "total": Table6[5].getAggregation("cells")[1].getProperty("value"),
-            "numberOfMale": Table6[5].getAggregation("cells")[2].getProperty("value"),
-            "percentageOfMale": Table6[5].getAggregation("cells")[3].getProperty("value"),
-            "numberOfFemale": Table6[5].getAggregation("cells")[4].getProperty("value"),
-            "percentageOfFemale": Table6[5].getAggregation("cells")[5].getProperty("value"),
-          }
+            "total": Table6[5].getAggregation("cells")[3].getProperty("value"),
+            "numberOfMale": Table6[5].getAggregation("cells")[4].getProperty("value"),
+            "percentageOfMale": Table6[5].getAggregation("cells")[5].getProperty("value"),
+            "numberOfFemale": Table6[5].getAggregation("cells")[6].getProperty("value"),
+            "percentageOfFemale": Table6[5].getAggregation("cells")[7].getProperty("value"),
+           
+          },
         ]
       };
 
       abcArr.push(q20b);
       console.log("abcArr:", abcArr);
+
+
 
       var Table7 = this.getView().byId("Table7").getItems();
       console.log("Table7:", Table7);
@@ -7096,25 +8122,25 @@ for (var i = 0; i < textAreas.length; i++) {
             "type": "Permanent Employees",
             "maleTurnoverRateInCurrentFY": Table8[0].getAggregation("cells")[1].getProperty("value"),
             "femaleTurnoverRateInCurrentFY": Table8[0].getAggregation("cells")[2].getProperty("value"),
-
-            "maleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[3].getProperty("value"),
-            "femaleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[4].getProperty("value"),
-            "totalTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[5].getProperty("value"),
-            "maleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[6].getProperty("value"),
-            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[7].getProperty("value"),
-            "totalTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInCurrentFY": Table8[0].getAggregation("cells")[3].getProperty("value"),
+            "maleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[4].getProperty("value"),
+            "femaleTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[5].getProperty("value"),
+            "totalTurnoverRateInPreviousFY": Table8[0].getAggregation("cells")[6].getProperty("value"),
+            "maleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[7].getProperty("value"),
+            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInYearPriorToPreviousFY": Table8[0].getAggregation("cells")[9].getProperty("value"),
           },
           {
             "type": "Permanent Workers",
             "maleTurnoverRateInCurrentFY": Table8[1].getAggregation("cells")[1].getProperty("value"),
             "femaleTurnoverRateInCurrentFY": Table8[1].getAggregation("cells")[2].getProperty("value"),
-
-            "maleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[3].getProperty("value"),
-            "femaleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[4].getProperty("value"),
-            "totalTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[5].getProperty("value"),
-            "maleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[6].getProperty("value"),
-            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[7].getProperty("value"),
-            "totalTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInCurrentFY": Table8[1].getAggregation("cells")[3].getProperty("value"),
+            "maleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[4].getProperty("value"),
+            "femaleTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[5].getProperty("value"),
+            "totalTurnoverRateInPreviousFY": Table8[1].getAggregation("cells")[6].getProperty("value"),
+            "maleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[7].getProperty("value"),
+            "femaleTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[8].getProperty("value"),
+            "totalTurnoverRateInYearPriorToPreviousFY": Table8[1].getAggregation("cells")[9].getProperty("value"),
           }
         ]
       };
@@ -7395,6 +8421,18 @@ for (var i = 0; i < textAreas.length; i++) {
           },
           {
             "questions": "The entity does not have the financial or human and technical resources available for the task (Yes/No)",
+            "p1": Table15[1].getAggregation("cells")[1].getProperty("value"),
+            "p2": Table15[1].getAggregation("cells")[2].getProperty("value"),
+            "p3": Table15[1].getAggregation("cells")[3].getProperty("value"),
+            "p4": Table15[1].getAggregation("cells")[4].getProperty("value"),
+            "p5": Table15[1].getAggregation("cells")[5].getProperty("value"),
+            "p6": Table15[1].getAggregation("cells")[6].getProperty("value"),
+            "p7": Table15[1].getAggregation("cells")[7].getProperty("value"),
+            "p8": Table15[1].getAggregation("cells")[8].getProperty("value"),
+            "p9": Table15[1].getAggregation("cells")[9].getProperty("value")
+          },
+          {
+            "questions": "It is planned to be done in the next financial year (Yes/No)",
             "p1": Table15[2].getAggregation("cells")[1].getProperty("value"),
             "p2": Table15[2].getAggregation("cells")[2].getProperty("value"),
             "p3": Table15[2].getAggregation("cells")[3].getProperty("value"),
@@ -7406,7 +8444,7 @@ for (var i = 0; i < textAreas.length; i++) {
             "p9": Table15[2].getAggregation("cells")[9].getProperty("value")
           },
           {
-            "questions": "It is planned to be done in the next financial year (Yes/No)",
+            "questions": "Any other reason (please specify)",
             "p1": Table15[3].getAggregation("cells")[1].getProperty("value"),
             "p2": Table15[3].getAggregation("cells")[2].getProperty("value"),
             "p3": Table15[3].getAggregation("cells")[3].getProperty("value"),
@@ -7416,18 +8454,6 @@ for (var i = 0; i < textAreas.length; i++) {
             "p7": Table15[3].getAggregation("cells")[7].getProperty("value"),
             "p8": Table15[3].getAggregation("cells")[8].getProperty("value"),
             "p9": Table15[3].getAggregation("cells")[9].getProperty("value")
-          },
-          {
-            "questions": "Any other reason (please specify)",
-            "p1": Table15[4].getAggregation("cells")[1].getProperty("value"),
-            "p2": Table15[4].getAggregation("cells")[2].getProperty("value"),
-            "p3": Table15[4].getAggregation("cells")[3].getProperty("value"),
-            "p4": Table15[4].getAggregation("cells")[4].getProperty("value"),
-            "p5": Table15[4].getAggregation("cells")[5].getProperty("value"),
-            "p6": Table15[4].getAggregation("cells")[6].getProperty("value"),
-            "p7": Table15[4].getAggregation("cells")[7].getProperty("value"),
-            "p8": Table15[4].getAggregation("cells")[8].getProperty("value"),
-            "p9": Table15[4].getAggregation("cells")[9].getProperty("value")
           },
 
         ]
@@ -7456,25 +8482,25 @@ for (var i = 0; i < textAreas.length; i++) {
         if (oItem.getCells()[0].getValue() !== "") {
           oRowData2.sr_no = oItem.getCells()[0].getValue();
         } else {
-          oRowData2.sr_no = "NA";
+          oRowData2.sr_no = "";
         }
 
         if (oItem.getCells()[1].getValue() !== "") {
           oRowData2.nameOfProductOrService = oItem.getCells()[1].getValue();
         } else {
-          oRowData2.nameOfProductOrService = "NA";
+          oRowData2.nameOfProductOrService = "";
         }
 
         if (oItem.getCells()[2].getValue() !== "") {
           oRowData2.nicCode = oItem.getCells()[2].getValue();
         } else {
-          oRowData2.nicCode = "NA";
+          oRowData2.nicCode = "";
         }
 
         if (oItem.getCells()[3].getValue() !== "") {
           oRowData2.totalTurnoverContributed = oItem.getCells()[3].getValue();
         } else {
-          oRowData2.totalTurnoverContributed = "NA";
+          oRowData2.totalTurnoverContributed = "";
         }
 
         // Add the row data to the array for Table2
@@ -7505,27 +8531,27 @@ for (var i = 0; i < textAreas.length; i++) {
         if (oItem.getCells()[0].getValue() !== "") {
           oRowData.sr_no = oItem.getCells()[0].getValue();
         } else {
-          oRowData.sr_no = "NA";
+          oRowData.sr_no = "";
         }
 
         if (oItem.getCells()[1].getValue() !== "") {
           oRowData.descriptionOfMainActivity = oItem.getCells()[1].getValue();
         } else {
-          oRowData.descriptionOfMainActivity = "NA";
+          oRowData.descriptionOfMainActivity = "";
         }
 
         // Change the index to [2] for descriptionOfBusinessActivity
         if (oItem.getCells()[2].getValue() !== "") {
           oRowData.descriptionOfBusinessActivity = oItem.getCells()[2].getValue();
         } else {
-          oRowData.descriptionOfBusinessActivity = "NA";
+          oRowData.descriptionOfBusinessActivity = "";
         }
 
         // Change the index to [3] for percentageOfTurnoverOfTheEntity
         if (oItem.getCells()[3].getValue() !== "") {
           oRowData.percentageOfTurnoverOfTheEntity = oItem.getCells()[3].getValue();
         } else {
-          oRowData.percentageOfTurnoverOfTheEntity = "NA";
+          oRowData.percentageOfTurnoverOfTheEntity = "";
         }
 
         Table1Data.push(oRowData);
@@ -7542,48 +8568,30 @@ for (var i = 0; i < textAreas.length; i++) {
       console.log("abcArr:", abcArr);
 
       var oTable = this.getView().byId("Table9");
-
       var aTableItems = oTable.getItems();
-
-      // Create an array to store the data from the table
       var Table9Data = [];
-
-      // Loop through the table items and extract the data
+      
       for (var i = 0; i < aTableItems.length; i++) {
         var oItem = aTableItems[i];
-
-        // Create an object to represent a row of data
         var oRowData3 = {};
-
+      
         // Assuming you want to map specific properties from the table cells
-        if (oItem.getCells()[0].getValue() !== "") {
-          oRowData3.type = oItem.getCells()[0].getValue();
-        } else {
-          oRowData3.type = "NA";
-        }
-
-        if (oItem.getCells()[1].getValue() !== "") {
-          oRowData3.percentageOfShares = oItem.getCells()[1].getValue();
-        } else {
-          oRowData3.percentageOfShares = "NA";
-        }
-
-        if (oItem.getCells()[2].getValue() !== "") {
-          oRowData3.participationStatus = oItem.getCells()[2].getValue();
-        } else {
-          oRowData3.participationStatus = "NA";
-        }
-
+        oRowData3.sr_no = oItem.getCells()[0].getValue() || null;
+        oRowData3.name = oItem.getCells()[1].getValue() || null;
+        oRowData3.type = oItem.getCells()[2].getValue() || null;
+        oRowData3.percentageOfShares = oItem.getCells()[3].getValue() || null;
+        oRowData3.participationStatus = oItem.getCells()[4].getValue() || null;
+      
         Table9Data.push(oRowData3);
       }
-
+      
       var q231 = {
         section: "A",
         questionID: "23",
         Table9: Table9Data
       };
       abcArr.push(q231);
-
+      
       console.log("abcArr:", abcArr);
 
 
@@ -7594,12 +8602,12 @@ for (var i = 0; i < textAreas.length; i++) {
       for (var i = 0; i < aTable11Items.length; i++) {
         var oItem = aTable11Items[i];
         var oRowData4 = {
-          "sr_no": oItem.getCells()[0].getValue() || "NA",
-          "issue": oItem.getCells()[1].getValue() || "NA",
-          "type": oItem.getCells()[2].getValue() || "NA",
-          "rationale": oItem.getCells()[3].getValue() || "NA",
-          "approach": oItem.getCells()[4].getValue() || "NA",
-          "financialImplications": oItem.getCells()[5].getValue() || "NA"
+          "sr_no": oItem.getCells()[0].getValue() || "",
+          "issue": oItem.getCells()[1].getValue() || "",
+          "type": oItem.getCells()[2].getValue() || "",
+          "rationale": oItem.getCells()[3].getValue() || "",
+          "approach": oItem.getCells()[4].getValue() || "",
+          "financialImplications": oItem.getCells()[5].getValue() || ""
         };
 
         Table11Data.push(oRowData4);
@@ -7624,15 +8632,15 @@ for (var i = 0; i < textAreas.length; i++) {
       for (var i = 0; i < aTable14Items.length; i++) {
         var oItem = aTable14Items[i];
         var oRowData5 = {
-          "p1": oItem.getCells()[0].getValue() || "NA",
-          "p2": oItem.getCells()[1].getValue() || "NA",
-          "p3": oItem.getCells()[2].getValue() || "NA",
-          "p4": oItem.getCells()[3].getValue() || "NA",
-          "p5": oItem.getCells()[4].getValue() || "NA",
-          "p6": oItem.getCells()[5].getValue() || "NA",
-          "p7": oItem.getCells()[6].getValue() || "NA", // Corrected cell index
-          "p8": oItem.getCells()[7].getValue() || "NA", // Corrected cell index
-          "p9": oItem.getCells()[8].getValue() || "NA"  // Corrected cell index
+          "p1": oItem.getCells()[0].getValue() || "",
+          "p2": oItem.getCells()[1].getValue() || "",
+          "p3": oItem.getCells()[2].getValue() || "",
+          "p4": oItem.getCells()[3].getValue() || "",
+          "p5": oItem.getCells()[4].getValue() || "",
+          "p6": oItem.getCells()[5].getValue() || "",
+          "p7": oItem.getCells()[6].getValue() || "", // Corrected cell index
+          "p8": oItem.getCells()[7].getValue() || "", // Corrected cell index
+          "p9": oItem.getCells()[8].getValue() || ""  // Corrected cell index
         };
 
         Table14Data.push(oRowData5);
@@ -7678,14 +8686,14 @@ for (var i = 0; i < textAreas.length; i++) {
                   initialFocus: sap.m.MessageBox.Action.OK,
 
                   onClose: function (Action) {
-                    // Handle success message onClose if needed
+                 
                   }
                 });
               },
               error: function (error) {
                 oBusy.close();
                 console.error(error);
-                // Handle the error
+                
               }
             });
           }
@@ -9241,3 +10249,4 @@ for (var i = 0; i < textAreas.length; i++) {
 
   });
 });
+
